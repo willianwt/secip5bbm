@@ -1,0 +1,8 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend Secip 5BBM",
+  "main": "index.js",
+  "author": "Willian Taiguara",
+  "license": "MIT"
+}
