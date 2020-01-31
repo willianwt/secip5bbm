@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
-import './App.css';
-import Clock from './clock';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './pages/Login';
+import GlobalStyle from './styles/GlobalStyles';
+import * as Colors from './config/colors';
+import Header from './components/Header';
+import Routes from './routes';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Clock />
-      </div>
+      <>
+        <Header />
+        <Routes />
+        <GlobalStyle />
+      </>
     );
   }
 }
