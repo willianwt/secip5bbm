@@ -7,11 +7,12 @@ const ProtocolSchema = new mongoose.Schema({
   type: String,
   district: String,
   tax: String,
-  // date: { type: String, default: moment().locale('pt-BR').format('LLL') },
-  status: String,
+  date: String,
+  situation: String,
   division: String,
-  isention: String,
   observations: String,
+  isention: String,
+  inspection: String,
 }, {
   timestamps: true,
 });

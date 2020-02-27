@@ -2,6 +2,7 @@
 require('dotenv').config();
 
 import express from 'express';
+import cors from 'cors';
 import homeRoutes from './src/routes/homeRoutes';
 import protocolRoutes from './src/routes/protocolRoutes';
 
@@ -28,6 +29,7 @@ class App {
 
 
   middlewares() {
+    this.app.use(cors()); /* alterar para liberar acesso somente do endereço da aplicação { origin: adress} */
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
   }

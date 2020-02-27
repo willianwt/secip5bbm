@@ -2,7 +2,7 @@ const Protocol = require('../models/Protocol');
 
 module.exports = {
 
-  async store(req, res) {
+  async store(req, res) { /* cadastra um protocolo */
     const {
       protocol, area, type, district, situation, date, status, division, tax, observations,
     } = req.body;
@@ -13,5 +13,10 @@ module.exports = {
     });
 
     return res.json(createProtocol);
+  },
+
+  async index(req, res) { /* lista todos os protocolos */
+    const protocols = await Protocol.find();
+    return res.json(protocols);
   },
 };
