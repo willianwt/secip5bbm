@@ -13,7 +13,7 @@ import api from '../../services/api';
 export default function Protocol() {
   const [protocolo, setProtocolo] = useState('');
   const [mei, setMei] = useState('nao');
-  const [area, setArea] = useState('0.00');
+  const [area, setArea] = useState('');
   const [tipo, setTipo] = useState('');
   const [bairro, setBairro] = useState('');
   const [situacao, setSituacao] = useState('');
@@ -24,21 +24,21 @@ export default function Protocol() {
   const [tax, setTax] = useState('');
 
   function calculateTax(valor) {
-    if (mei == 'sim' || area == '0.00') {
+    if (mei === 'sim' || area === '0.00' || area === '') {
       setTax('0.00');
     } else {
       if (parseFloat(valor) <= 100) {
         setTax('118.71');
       } else {
-        setTax(((parseFloat(valor) - 100) * 0.17 + 118.71).toFixed(2));
+        setTax((((parseFloat(valor) - 100) * 0.17) + 118.71).toFixed(2));
       }
     }
   }
-  function setTaxAndArea(e) {
-    setArea(e.target.value);
-    calculateTax(e.target.value);
-  }
 
+
+  useEffect(() => {
+    calculateTax(area);
+  }, [mei, area]);
 
   function formatProtocol(valor) {
     valor += '';
@@ -100,7 +100,7 @@ export default function Protocol() {
               name="area"
               id="area"
               value={area}
-              onChange={setTaxAndArea}
+              onChange={(e) => setArea(e.target.value)}
               required
             />
 
@@ -309,7 +309,7 @@ export default function Protocol() {
         <div className="px-0 form-inline">
           <div className="offset-md-3 col-md-3 px-0 form-inline">
             <label className="form-check-label mb-2" htmlFor="mei"><b>MEI / ISENTO?</b></label>
-            <select className="form-control mx-2 mb-2" id="mei" name="mei" onChange={(e) => { setMei(e.target.value); calculateTax(area); }}>
+            <select className="form-control mx-2 mb-2" id="mei" name="mei" onChange={(e) => { setMei(e.target.value); }}>
               <option value="nao" defaultValue>NÃO</option>
               <option value="sim">SIM</option>
             </select>
