@@ -14,4 +14,8 @@ module.exports = {
 
     return res.json(createUser);
   },
+  async index(req, res) { /* lista todos os protocolos */
+    const protocols = await User.find();
+    return res.json(protocols);
+  },
 };

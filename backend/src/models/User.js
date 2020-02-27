@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const moment = require('moment');
 
 const UserSchema = new mongoose.Schema({
   rgm: String,
@@ -7,7 +6,8 @@ const UserSchema = new mongoose.Schema({
   email: String,
   name: String,
   grade: String,
-  date: { type: String, default: moment().locale('pt-BR').format('LLL') },
+}, {
+  timestamps: true,
 
 });
 

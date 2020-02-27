@@ -7,3 +7,11 @@ export const Title = styled.h1`
         font-size: 14px;
     }
 `;
+
+export const Form = styled.form`
+    align-items: center;
+    @media screen and (min-width: 800px){
+        max-width: 50vw;
+    }
+
+`;

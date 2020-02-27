@@ -5,6 +5,7 @@ import express from 'express';
 import cors from 'cors';
 import homeRoutes from './src/routes/homeRoutes';
 import protocolRoutes from './src/routes/protocolRoutes';
+import userRoutes from './src/routes/userRoutes';
 
 const app = express();
 
@@ -29,7 +30,8 @@ class App {
 
 
   middlewares() {
-    this.app.use(cors()); /* alterar para liberar acesso somente do endereço da aplicação { origin: adress} */
+    /* alterar para liberar acesso somente do endereço da aplicação { origin: adress} */
+    this.app.use(cors());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
   }
@@ -39,6 +41,7 @@ class App {
     this.app.use('/', homeRoutes);
 
     this.app.use('/protocol', protocolRoutes);
+    this.app.use('/users', userRoutes);
   }
 }
 
