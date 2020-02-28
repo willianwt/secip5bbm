@@ -229,8 +229,8 @@ export default function Protocol() {
               <option value="aprovado">Aprovado</option>
               <option value="documentacao">Conf. Documentação</option>
             </select>
-            <div className="invalid-feedback">
-                                Escolha a vistoria
+            <div>
+              Escolha a vistoria
             </div>
           </div>
           <div className="col-md-3 mb-3">
@@ -301,8 +301,8 @@ export default function Protocol() {
               <option value="N-2">N-2</option>
               <option value="N-3">N-3</option>
             </select>
-            <div className="invalid-feedback">
-                                Informe a divisão
+            <div>
+              Informe a divisão
             </div>
           </div>
         </div>

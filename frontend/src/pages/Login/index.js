@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Form } from './styled';
 
@@ -21,7 +22,7 @@ export default function Login() {
           <div className="col m-2">
 
             <button type="submit" className="btn btn-primary m-2" name="entrar" value="entrar">Entrar</button>
-            <button id="cadastro" type="button" className="btn btn-warning m-2">Cadastrar</button>
+            <Link id="cadastro" type="button" className="btn btn-warning m-2" to="/cadastro">Cadastrar</Link>
             <button id="esqueceu" type="button" className="btn btn-danger m-2">Esqueceu a senha?</button>
 
           </div>

@@ -5,6 +5,7 @@ import Login from '../pages/Login';
 import Home from '../pages/Home';
 import Page404 from '../pages/Page404';
 import Protocol from '../pages/Protocol';
+import Register from '../pages/Register';
 
 export default function Routes() {
   return (
@@ -12,6 +13,7 @@ export default function Routes() {
       <Route exact path="/" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/protocolo" component={Protocol} />
+      <Route path="/cadastro" component={Register} />
       <Route path="*" component={Page404} />
     </Switch>
   );
