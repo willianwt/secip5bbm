@@ -23,20 +23,19 @@ export default function Protocol() {
   const [observacoes, setObservacoes] = useState('');
   const [tax, setTax] = useState('');
 
-  function calculateTax(valor) {
-    if (mei === 'sim' || area === '0.00' || area === '') {
-      setTax('0.00');
-    } else {
-      if (parseFloat(valor) <= 100) {
-        setTax('118.71');
-      } else {
-        setTax((((parseFloat(valor) - 100) * 0.17) + 118.71).toFixed(2));
-      }
-    }
-  }
-
 
   useEffect(() => {
+    function calculateTax(valor) {
+      if (mei === 'sim' || area === '0.00' || area === '') {
+        setTax('0.00');
+      } else {
+        if (parseFloat(valor) <= 100) {
+          setTax('118.71');
+        } else {
+          setTax((((parseFloat(valor) - 100) * 0.17) + 118.71).toFixed(2));
+        }
+      }
+    }
     calculateTax(area);
   }, [mei, area]);
 
@@ -229,9 +228,6 @@ export default function Protocol() {
               <option value="aprovado">Aprovado</option>
               <option value="documentacao">Conf. Documentação</option>
             </select>
-            <div>
-              Escolha a vistoria
-            </div>
           </div>
           <div className="col-md-3 mb-3">
             <label htmlFor="divisao">Divisão</label>
@@ -301,9 +297,6 @@ export default function Protocol() {
               <option value="N-2">N-2</option>
               <option value="N-3">N-3</option>
             </select>
-            <div>
-              Informe a divisão
-            </div>
           </div>
         </div>
         <div className="px-0 form-inline">

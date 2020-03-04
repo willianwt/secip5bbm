@@ -11,7 +11,7 @@ export const Title = styled.h1`
 export const Form = styled.form`
     align-items: center;
     @media screen and (min-width: 800px){
-        max-width: 50vw;
+        max-width: 40vw;
     }
 
 `;

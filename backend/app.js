@@ -6,6 +6,7 @@ import cors from 'cors';
 import homeRoutes from './src/routes/homeRoutes';
 import protocolRoutes from './src/routes/protocolRoutes';
 import userRoutes from './src/routes/userRoutes';
+import tokenRoutes from './src/routes/tokenRoutes';
 
 const app = express();
 
@@ -16,11 +17,14 @@ mongoose.connect(process.env.CONNECTIONSTRING,
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
+    useCreateIndex: true,
+
   })
   .then(() => {
     app.emit('pronto');
   })
   .catch((e) => console.log(e));
+
 class App {
   constructor() {
     this.app = express();
@@ -42,6 +46,7 @@ class App {
 
     this.app.use('/protocol', protocolRoutes);
     this.app.use('/users', userRoutes);
+    this.app.use('/tokens', tokenRoutes);
   }
 }
 
