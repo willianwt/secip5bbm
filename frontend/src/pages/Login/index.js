@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import history from '../../services/history';
+
 
 import api from '../../services/api';
 
@@ -9,24 +11,29 @@ import { Form } from './styled';
 export default function Login() {
   const [rgm, setRgm] = useState('');
   const [password, setPassword] = useState('');
+  const logged = false;
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-
     const response = await api.post('/users/login', {
       rgm,
       password,
     });
-    sessionStorage.setItem('secip', JSON.stringify(response.data.user));
-  }
-  if (sessionStorage.secip) {
-    const user = JSON.parse(sessionStorage.secip);
-    console.log(user);
-    console.log(user.grade);
-  }
+    if (response.data.error) {
+      alert(JSON.stringify(response.data));
 
-  sessionStorage.clear();
+      return;
+    }
+
+
+    sessionStorage.setItem('secip', JSON.stringify(response.data.user));
+    if (sessionStorage.secip) {
+      const user = JSON.parse(sessionStorage.secip);
+    }
+    history.push('/');
+  }
+  // eslint-disable-next-line no-restricted-globals
+
 
   return (
     <div className="d-flex justify-content-around align-items-center h-75 p-0 m-0">

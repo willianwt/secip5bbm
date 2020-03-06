@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+
 import api from '../../services/api';
 
 
@@ -15,6 +16,16 @@ export default function Home() {
     }
     listProtocols();
   }, []);
+  let logged = true;
+
+  console.log(sessionStorage.secip);
+
+  if (sessionStorage.secip == undefined) {
+    logged = false;
+  }
+  if (!logged) {
+    return <Redirect to="/login" />;
+  }
 
   function formatDate(date) {
     const oldData = date.split('-');
