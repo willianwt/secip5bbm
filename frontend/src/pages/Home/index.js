@@ -10,6 +10,7 @@ export default function Home() {
   useEffect(() => {
     async function listProtocols() {
       const response = await api.get('/protocol/listProtocols');
+
       setProtocols(response.data);
     }
     listProtocols();
@@ -27,10 +28,10 @@ export default function Home() {
         <div className="col-sm-3 my-3">
           <div className="container-fluid">
             <h2 className="text-center">
-                    Escaninho
+              Escaninho
               <br />
 
-                    Luziânia
+              Luziânia
             </h2>
             <Link to="/protocolo" className="btn btn-block btn-primary my-1">Adicionar </Link>
           </div>
@@ -39,7 +40,7 @@ export default function Home() {
           </div>
           <div id="solicitarMaterial" className="container-fluid">
             <button type="button" className="btn btn-block btn-info" data-toggle="modal" data-target="#modalMaterial">
-                        Solicitar Material
+              Solicitar Material
             </button>
           </div>
           <div id="escolheCidade" className="container-fluid">
@@ -63,7 +64,7 @@ export default function Home() {
 
             </thead>
             <tbody>
-              {protocols.map((protocol) => (
+              { protocols.map((protocol) => (
                 // eslint-disable-next-line no-underscore-dangle
                 <tr className="text-center" key={protocol._id}>
                   <td>{protocol.protocol}</td>
@@ -75,14 +76,13 @@ export default function Home() {
                   <td>
                     <button type="button" className="btn btn-success btn-sm">
                       <i />
-                       Editar/Dist.
-                      {' '}
-
+                      Editar/Dist.
                     </button>
                     <button type="button" className="btn btn-danger btn-sm ml-1">Excluir</button>
                   </td>
                 </tr>
               ))}
+
 
             </tbody>
             <tfoot>

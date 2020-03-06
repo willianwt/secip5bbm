@@ -25,9 +25,24 @@ mongoose.connect(process.env.CONNECTIONSTRING,
   })
   .catch((e) => console.log(e));
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+const sessionOptions = session({
+  secret: 'asdlasdlmi21231lm3hn97sdyASDOQWWQ!@#!@$#mdsak',
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 6,
+    httpOnly: true,
+  },
+});
+
 class App {
   constructor() {
     this.app = express();
+    this.session();
     this.middlewares();
     this.routes();
   }
@@ -35,11 +50,14 @@ class App {
 
   middlewares() {
     /* alterar para liberar acesso somente do endereço da aplicação { origin: adress} */
-    this.app.use(cors());
+    this.app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
   }
 
+  session() {
+    this.app.use(sessionOptions);
+  }
 
   routes() {
     this.app.use('/', homeRoutes);

@@ -1,3 +1,16 @@
+export default (req, res, next) => {
+  if (!req.session.isLoggedIn) { // adicionar uma condição para niveis de acesso
+    req.session.save(() => {
+      res.redirect('/');
+    });
+    return;
+  }
+  next();
+};
+
+
+/*
+CÓDIGO PARA MIDDLEWARE VIA TOKEN
 import jwt from 'jsonwebtoken';
 
 export default (req, res, next) => {
@@ -21,4 +34,4 @@ export default (req, res, next) => {
       errors: ['token expirado ou inválido'],
     });
   }
-};
+}; */

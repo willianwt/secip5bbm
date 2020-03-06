@@ -8,7 +8,6 @@ module.exports = {
       rgm, password, email, name, grade, date,
     } = req.body;
 
-    console.log(req.body);
     const createUser = await User.create({
       rgm, password, email, name, grade, date,
     });
@@ -22,16 +21,34 @@ module.exports = {
   },
 
   async login(req, res) {
-    const { rgm, password } = req.body;
+    try {
+      const { rgm, password } = req.body;
 
-    const user = await User.findOne({ rgm }).select('+password');
-    if (!user) { return res.status(400).send({ error: 'usuario nao encontrado' }); }
+      const user = await User.findOne({ rgm }).select('+password');
+      if (!user) { return res.status(400).send({ error: 'usuario nao encontrado' }); }
 
-    if (password !== user.password) { return res.send({ error: 'senha invalida' }); }
+      const isValidPassword = await bcryptjs.compareSync(password, user.password);
 
-    req.session.user = user.rgm;
-    req.session.save(() => res.redirect('back'));
+      user.password = undefined; // esconde a hash de password do usuário
 
-    return res.send(req.session);
+      if (!isValidPassword) {
+        return res.send({ error: 'senha invalida' });
+      }
+
+      req.session.user = user;
+      req.session.isLoggedIn = true;
+      console.log(req.session);
+
+      return req.session.save(() => res.send(req.session));
+    } catch (error) {
+      console.log(error);
+      return res.status(404);
+    }
+  },
+
+  async logout(req, res) {
+    req.session.destroy();
+    console.log(req.session);
+    res.redirect('/');
   },
 };

@@ -17,6 +17,6 @@ module.exports = {
 
   async index(req, res) { /* lista todos os protocolos */
     const protocols = await Protocol.find();
-    return res.json(protocols);
+    return res.send(protocols);
   },
 };

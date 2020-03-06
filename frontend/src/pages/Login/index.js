@@ -2,16 +2,32 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import api from '../../services/api';
+
 import { Form } from './styled';
 
 export default function Login() {
   const [rgm, setRgm] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log(rgm, password);
+
+
+    const response = await api.post('/users/login', {
+      rgm,
+      password,
+    });
+    sessionStorage.setItem('secip', JSON.stringify(response.data.user));
   }
+  if (sessionStorage.secip) {
+    const user = JSON.parse(sessionStorage.secip);
+    console.log(user);
+    console.log(user.grade);
+  }
+
+  sessionStorage.clear();
+
   return (
     <div className="d-flex justify-content-around align-items-center h-75 p-0 m-0">
       <div id="form" className="col-12">
