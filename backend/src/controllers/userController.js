@@ -20,6 +20,27 @@ module.exports = {
     return res.json(users);
   },
 
+  async update(req, res) { // atualiza um protocolo
+    try {
+      const {
+        id, rgm, email, name, grade,
+      } = req.body;
+
+      if (typeof id !== 'string') return;
+
+      const updateUser = await User.findByIdAndUpdate(id, {
+        rgm, email, name, grade,
+      }, { new: true }, (error, result) => {
+        if (error) {
+          console.log(error);
+        }
+        res.send(result);
+      });
+    } catch (error) {
+      res.send(error);
+    }
+  },
+
   async login(req, res) {
     try {
       const { rgm, password } = req.body;

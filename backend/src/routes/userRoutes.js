@@ -8,5 +8,6 @@ router.post('/createUser', userProtocol.store);
 router.get('/listUsers', loginRequired, userProtocol.index);
 router.post('/login', userProtocol.login);
 router.post('/logout', userProtocol.logout);
+router.post('/updateUser', userProtocol.update);
 
 export default router;

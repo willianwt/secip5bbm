@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Router } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
 
 import history from './services/history';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,6 +17,7 @@ class App extends Component {
         <Header />
         <Routes />
         <GlobalStyle />
+        <ToastContainer autoClose={3000} className="toast-container" />
       </Router>
     );
   }

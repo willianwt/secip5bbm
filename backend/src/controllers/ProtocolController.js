@@ -19,4 +19,8 @@ module.exports = {
     const protocols = await Protocol.find();
     return res.send(protocols);
   },
+
+  async update(req, res) { // atualiza um protocolo
+
+  },
 };

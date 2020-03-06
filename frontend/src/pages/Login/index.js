@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import history from '../../services/history';
 
 
@@ -11,7 +13,6 @@ import { Form } from './styled';
 export default function Login() {
   const [rgm, setRgm] = useState('');
   const [password, setPassword] = useState('');
-  const logged = false;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -20,16 +21,17 @@ export default function Login() {
       password,
     });
     if (response.data.error) {
-      alert(JSON.stringify(response.data));
+      toast.error('Usuário ou Senha inválidos!');
 
       return;
     }
 
-
+    let user;
     sessionStorage.setItem('secip', JSON.stringify(response.data.user));
     if (sessionStorage.secip) {
-      const user = JSON.parse(sessionStorage.secip);
+      user = JSON.parse(sessionStorage.secip);
     }
+    toast.success(`Bem vindo ${user.name}`);
     history.push('/');
   }
   // eslint-disable-next-line no-restricted-globals

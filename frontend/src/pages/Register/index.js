@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import bcryptjs from 'bcryptjs';
+import history from '../../services/history';
+
 
 import api from '../../services/api';
 
@@ -28,21 +30,26 @@ export default function Register() {
   useEffect(() => {
     checkPassword(password, password2);
   }, [password, password2]);
-  console.log(password);
-  console.log(password2);
-  console.log(validPassword);
+  //   console.log(password);
+  //   console.log(password2);
+  //   console.log(validPassword);
   async function handleAddUser(e) {
     e.preventDefault();
+    try {
+      const response = await api.post('/users/createUser', {
+        grade,
+        name,
+        rgm,
+        email,
+        password: validPassword,
+      });
 
-    const response = await api.post('/users/createUser', {
-      grade,
-      name,
-      rgm,
-      email,
-      password: validPassword,
-    });
-
-    console.log(response.data);
+      if (response) {
+        history.push('/login');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <div className="d-flex justify-content-around align-items-center p-0 my-5 ">
