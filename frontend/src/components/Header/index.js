@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { FaHome } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,6 @@ import history from '../../services/history';
 
 export default function Header() {
   const isLogged = useSelector((state) => state.isLogged);
-  console.log(isLogged);
   const dispatch = useDispatch();
 
   async function Logout() {
@@ -39,7 +38,7 @@ export default function Header() {
             <Link className="nav-link" to="/escaninho">Escaninho</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/login">Login</Link>
+            {isLogged ? <Link className="nav-link" to="/perfil">Meu Perfil</Link> : ''}
           </li>
         </ul>
         {isLogged ? <button type="submit" onClick={Logout} className="btn btn-outline-danger my-2 my-sm-0">Sair</button>

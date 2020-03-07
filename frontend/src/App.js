@@ -21,7 +21,11 @@ class App extends Component {
           <Routes />
           <GlobalStyle />
           {/* TODO: alterar para 3 ou 4 segundos */}
-          <ToastContainer autoClose={1000} className="toast-container" />
+          <ToastContainer
+            autoClose={4000}
+            position="top-center"
+            className="toast-container"
+          />
         </Router>
       </Provider>
     );
