@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 // import { FaHome } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import api from '../../services/api';
+import history from '../../services/history';
 
 
 export default function Header() {
+  const isLogged = useSelector((state) => state.isLogged);
+  console.log(isLogged);
+  const dispatch = useDispatch();
+
+  async function Logout() {
+    try {
+      await api.post('/users/logout');
+      sessionStorage.clear();
+      dispatch({
+        type: 'LOGIN_STATUS',
+      });
+      toast.info('Até mais!');
+      history.push('/login');
+    } catch (error) {
+      toast.error('Ocorreu um erro. Tente novamente.');
+    }
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark stick-top">
       <Link className="navbar-brand" to="/">SECIP 5º BBM</Link>
@@ -20,6 +42,8 @@ export default function Header() {
             <Link className="nav-link" to="/login">Login</Link>
           </li>
         </ul>
+        {isLogged ? <button type="submit" onClick={Logout} className="btn btn-outline-danger my-2 my-sm-0">Sair</button>
+          : <Link className="btn btn-outline-success my-2 my-sm-0" to="/login">Login</Link>}
       </div>
     </nav>
   );

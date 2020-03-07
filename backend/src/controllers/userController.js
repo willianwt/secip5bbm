@@ -65,8 +65,12 @@ module.exports = {
   },
 
   async logout(req, res) {
-    req.session.destroy();
-    console.log(req.session);
-    res.redirect('/');
+    try {
+      req.session.destroy();
+      res.send({ error: 'not logged' });
+      res.redirect('/');
+    } catch (error) {
+      res.send({ error });
+    }
   },
 };

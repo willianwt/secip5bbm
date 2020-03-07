@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 
 import history from '../../services/history';
 
@@ -11,6 +12,7 @@ import api from '../../services/api';
 import { Form } from './styled';
 
 export default function Login() {
+  const dispatch = useDispatch();
   const [rgm, setRgm] = useState('');
   const [password, setPassword] = useState('');
 
@@ -33,6 +35,9 @@ export default function Login() {
     }
     toast.success(`Bem vindo ${user.name}`);
     history.push('/');
+    dispatch({
+      type: 'LOGIN_STATUS',
+    });
   }
   // eslint-disable-next-line no-restricted-globals
 
