@@ -30,12 +30,9 @@ module.exports = {
 
       const updateUser = await User.findByIdAndUpdate(id, {
         rgm, email, name, grade,
-      }, { new: true }, (error, result) => {
-        if (error) {
-          console.log(error);
-        }
-        res.send(result);
-      });
+      }, { new: true });
+
+      res.send(updateUser);
     } catch (error) {
       res.send(error);
     }

@@ -1,7 +1,7 @@
 export default (req, res, next) => {
   if (!req.session.isLoggedIn) { // adicionar uma condição para niveis de acesso
     req.session.save(() => {
-      res.redirect('/');
+      res.send({ error: 'not logged' });
     });
     return;
   }

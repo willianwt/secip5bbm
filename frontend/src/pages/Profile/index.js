@@ -18,8 +18,6 @@ export default function Profile() {
   const [name, setName] = useState(user.name);
   const [rgm, setRgm] = useState(user.rgm);
   const [email, setEmail] = useState(user.email);
-  const [password, setPassword] = useState('');
-
 
   async function handdleUpdateUser(e) {
     e.preventDefault();

@@ -12,6 +12,11 @@ const ProtocolSchema = new mongoose.Schema({
   observations: String,
   isention: String,
   inspection: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
 }, {
   timestamps: true,
 });

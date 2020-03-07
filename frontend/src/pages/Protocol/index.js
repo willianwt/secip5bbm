@@ -22,7 +22,7 @@ export default function Protocol() {
   const [divisao, setDivisao] = useState('');
   const [observacoes, setObservacoes] = useState('');
   const [tax, setTax] = useState('');
-
+  const user = JSON.parse(sessionStorage.secip);
 
   useEffect(() => {
     function calculateTax(valor) {

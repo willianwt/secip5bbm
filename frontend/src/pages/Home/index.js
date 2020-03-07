@@ -3,7 +3,6 @@ import { Redirect, Link } from 'react-router-dom';
 
 import api from '../../services/api';
 
-
 export default function Home() {
   const [protocols, setProtocols] = useState([]);
 
@@ -16,22 +15,27 @@ export default function Home() {
     }
     listProtocols();
   }, []);
+
+  // checa se o usuário está logado e redireciona para o login caso negativo.
+  // TODO: é necessário?
+
   let logged = true;
-
-  console.log(sessionStorage.secip);
-
-  if (sessionStorage.secip == undefined) {
+  if (sessionStorage.secip === undefined) {
     logged = false;
   }
   if (!logged) {
     return <Redirect to="/login" />;
   }
 
+  // formata a data de 2020/10/31 para 31/10/2020
+
   function formatDate(date) {
     const oldData = date.split('-');
     const newData = `${oldData[2]}/${oldData[1]}/${oldData[0]}`;
     return newData.toString();
   }
+
+  // html da página
   return (
     <div className="container-fluid" style={{ height: '94vh' }}>
       <div className="row" style={{ height: '94vh' }}>
@@ -75,24 +79,26 @@ export default function Home() {
 
             </thead>
             <tbody>
-              { protocols.map((protocol) => (
+              { protocols.error === 'not logged'
+                ? <Redirect to="/login" />
+                : protocols.map((protocol) => (
                 // eslint-disable-next-line no-underscore-dangle
-                <tr className="text-center" key={protocol._id}>
-                  <td>{protocol.protocol}</td>
-                  <td>{protocol.area}</td>
-                  <td>{protocol.district}</td>
-                  <td>{protocol.situation}</td>
-                  <td>{formatDate(protocol.date)}</td>
-                  <td />
-                  <td>
-                    <button type="button" className="btn btn-success btn-sm">
-                      <i />
-                      Editar/Dist.
-                    </button>
-                    <button type="button" className="btn btn-danger btn-sm ml-1">Excluir</button>
-                  </td>
-                </tr>
-              ))}
+                  <tr className="text-center" key={protocol._id}>
+                    <td>{protocol.protocol}</td>
+                    <td>{protocol.area}</td>
+                    <td>{protocol.district}</td>
+                    <td>{protocol.situation}</td>
+                    <td>{formatDate(protocol.date)}</td>
+                    <td />
+                    <td>
+                      <button type="button" className="btn btn-success btn-sm">
+                        <i />
+                        Editar/Dist.
+                      </button>
+                      <button type="button" className="btn btn-danger btn-sm ml-1">Excluir</button>
+                    </td>
+                  </tr>
+                ))}
 
 
             </tbody>
