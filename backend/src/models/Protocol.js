@@ -12,9 +12,10 @@ const ProtocolSchema = new mongoose.Schema({
   observations: String,
   isention: String,
   inspection: String,
+  fiscal: String,
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'user',
     required: true,
   },
 }, {

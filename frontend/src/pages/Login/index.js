@@ -18,26 +18,32 @@ export default function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await api.post('/users/login', {
-      rgm,
-      password,
-    });
-    if (response.data.error) {
-      toast.error('Usuário ou Senha inválidos!');
 
-      return;
-    }
+    try {
+      const response = await api.post('/users/login', {
+        rgm,
+        password,
+      });
+      if (response.data.error) {
+        toast.error('Usuário ou Senha inválidos!');
 
-    let user;
-    sessionStorage.setItem('secip', JSON.stringify(response.data.user));
-    if (sessionStorage.secip) {
-      user = JSON.parse(sessionStorage.secip);
+        return;
+      }
+
+      let user;
+      sessionStorage.setItem('secip', JSON.stringify(response.data.user));
+      if (sessionStorage.secip) {
+        user = JSON.parse(sessionStorage.secip);
+      }
+      toast.success(`Bem vindo ${user.name}`);
+      history.push('/');
+      dispatch({
+        type: 'LOGIN_STATUS',
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error('Ocorreu um erro. Tente novamente.');
     }
-    toast.success(`Bem vindo ${user.name}`);
-    history.push('/');
-    dispatch({
-      type: 'LOGIN_STATUS',
-    });
   }
   // eslint-disable-next-line no-restricted-globals
 

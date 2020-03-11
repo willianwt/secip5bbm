@@ -1,13 +1,17 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-lonely-if */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import NumberFormat from 'react-number-format';
 
 import dateformat from 'dateformat';
 
 import api from '../../services/api';
+import history from '../../services/history';
 
 
 export default function Protocol() {
@@ -51,21 +55,29 @@ export default function Protocol() {
   async function handleAddProtocol(e) {
     e.preventDefault();
 
-    const response = await api.post('/protocol/createProtocol', {
-      protocol: protocolo,
-      area,
-      type: tipo,
-      district: bairro,
-      situation: situacao,
-      date: data,
-      inspection: vistoria,
-      division: divisao,
-      isention: mei,
-      observations: observacoes,
-      tax,
-    });
+    try {
+      const response = await api.post('/protocol/createProtocol', {
+        protocol: protocolo,
+        area,
+        type: tipo,
+        district: bairro,
+        situation: situacao,
+        date: data,
+        inspection: vistoria,
+        division: divisao,
+        isention: mei,
+        observations: observacoes,
+        tax,
+        user: user._id,
+      });
 
-    console.log(response.data);
+      console.log(response);
+
+      toast.success(`Protocolo ${protocolo} adicionado com sucesso!`);
+      history.push('/');
+    } catch (error) {
+      toast.error('Ocorreu um erro. Tente novamente.');
+    }
   }
   return (
     <div className="container">

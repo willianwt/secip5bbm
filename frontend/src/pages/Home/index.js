@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
@@ -48,7 +49,7 @@ export default function Home() {
 
               Luziânia
             </h2>
-            <Link to="/protocolo" className="btn btn-block btn-primary my-1">Adicionar </Link>
+            <Link to="/adicionarProtocolo" className="btn btn-block btn-primary my-1">Adicionar </Link>
           </div>
           <div className="container-fluid">
             <input type="text" id="busca_escaninho" placeholder="Busca" className="form-control my-1" />
@@ -82,7 +83,6 @@ export default function Home() {
               { protocols.error === 'not logged'
                 ? <Redirect to="/login" />
                 : protocols.map((protocol) => (
-                // eslint-disable-next-line no-underscore-dangle
                   <tr className="text-center" key={protocol._id}>
                     <td>{protocol.protocol}</td>
                     <td>{protocol.area}</td>
@@ -91,10 +91,10 @@ export default function Home() {
                     <td>{formatDate(protocol.date)}</td>
                     <td />
                     <td>
-                      <button type="button" className="btn btn-success btn-sm">
+                      <Link to={{ pathname: '/editarProtocolo', state: { protocol } }} className="btn btn-success btn-sm">
                         <i />
                         Editar/Dist.
-                      </button>
+                      </Link>
                       <button type="button" className="btn btn-danger btn-sm ml-1">Excluir</button>
                     </td>
                   </tr>
@@ -137,7 +137,7 @@ export default function Home() {
                 <th rowSpan="1" colSpan="1">Vistoriador</th>
                 <th rowSpan="1" colSpan="1">Ações</th>
               </tr>
-
+              { console.log(protocols)}
             </tfoot>
           </table>
         </div>

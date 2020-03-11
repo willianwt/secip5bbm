@@ -4,12 +4,12 @@ module.exports = {
 
   async store(req, res) { /* cadastra um protocolo */
     const {
-      protocol, area, type, district, situation, date, status, division, tax, observations,
+      protocol, area, type, district, situation, date, status, division, tax, observations, user, fiscal, inspection,
     } = req.body;
 
     console.log(req.body);
     const createProtocol = await Protocol.create({
-      protocol, area, type, district, situation, date, status, division, tax, observations,
+      protocol, area, type, district, situation, date, status, division, tax, observations, user, fiscal, inspection,
     });
 
     return res.json(createProtocol);
