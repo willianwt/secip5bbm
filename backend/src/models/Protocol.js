@@ -15,9 +15,18 @@ const ProtocolSchema = new mongoose.Schema({
   fiscal: String,
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
-    required: true,
+    ref: 'User',
   },
+  changes: [
+    {
+      user: { type: mongoose.Schema.Types.ObjectId },
+      modification: String,
+      data: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
 }, {
   timestamps: true,
 });

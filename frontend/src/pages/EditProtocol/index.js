@@ -1,17 +1,23 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-lonely-if */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import NumberFormat from 'react-number-format';
 
+
 import api from '../../services/api';
+import history from '../../services/history';
 
 
 export default function Protocol() {
   const location = useLocation();
   console.log(location.state.protocol);
+  const id = location.state.protocol._id;
+  console.log(id);
   const [protocolo, setProtocolo] = useState(location.state.protocol.protocol);
   const [mei, setMei] = useState(location.state.protocol.tax > 0 ? 'nao' : 'sim');
   const [area, setArea] = useState(location.state.protocol.area);
@@ -53,19 +59,31 @@ export default function Protocol() {
   async function handleEditProtocol(e) {
     e.preventDefault();
 
-    const response = await api.post('/protocol/createProtocol', {
-      protocol: protocolo,
-      area,
-      type: tipo,
-      district: bairro,
-      situation: situacao,
-      date: data,
-      inspection: vistoria,
-      division: divisao,
-      isention: mei,
-      observations: observacoes,
-      tax,
-    });
+    try {
+      const response = await api.post('/protocol/editProtocol', {
+        id,
+        protocol: protocolo,
+        area,
+        type: tipo,
+        district: bairro,
+        situation: situacao,
+        date: data,
+        inspection: vistoria,
+        division: divisao,
+        isention: mei,
+        observations: observacoes,
+        tax,
+        user: user._id,
+      });
+
+      console.log(response);
+
+      toast.success(`Protocolo ${protocolo} editado com sucesso!`);
+      history.push('/');
+    } catch (error) {
+      toast.error('Ocorreu um erro. Tente novamente.');
+      console.log(error);
+    }
   }
   return (
     <div className="container">
@@ -336,7 +354,21 @@ export default function Protocol() {
         </div>
 
       </form>
+      <div>
+        <hr />
+        <p>
+          {`Incluído por ${user.grade.toUpperCase()} ${user.name}`}
 
+        </p>
+        <h2>Andamentos do protocolo</h2>
+        <ol>
+          <li>
+            {console.log(location.state.protocol.changes)}
+          </li>
+
+        </ol>
+        <p />
+      </div>
     </div>
 
   );
