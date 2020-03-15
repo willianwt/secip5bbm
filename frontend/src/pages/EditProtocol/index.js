@@ -60,7 +60,7 @@ export default function Protocol() {
     e.preventDefault();
 
     try {
-      const response = await api.post('/protocol/editProtocol', {
+      const response = await api.put('/protocol/editProtocol', {
         id,
         protocol: protocolo,
         area,

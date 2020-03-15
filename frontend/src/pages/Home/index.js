@@ -2,11 +2,35 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
+import { Modal, Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 import api from '../../services/api';
 
 export default function Home() {
   const [protocols, setProtocols] = useState([]);
+  const [show, setShow] = useState(false);
+  const [modalProtocol, setModalProtocol] = useState([]);
+  const [deletedProtocol, setDeletedProtocol] = useState('');
 
+  const handleClose = () => setShow(false);
+  const handleShow = (selectedProtocol) => {
+    setShow(true);
+    setModalProtocol(selectedProtocol);
+  };
+
+  async function deleteProtocol(id) {
+    try {
+      await api.delete(`/protocol/deleteProtocol/${id}`);
+      toast.success('Protocolo excluido com sucesso!');
+      setShow(false);
+      setDeletedProtocol(!deletedProtocol);
+    } catch (error) {
+      console.log(error);
+      setShow(false);
+    }
+  }
+
+  console.log(deletedProtocol);
 
   useEffect(() => {
     async function listProtocols() {
@@ -15,7 +39,8 @@ export default function Home() {
       setProtocols(response.data);
     }
     listProtocols();
-  }, []);
+  }, [deletedProtocol]);
+
 
   // checa se o usuário está logado e redireciona para o login caso negativo.
   // TODO: é necessário?
@@ -95,7 +120,7 @@ export default function Home() {
                         <i />
                         Editar/Dist.
                       </Link>
-                      <button type="button" className="btn btn-danger btn-sm ml-1">Excluir</button>
+                      <Button onClick={() => handleShow(protocol)} variant="danger" size="sm" className="ml-1">Excluir</Button>
                     </td>
                   </tr>
                 ))}
@@ -109,39 +134,45 @@ export default function Home() {
                 <th rowSpan="1" colSpan="1">
                   <select>
                     <option value="" aria-label="vazio" />
-                    <option value="Centro">Centro</option>
-                    <option value="Parque Nova Friburgo A">Parque Nova Friburgo A</option>
-                    <option value="Parque Nova Friburgo B">Parque Nova Friburgo B</option>
                   </select>
                 </th>
                 <th rowSpan="1" colSpan="1">
                   <select>
                     <option value="" />
-                    <option value="Aprovada">Aprovada</option>
-                    <option value="Exigencia">Exigencia</option>
-                    <option value="Incorreto">Incorreto</option>
-                    <option value="Proativa">Proativa</option>
-                    <option value="Urgente">Urgente</option>
+
                   </select>
                 </th>
                 <th rowSpan="1" colSpan="1">
                   <select>
                     <option value="" />
-                    <option value="23-07-2018">23-07-2018</option>
-                    <option value="24-07-2018">24-07-2018</option>
-                    <option value="25-02-2018">25-02-2018</option>
-                    <option value="26-07-2018">26-07-2018</option>
-                    <option value="31-12-2019">31-12-2019</option>
+
                   </select>
                 </th>
                 <th rowSpan="1" colSpan="1">Vistoriador</th>
                 <th rowSpan="1" colSpan="1">Ações</th>
               </tr>
-              { console.log(protocols)}
             </tfoot>
           </table>
         </div>
       </div>
+      <Modal show={show} onHide={handleClose} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>
+            Tem certeza que deseja EXCLUIR o Prot.
+            {modalProtocol.protocol}
+            ?
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Essa ação não pode ser desfeita. Use com responsabilidade!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Não
+          </Button>
+          <Button variant="primary" onClick={() => deleteProtocol(modalProtocol._id)}>
+            Sim
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

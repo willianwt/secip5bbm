@@ -28,17 +28,12 @@ module.exports = {
   async delete(req, res) { /* deleta um protocolo */
     const { id } = req.params;
     try {
-      const prot = Protocol.findById(id);
-
       await Protocol.findByIdAndRemove(id, (err, result) => {
         if (!result) {
-          console.log(result);
           res.send('nao encontrado');
         } else if (err) {
-          console.log(err);
           res.send('erro');
         } else {
-          console.log(err);
           res.send('ok');
         }
       });
