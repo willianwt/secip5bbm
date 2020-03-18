@@ -6,7 +6,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 
-export default function Home() {
+export default function Users() {
   const [protocols, setProtocols] = useState([]);
   const [show, setShow] = useState(false);
   const [modalProtocol, setModalProtocol] = useState([]);
@@ -47,12 +47,8 @@ export default function Home() {
   // checa se o usuário está logado e redireciona para o login caso negativo.
   // TODO: é necessário?
 
-  const logged = true;
   if (sessionStorage.secip === undefined) {
     return <Redirect to="/login" />;
-  }
-  if (!logged) {
-
   }
 
   // formata a data de 2020/10/31 para 31/10/2020
@@ -71,38 +67,27 @@ export default function Home() {
         <div className="col-sm-3 my-3">
           <div className="container-fluid">
             <h2 className="text-center">
-              Escaninho
-              <br />
-
-              Luziânia
+              Usuários
             </h2>
-            <Link to="/adicionarProtocolo" className="btn btn-block btn-primary my-1">Adicionar </Link>
+            <Link to="/adicionarUsuário" className="btn btn-block btn-primary my-1">Adicionar Usuário </Link>
           </div>
           <div className="container-fluid">
             <input type="text" id="busca_escaninho" placeholder="Busca" className="form-control my-1" />
-          </div>
-          <div id="solicitarMaterial" className="container-fluid">
-            <button type="button" className="btn btn-block btn-info" data-toggle="modal" data-target="#modalMaterial">
-              Solicitar Material
-            </button>
-          </div>
-          <div id="escolheCidade" className="container-fluid">
-            <a className="btn btn-block btn-warning" href="escolheCidade.php">Trocar Cidade</a>
           </div>
         </div>
         {/* incluir esta coluna em um componente */}
 
         <div className="col-sm-9" style={{ height: '94vh', overflow: 'scroll' }}>
-          <table id="escaninho" className="table table-bordered table-responsive-sm table-striped dataTable" aria-describedby="escaninho_info" role="grid">
+          <table id="escaninho" className="table table-bordered table-responsive-sm table-striped" aria-describedby="escaninho_info" role="grid">
             <thead>
               <tr className="text-center">
-                <th>Protocolo</th>
-                <th>Área</th>
-                <th>Bairro</th>
-                <th>Situação</th>
-                <th>Data</th>
-                <th>Vistoriador</th>
-                <th>Ações</th>
+                <th>RG</th>
+                <th>Graduação</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Permissão</th>
+                <th>Editar</th>
+                <th>Excluir</th>
               </tr>
 
             </thead>
@@ -126,34 +111,7 @@ export default function Home() {
                     </td>
                   </tr>
                 ))}
-
-
             </tbody>
-            <tfoot>
-              <tr>
-                <th rowSpan="1" colSpan="1">Protocolo</th>
-                <th rowSpan="1" colSpan="1">Área</th>
-                <th rowSpan="1" colSpan="1">
-                  <select>
-                    <option value="" aria-label="vazio" />
-                  </select>
-                </th>
-                <th rowSpan="1" colSpan="1">
-                  <select>
-                    <option value="" />
-
-                  </select>
-                </th>
-                <th rowSpan="1" colSpan="1">
-                  <select>
-                    <option value="" />
-
-                  </select>
-                </th>
-                <th rowSpan="1" colSpan="1">Vistoriador</th>
-                <th rowSpan="1" colSpan="1">Ações</th>
-              </tr>
-            </tfoot>
           </table>
         </div>
       </div>

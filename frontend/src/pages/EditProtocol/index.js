@@ -17,7 +17,6 @@ export default function Protocol() {
   const location = useLocation();
   console.log(location.state.protocol);
   const id = location.state.protocol._id;
-  console.log(id);
   const [protocolo, setProtocolo] = useState(location.state.protocol.protocol);
   const [mei, setMei] = useState(location.state.protocol.tax > 0 ? 'nao' : 'sim');
   const [area, setArea] = useState(location.state.protocol.area);
@@ -350,7 +349,7 @@ export default function Protocol() {
         <br />
         <div className="modal-footer">
           <Link to="/" className="btn btn-secondary">Cancelar</Link>
-          <button className="btn btn-success" type="submit">Enviar</button>
+          <button className="btn btn-success" type="submit">Atualizar</button>
         </div>
 
       </form>

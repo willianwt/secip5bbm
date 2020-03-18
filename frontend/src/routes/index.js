@@ -8,6 +8,7 @@ import AddProtocol from '../pages/AddProtocol';
 import EditProtocol from '../pages/EditProtocol';
 import Register from '../pages/Register';
 import Profile from '../pages/Profile';
+import Users from '../pages/Users';
 
 export default function Routes() {
   return (
@@ -18,6 +19,7 @@ export default function Routes() {
       <Route path="/editarProtocolo" render={(props) => <EditProtocol {...props} />} />
       <Route path="/cadastro" component={Register} />
       <Route path="/perfil" component={Profile} />
+      <Route path="/usuarios" component={Users} />
       <Route path="*" component={Page404} />
     </Switch>
   );

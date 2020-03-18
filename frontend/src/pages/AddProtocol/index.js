@@ -71,7 +71,12 @@ export default function Protocol() {
         user: user._id,
       });
 
-      console.log(response);
+      console.log(response.data);
+
+      if (response.data === 'protocol exists') {
+        toast.warn('Protocolo já cadastrado. Tente novamente.');
+        return;
+      }
 
       toast.success(`Protocolo ${protocolo} adicionado com sucesso!`);
       history.push('/');
@@ -347,7 +352,7 @@ export default function Protocol() {
         <br />
         <div className="modal-footer">
           <Link to="/" className="btn btn-secondary">Cancelar</Link>
-          <button className="btn btn-success" type="submit">Enviar</button>
+          <button className="btn btn-success" type="submit">Salvar</button>
         </div>
 
       </form>
