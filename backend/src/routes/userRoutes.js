@@ -6,6 +6,7 @@ const router = new Router();
 
 router.post('/createUser', userProtocol.store);
 router.get('/listUsers', loginRequired, userProtocol.index);
+router.post('/listUser/:id', userProtocol.listOne);
 router.post('/login', userProtocol.login);
 router.post('/logout', userProtocol.logout);
 router.post('/updateUser', userProtocol.update);

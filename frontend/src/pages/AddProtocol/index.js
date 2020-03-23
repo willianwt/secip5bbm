@@ -74,7 +74,7 @@ export default function Protocol() {
       console.log(response.data);
 
       if (response.data === 'protocol exists') {
-        toast.warn('Protocolo já cadastrado. Tente novamente.');
+        toast.warn('Protocolo já cadastrado.');
         return;
       }
 

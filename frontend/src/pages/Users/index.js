@@ -7,16 +7,29 @@ import { toast } from 'react-toastify';
 import api from '../../services/api';
 
 export default function Users() {
-  const [protocols, setProtocols] = useState([]);
+  const [users, setUsers] = useState([]);
   const [show, setShow] = useState(false);
-  const [modalProtocol, setModalProtocol] = useState([]);
+  const [showEdit, setShowEdit] = useState(false);
+  const [modalUser, setModalUser] = useState([]);
   const [deletedProtocol, setDeletedProtocol] = useState('');
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setShowEdit(false);
+  };
   const handleShow = (selectedProtocol) => {
     setShow(true);
-    setModalProtocol(selectedProtocol);
+    setModalUser(selectedProtocol);
   };
+
+  async function getUser(id) {
+    const user = await api.post(`/users/listUser/${id}`);
+    if (user) setModalUser(user.data);
+
+    setShowEdit(true);
+    setModalUser(user.data);
+    console.log(modalUser);
+  }
 
   async function deleteProtocol(id) {
     try {
@@ -33,9 +46,9 @@ export default function Users() {
   useEffect(() => {
     async function listProtocols() {
       try {
-        const response = await api.get('/protocol/listProtocols');
+        const response = await api.get('/users/listUsers');
 
-        setProtocols(response.data);
+        setUsers(response.data);
       } catch (error) {
         toast.error('Problema na conexão! Entre em contato com o Suporte.');
       }
@@ -92,22 +105,21 @@ export default function Users() {
 
             </thead>
             <tbody>
-              { protocols.error === 'not logged'
+              { users.error === 'not logged'
                 ? <Redirect to="/login" />
-                : protocols.map((protocol) => (
-                  <tr className="text-center" key={protocol._id}>
-                    <td>{protocol.protocol}</td>
-                    <td>{protocol.area}</td>
-                    <td>{protocol.district}</td>
-                    <td>{protocol.situation}</td>
-                    <td>{formatDate(protocol.date)}</td>
+                : users.map((user) => (
+                  <tr className="text-center" key={user._id}>
+                    <td>{user.rgm}</td>
+                    <td>{user.grade}</td>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
                     <td />
                     <td>
-                      <Link to={{ pathname: '/editarProtocolo', state: { protocol } }} className="btn btn-success btn-sm">
-                        <i />
-                        Editar/Dist.
-                      </Link>
-                      <Button onClick={() => handleShow(protocol)} variant="danger" size="sm" className="ml-1">Excluir</Button>
+                      <Button onClick={() => getUser(user._id)} className="btn btn-success btn-sm">Editar</Button>
+                    </td>
+                    <td>
+
+                      <Button onClick={() => handleShow(user)} variant="danger" size="sm" className="ml-1">Excluir</Button>
                     </td>
                   </tr>
                 ))}
@@ -115,11 +127,13 @@ export default function Users() {
           </table>
         </div>
       </div>
-      <Modal show={show} onHide={handleClose} size="lg">
+      {/* Modal de Edição */}
+      <Modal show={showEdit} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>
-            Tem certeza que deseja EXCLUIR o Prot.
-            {modalProtocol.protocol}
+            Usuário
+            {' '}
+            {modalUser.rgm}
             ?
           </Modal.Title>
         </Modal.Header>
@@ -128,7 +142,28 @@ export default function Users() {
           <Button variant="secondary" onClick={handleClose}>
             Não
           </Button>
-          <Button variant="primary" onClick={() => deleteProtocol(modalProtocol._id)}>
+          <Button variant="primary" onClick={() => deleteProtocol(modalUser._id)}>
+            Sim
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal de exclusão */}
+      <Modal show={show} onHide={handleClose} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>
+            Tem certeza que deseja EXCLUIR o Usuário
+            {' '}
+            {modalUser.rgm}
+            ?
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Essa ação não pode ser desfeita. Use com responsabilidade!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Não
+          </Button>
+          <Button variant="primary" onClick={() => deleteProtocol(modalUser._id)}>
             Sim
           </Button>
         </Modal.Footer>

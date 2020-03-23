@@ -15,12 +15,23 @@ module.exports = {
     return res.json(createUser);
   },
 
-  async index(req, res) { /* lista todos os protocolos */
+  async index(req, res) { /* lista todos os usuarios */
     const users = await User.find();
     return res.json(users);
   },
 
-  async update(req, res) { // atualiza um protocolo
+  async listOne(req, res) { /* lista um usuário */
+    const { id } = req.params;
+    console.log(id);
+    const user = await User.findById(id);
+    return res.json(user);
+  },
+
+  async delete(req, res) { /* deleta um usuario */
+
+  },
+
+  async update(req, res) { // atualiza um usuario
     try {
       const {
         id, rgm, email, name, grade,
