@@ -8,7 +8,7 @@ import store from './store';
 import history from './services/history';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GlobalStyle from './styles/GlobalStyles';
-import * as Colors from './config/colors';
+// import * as Colors from './config/colors';
 import Header from './components/Header';
 import Routes from './routes';
 

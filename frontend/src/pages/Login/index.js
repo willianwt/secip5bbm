@@ -31,6 +31,7 @@ export default function Login() {
       }
 
       let user;
+
       sessionStorage.setItem('secip', JSON.stringify(response.data.user));
       if (sessionStorage.secip) {
         user = JSON.parse(sessionStorage.secip);
@@ -40,8 +41,8 @@ export default function Login() {
       dispatch({
         type: 'LOGIN_STATUS',
       });
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      console.log(e);
       toast.error('Ocorreu um erro. Tente novamente.');
     }
   }

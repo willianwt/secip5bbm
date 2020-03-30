@@ -74,8 +74,8 @@ export default function Users() {
 
   // html da página
   return (
-    <div className="container-fluid" style={{ height: '94vh' }}>
-      <div className="row" style={{ height: '94vh' }}>
+    <div className="container-fluid" style={{ height: '93vh' }}>
+      <div className="row" style={{ height: '93vh' }}>
         {/* incluir esta coluna em um componente */}
         <div className="col-sm-3 my-3">
           <div className="container-fluid">
@@ -90,7 +90,7 @@ export default function Users() {
         </div>
         {/* incluir esta coluna em um componente */}
 
-        <div className="col-sm-9" style={{ height: '94vh', overflow: 'scroll' }}>
+        <div className="col-sm-9" style={{ height: '93vh', overflow: 'scroll' }}>
           <table id="escaninho" className="table table-bordered table-responsive-sm table-striped" aria-describedby="escaninho_info" role="grid">
             <thead>
               <tr className="text-center">

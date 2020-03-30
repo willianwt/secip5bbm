@@ -54,7 +54,7 @@ module.exports = {
       const { rgm, password } = req.body;
 
       const user = await User.findOne({ rgm }).select('+password');
-      if (!user) { return res.status(400).send({ error: 'usuario nao encontrado' }); }
+      if (!user) { return res.send({ error: 'usuario nao encontrado' }); }
 
       const isValidPassword = await bcryptjs.compareSync(password, user.password);
 

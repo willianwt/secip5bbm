@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import bcryptjs from 'bcryptjs';
+import { toast } from 'react-toastify';
 import history from '../../services/history';
 
 
@@ -49,6 +50,7 @@ export default function Register() {
       }
     } catch (error) {
       console.log(error);
+      toast.error('Ocorreu um erro. Tente novamente.');
     }
   }
   return (

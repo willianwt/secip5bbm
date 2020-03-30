@@ -26,7 +26,7 @@ export default function Header() {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark stick-top">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <Link className="navbar-brand" to="/">SECIP 5º BBM</Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon" />
@@ -34,8 +34,31 @@ export default function Header() {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
+          <li className="dropdown show">
+            <button className="btn btn-info dropdown-toggle m-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Tutoriais
+            </button>
+
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a className="dropdown-item" href="https://drive.google.com/file/d/1ndzXTXwxThzyURXyBbQIar9wiFK4skLW/view" target="_blank" rel="noopener noreferrer">Cadastrar Protocolo</a>
+              <a className="dropdown-item" href="https://drive.google.com/file/d/1WbB94oYSnJVnjf2NoQzUcHqEaA94s3kr/view" target="_blank" rel="noopener noreferrer">Anexar Documentos</a>
+              <a className="dropdown-item" href="https://drive.google.com/file/d/1f1Qt9cPjJMEnuIeTETAJ1ihqMP-Ei42k/view" target="_blank" rel="noopener noreferrer">Gerar Taxa</a>
+              <a className="dropdown-item" href="https://drive.google.com/file/d/1BO4P91pBP4oHbFtSEjcpAAKIN-B3oHT1/view" target="_blank" rel="noopener noreferrer">Solicitar Retorno</a>
+              <a className="dropdown-item" href="https://drive.google.com/file/d/1Mls37JHecIpUpzdW-zA5jMPr2UGYLdmH/view" target="_blank" rel="noopener noreferrer">Anexo G</a>
+            </div>
+          </li>
+          <li className="dropdown show">
+            <button className="btn btn-secondary dropdown-toggle m-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dicas
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <Link className="dropdown-item" to="/sei">SEI</Link>
+              <Link className="dropdown-item" to="/conferenciadedocumentos">Conferência de Documentos no Siapi</Link>
+              <Link className="dropdown-item" to="/checarpagamentoitau">Checar Pagamento de Taxa no Itau</Link>
+            </div>
+          </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/">Escaninho</Link>
+            {isLogged ? <Link className="nav-link" to="/escaninho">Escaninho</Link> : ''}
           </li>
           <li className="nav-item">
             {isLogged ? <Link className="nav-link" to="/perfil">Meu Perfil</Link> : ''}
