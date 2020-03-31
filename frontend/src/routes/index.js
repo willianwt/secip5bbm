@@ -11,6 +11,7 @@ import Register from '../pages/Register';
 import Profile from '../pages/Profile';
 import Users from '../pages/Users';
 import DocumentConference from '../pages/DocumentConference';
+import SEI from '../pages/SEI';
 
 export default function Routes() {
   return (
@@ -18,6 +19,7 @@ export default function Routes() {
       <Route exact path="/" component={Home} />
       <Route exact path="/escaninho" component={Escaninho} />
       <Route exact path="/conferenciadedocumentos" component={DocumentConference} />
+      <Route exact path="/SEI" component={SEI} />
       <Route path="/login" component={Login} />
       <Route path="/adicionarProtocolo" component={AddProtocol} />
       <Route path="/editarProtocolo" render={(props) => <EditProtocol {...props} />} />
