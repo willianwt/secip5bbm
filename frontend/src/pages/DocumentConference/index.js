@@ -63,7 +63,7 @@ export default function DocumentConference() {
       className="container-fluid"
       style={styles.header}
     >
-      <div style={styles.content} className="d-flex flex-column  align-items-center">
+      <div style={styles.content} className="d-flex flex-column  align-items-center ">
         <FaAngleUp
           onClick={() => scroll.scrollToTop()}
           style={{
@@ -80,7 +80,7 @@ export default function DocumentConference() {
 
         <h1 className="text-center">Como conferir documentos no SIAPI</h1>
 
-        <div className="px-3 m-2" style={{ maxWidth: '90%' }}>
+        <div className="p-3 m-2 border rounded" style={{ maxWidth: '90%' }}>
           <p>
             Vamos mostrar aqui dois métodos para conferência de documentos no SIAPI, que surtirão os mesmos efeitos e cabe a você decidir qual utilizar, de acordo com sua necessidade.
           </p>
@@ -91,6 +91,7 @@ export default function DocumentConference() {
           </p>
           <ScrollLink to="metodo1" smooth offset={-70} className="btn btn-small btn-info mx-2">Método 1</ScrollLink>
           <ScrollLink to="metodo2" smooth offset={-70} className="btn btn-small btn-info mx-2">Método 2</ScrollLink>
+          <hr />
           <section id="metodo1">
             <h2>Método 1 - Conforme Manual do Siapi</h2>
             <div className="alert alert-danger" role="alert">
