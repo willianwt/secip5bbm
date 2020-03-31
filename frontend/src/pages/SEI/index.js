@@ -10,21 +10,7 @@ import api from '../../services/api';
 
 
 // imagens
-import Background from '../../img/logo.png';
-import menuInspecoes from '../../img/menu_inspecoes.png';
-import filtros from '../../img/filtros.png';
-import campoObservacao from '../../img/campoObservacao.png';
-import distribuir from '../../img/distribuir.png';
-import finalizarConferencia from '../../img/finalizarConferencia.png';
-import lancarExigencia from '../../img/lancarExigencia.png';
-import listaProtocolos from '../../img/listaProtocolos.png';
-import telaDocumentos from '../../img/telaDocumentos.png';
-import telaExigencias from '../../img/telaExigencias.png';
-import isentarMEI from '../../img/isentarMEI.png';
-import distribuirConferencista from '../../img/distribuirConferencista.png';
-import telaEnviarArquivo from '../../img/telaEnviarArquivo.png';
-import enviarArquivo from '../../img/enviarArquivo.png';
-import telaListaExigencias from '../../img/telaListaExigencias.png';
+import Background from '../../img/logo.jpg';
 
 
 export default function SEI() {

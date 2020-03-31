@@ -10,21 +10,21 @@ import api from '../../services/api';
 
 
 // imagens
-import Background from '../../img/logo.png';
-import menuInspecoes from '../../img/menu_inspecoes.png';
-import filtros from '../../img/filtros.png';
-import campoObservacao from '../../img/campoObservacao.png';
-import distribuir from '../../img/distribuir.png';
-import finalizarConferencia from '../../img/finalizarConferencia.png';
-import lancarExigencia from '../../img/lancarExigencia.png';
-import listaProtocolos from '../../img/listaProtocolos.png';
-import telaDocumentos from '../../img/telaDocumentos.png';
-import telaExigencias from '../../img/telaExigencias.png';
-import isentarMEI from '../../img/isentarMEI.png';
-import distribuirConferencista from '../../img/distribuirConferencista.png';
-import telaEnviarArquivo from '../../img/telaEnviarArquivo.png';
-import enviarArquivo from '../../img/enviarArquivo.png';
-import telaListaExigencias from '../../img/telaListaExigencias.png';
+import Background from '../../img/logo.jpg';
+import menuInspecoes from '../../img/menu_inspecoes.jpg';
+import filtros from '../../img/filtros.jpg';
+import campoObservacao from '../../img/campoObservacao.jpg';
+import distribuir from '../../img/distribuir.jpg';
+import finalizarConferencia from '../../img/finalizarConferencia.jpg';
+import lancarExigencia from '../../img/lancarExigencia.jpg';
+import listaProtocolos from '../../img/listaProtocolos.jpg';
+import telaDocumentos from '../../img/telaDocumentos.jpg';
+import telaExigencias from '../../img/telaExigencias.jpg';
+import isentarMEI from '../../img/isentarMEI.jpg';
+import distribuirConferencista from '../../img/distribuirConferencista.jpg';
+import telaEnviarArquivo from '../../img/telaEnviarArquivo.jpg';
+import enviarArquivo from '../../img/enviarArquivo.jpg';
+import telaListaExigencias from '../../img/telaListaExigencias.jpg';
 
 
 export default function DocumentConference() {
