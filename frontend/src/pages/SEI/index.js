@@ -79,9 +79,7 @@ export default function SEI() {
         <h1 className="text-center">Como criar um processo e um memorando no SEI</h1>
 
         <div className="px-3 m-2" style={{ maxWidth: '90%' }}>
-          <p>
-            Vamos mostrar aqui dois métodos para conferência de documentos no SIAPI, que surtirão os mesmos efeitos e cabe a você decidir qual utilizar, de acordo com sua necessidade.
-          </p>
+          <p />
           <p>
             Os métodos foram baseados na experiência de uso e no
             {' '}
