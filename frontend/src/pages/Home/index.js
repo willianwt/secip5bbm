@@ -6,7 +6,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 
-import Background from '../../img/logo.jpg';
+import Background from '../../img/logo.webp';
 
 export default function Home() {
   const [show, setShow] = useState(false);

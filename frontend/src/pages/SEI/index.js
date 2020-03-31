@@ -10,7 +10,7 @@ import api from '../../services/api';
 
 
 // imagens
-import Background from '../../img/logo.jpg';
+import Background from '../../img/logo.webp';
 
 
 export default function SEI() {

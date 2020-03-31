@@ -10,21 +10,21 @@ import api from '../../services/api';
 
 
 // imagens
-import Background from '../../img/logo.jpg';
-import menuInspecoes from '../../img/menu_inspecoes.jpg';
-import filtros from '../../img/filtros.jpg';
-import campoObservacao from '../../img/campoObservacao.jpg';
-import distribuir from '../../img/distribuir.jpg';
-import finalizarConferencia from '../../img/finalizarConferencia.jpg';
-import lancarExigencia from '../../img/lancarExigencia.jpg';
-import listaProtocolos from '../../img/listaProtocolos.jpg';
-import telaDocumentos from '../../img/telaDocumentos.jpg';
-import telaExigencias from '../../img/telaExigencias.jpg';
-import isentarMEI from '../../img/isentarMEI.jpg';
-import distribuirConferencista from '../../img/distribuirConferencista.jpg';
-import telaEnviarArquivo from '../../img/telaEnviarArquivo.jpg';
-import enviarArquivo from '../../img/enviarArquivo.jpg';
-import telaListaExigencias from '../../img/telaListaExigencias.jpg';
+import Background from '../../img/logo.webp';
+import menuInspecoes from '../../img/menu_inspecoes.webp';
+import filtros from '../../img/filtros.webp';
+import campoObservacao from '../../img/campoObservacao.webp';
+import distribuir from '../../img/distribuir.webp';
+import finalizarConferencia from '../../img/finalizarConferencia.webp';
+import lancarExigencia from '../../img/lancarExigencia.webp';
+import listaProtocolos from '../../img/listaProtocolos.webp';
+import telaDocumentos from '../../img/telaDocumentos.webp';
+import telaExigencias from '../../img/telaExigencias.webp';
+import isentarMEI from '../../img/isentarMEI.webp';
+import distribuirConferencista from '../../img/distribuirConferencista.webp';
+import telaEnviarArquivo from '../../img/telaEnviarArquivo.webp';
+import enviarArquivo from '../../img/enviarArquivo.webp';
+import telaListaExigencias from '../../img/telaListaExigencias.webp';
 
 
 export default function DocumentConference() {
