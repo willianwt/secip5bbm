@@ -6,7 +6,6 @@ import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 
 import { Modal, Button, Image } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import api from '../../services/api';
 
 
 // imagens
