@@ -38,8 +38,6 @@ export default function SEI() {
     setModalProtocol(selectedProtocol);
   };
 
-  const scrollDiv = createRef();
-
 
   const styles = {
     header: {
@@ -78,7 +76,7 @@ export default function SEI() {
           }}
         />
 
-        <h1 className="text-center">Como conferir documentos no SIAPI</h1>
+        <h1 className="text-center">Como criar um processo e um memorando no SEI</h1>
 
         <div className="px-3 m-2" style={{ maxWidth: '90%' }}>
           <p>
