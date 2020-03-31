@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState, createRef } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import { MdKeyboardArrowUp, MdCloudDownload } from 'react-icons/md';
+import { FaAngleUp, FaCloudDownloadAlt } from 'react-icons/fa';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 
 import { Modal, Button, Image } from 'react-bootstrap';
@@ -21,6 +21,10 @@ import listaProtocolos from '../../img/listaProtocolos.png';
 import telaDocumentos from '../../img/telaDocumentos.png';
 import telaExigencias from '../../img/telaExigencias.png';
 import isentarMEI from '../../img/isentarMEI.png';
+import distribuirConferencista from '../../img/distribuirConferencista.png';
+import telaEnviarArquivo from '../../img/telaEnviarArquivo.png';
+import enviarArquivo from '../../img/enviarArquivo.png';
+import telaListaExigencias from '../../img/telaListaExigencias.png';
 
 
 export default function DocumentConference() {
@@ -36,9 +40,6 @@ export default function DocumentConference() {
 
   const scrollDiv = createRef();
 
-  const scrollSmoothHandler = () => {
-    scrollDiv.current.scrollIntoView({ behavior: 'smooth' });
-  };
 
   const styles = {
     header: {
@@ -63,8 +64,7 @@ export default function DocumentConference() {
       style={styles.header}
     >
       <div style={styles.content} className="d-flex flex-column  align-items-center">
-        <MdKeyboardArrowUp
-          type="button"
+        <FaAngleUp
           onClick={() => scroll.scrollToTop()}
           style={{
             position: 'fixed',
@@ -73,6 +73,8 @@ export default function DocumentConference() {
             borderRadius: '100px',
             width: '40px',
             height: '40px',
+            cursor: 'pointer',
+
           }}
         />
 
@@ -96,7 +98,7 @@ export default function DocumentConference() {
               {' '}
               <a href="https://www.bombeiros.go.gov.br/wp-content/uploads/2014/10/Solicita%c3%a7%c3%a3o-de-Inspe%c3%a7%c3%a3o_PROTOCOLISTA_V1.0.pdf" target="_blank" rel="noopener noreferrer">
                 aqui.
-                <MdCloudDownload />
+                <FaCloudDownloadAlt />
               </a>
             </div>
             <div className="alert alert-warning" role="alert">
@@ -160,9 +162,44 @@ export default function DocumentConference() {
               </div>
             </div>
           </section>
+          <hr />
           <section id="metodo2">
             <h2>Método 2 - Direto pelo Protocolo</h2>
+            <div className="alert alert-info my-2" role="alert">
+              Este é um método alternativo, indicado para quando não é MEI ou quando a taxa já foi isenta. Ele é um pouco mais rápido e simples.
+            </div>
+            <div>
+              <h4>2.1 Distribua o protocolo </h4>
+              <li className="my-2">
+                Entre no protocolo, clique em Distribuir e nesta tela escolha seu nome na lista. Atentar para o
+                {' '}
+                <b>
+                  Distribuir para Conferência de Documentação
+                </b>
 
+              </li>
+              <Image className="img-fluid rounded" src={distribuirConferencista} />
+
+              <li className="my-2">Após distribuido, verifique as exigências (anote, salve em pdf e abra, ou imprima para facilitar), e clique em "Mais" e em seguida em "Enviar Arquivo".</li>
+              <div className="alert alert-info" role="alert">
+                Dica: salve as exigências em PDF e abra o documento em uma nova janela, podendo assim ver o que está pendente e analisar os documentos.
+              </div>
+              <Image className="img-fluid rounded" src={enviarArquivo} />
+              <li className="my-2">Será aberta uma nova tela, onde poderá fazer download dos documentos e incluir observações em cada um, conforme no método acima.</li>
+              <Image className="img-fluid rounded" src={telaEnviarArquivo} />
+              <li className="my-2">Preencha uma observação para cada documento, facilitando assim a tarefa do próximo conferencista e também do solicitante.</li>
+              <Image className="img-fluid rounded" src={campoObservacao} />
+              <div className="alert alert-warning my-2" role="alert">
+                É importante mencionar em cada documento se o mesmo está OK ou por qual motivo não foi aceito, assim o solicitante tem como saber o que foi analisado.
+              </div>
+              <li className="my-2">Após conferir todos os documentos, clique em 'FECHAR' e depois clique em "Exigências" para poder lançar, aprovar ou incluir novas exigências.</li>
+              <Image className="img-fluid rounded" src={telaListaExigencias} />
+              <li className="my-2">Caso ainda reste exigências, clique em "Finalizar com exigências", caso negativo, aprove o protocolo clicando em "APROVAR".</li>
+
+            </div>
+            <div className="alert alert-secondary" role="alert">
+              Caso encontre erros ou tenha dúvidas, entre em contato!
+            </div>
           </section>
 
         </div>
