@@ -58,11 +58,11 @@ export default function Home() {
           <ul className="ml-4" style={{ listStyleType: 'upper-roman', listStylePosition: 'inside' }}>
             <li>O criador deste site não será responsabilizado em caso de erros por divergências entre o informado aqui e o informado por normas técnicas, em nenhuma hipótese.</li>
             <li>Em caso de dúvidas, você deve sempre conferir as Normas Técnicas do CBMGO.</li>
-            <li>Caso encontre algum erro aqui, você comunicará o criador deste site ou sua chefia imediata para que o erro seja sanado o quanto antes.</li>
+            <li>Caso encontre algum erro aqui, você comunicará ao criador deste site ou sua chefia imediata para que o erro seja sanado o quanto antes.</li>
           </ul>
           <p>Este serviço foi feito com intuito de ajudar aqueles que, por qualquer motivo, tenham alguma dificuldade em procedimentos da seção. </p>
           <p>Críticas construtivas e sugestões são sempre bem vindas.</p>
-          <p>Em caso de problemas, este site pode ser tirado do ar sem aviso prévio.</p>
+          <p>Em caso de problemas, este site poderá ser tirado do ar sem aviso prévio.</p>
           <p>Voce pode começar a utilizar clicando nos botões na barra de navegação acima. </p>
           <p className="text-right">- Cabo Willian</p>
         </div>
