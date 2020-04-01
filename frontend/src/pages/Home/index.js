@@ -63,7 +63,7 @@ export default function Home() {
           <p>Este serviço foi feito com intuito de ajudar aqueles que, por qualquer motivo, tenham alguma dificuldade em procedimentos da seção. </p>
           <p>Críticas construtivas e sugestões são sempre bem vindas.</p>
           <p>Em caso de problemas, este site poderá ser tirado do ar sem aviso prévio.</p>
-          <p>Voce pode começar a utilizar clicando nos botões na barra de navegação acima. </p>
+          <p>Você pode começar a utilizar clicando nos botões na barra de navegação acima. </p>
           <p className="text-right">- Cabo Willian</p>
         </div>
 
