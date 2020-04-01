@@ -54,7 +54,7 @@ export default function Home() {
             {' '}
             <b>sempre prevalecerá o descrito nas normas técnicas.</b>
           </p>
-          <p>Ao utilizar este site, você está concorda que:</p>
+          <p>Ao utilizar este site, você concorda que:</p>
           <ul className="ml-4" style={{ listStyleType: 'upper-roman', listStylePosition: 'inside' }}>
             <li>O criador deste site não será responsabilizado em caso de erros por divergências entre o informado aqui e o informado por normas técnicas, em nenhuma hipótese.</li>
             <li>Em caso de dúvidas, você deve sempre conferir as Normas Técnicas do CBMGO.</li>
