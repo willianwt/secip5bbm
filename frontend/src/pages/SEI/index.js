@@ -187,20 +187,21 @@ export default function SEI() {
               <p>Conforme o Memorando nº: 232/2020 - 5º BBM- 09871: "...sempre que houver uma solicitação formal no SEI direcionada às Seções ou Comando deste Batalhão, o requerente deverá atribuir o processo ao destinatário e, sempre que possível, informá-lo do documento e o número SEI correspondente, para que possa analisar o pleito e emitir o parecer na maior brevidade possível."</p>
             </div>
             <li className="my-2 ml-4">
-              <b>5.1 - Clique no número do seu processo:</b>
+              <b>6.1 - Clique no número do seu processo:</b>
               {' '}
               Em seguida, procure pelo botão "ATRIBUIR PROCESSO" (um botão com uma pasta amarela e um boneco preto na frente).
             </li>
-            <Image className="img-fluid rounded my-2" src={atribuirProcesso} />
+            <Image className="img-fluid rounded my-2" src={telaProcesso} />
             <li className="my-2 ml-4">
-              <b>5.1 - Selecione o destinatário:</b>
+              <b>6.2 - Selecione o destinatário:</b>
               {' '}
-              Selecione o destinatário na lista e clique em Salvar. O processo será atribuído para aquele usuário. Entre em contato com ele informando o número do processo para que ele possa dar andamento.
+              Selecione o destinatário na lista e clique em Salvar. O processo será atribuído para aquele usuário.
             </li>
+            <Image className="img-fluid rounded my-2" src={atribuirProcesso} />
+
             <div className="alert alert-success" role="alert">
-              <b>5.2 - Selecione o destinatário:</b>
-              {' '}
-              Selecione o destinatário na lista e clique em Salvar. O processo será atribuído para aquele usuário. Entre em contato com ele informando o número do processo para que ele possa dar andamento.
+              <b>6.3 - Finalizando:</b>
+              Entre em contato com o usuário ao qual você atribuiu o processo informadno o número do processo para que ele possa dar andamento.
             </div>
             <hr />
 
