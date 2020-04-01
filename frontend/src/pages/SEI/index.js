@@ -71,11 +71,11 @@ export default function SEI() {
           }}
         />
 
-        <h1 className="text-center">Como criar um processo e um memorando no SEI</h1>
+        <h1 className="text-center">Como criar um processo e um memorando no SEI!</h1>
         <div className="p-3 m-2 border rounded" style={{ maxWidth: '90%' }}>
           <section>
-            <p>Abaixo vou mostrar como criar um processo e um documento no SEI.</p>
-            <p>Antes de tudo, saliento que exitem MANUAIS e um CURSO que pode ser feito, sendo este incluso na lista de cursos pontuáveis, e é interessante que se faça para um conhecimento mais aprofundado da plataforma SEI!</p>
+            <p>Abaixo vou mostrar como criar um processo e um documento no SEI!.</p>
+            <p>Antes de tudo, saliento que existem MANUAIS e um CURSO que pode ser feito, sendo este incluso na lista de cursos pontuáveis, e é interessante que se faça para um conhecimento mais aprofundado da plataforma SEI!.</p>
             <div className="alert alert-danger" role="alert">
               <a href="https://www.escolavirtual.gov.br/curso/74" target="blank" rel="noopeneer norefereer">
                 <button type="button" className="btn btn-small btn-info mx-2">Curso SEI!</button>
@@ -118,10 +118,10 @@ export default function SEI() {
             <li className="my-2 ml-4">
               <b>3.4 - Níveis de acesso:</b>
               {' '}
-              Público qualquer pessoa tem acesso, Restrito somente a unidade tem acesso, Sigilogo somente você e a quem você atribuir o processo tem acesso. Recomendo o uso de público ou restrito, mas depende de cada situação.
+              Público qualquer pessoa tem acesso, Restrito somente a unidade tem acesso, Sigiloso somente você e a quem você atribuir o processo tem acesso. Recomendo o uso de público ou restrito, mas depende de cada situação.
             </li>
             <div className="alert alert-success ml-4" role="alert">
-              <p>3.5 - Ao preencher os campos, clique no botao SALVAR.</p>
+              <p>3.5 - Ao preencher os campos, clique no botão SALVAR.</p>
             </div>
             <p><b /></p>
             <hr />
@@ -133,7 +133,7 @@ export default function SEI() {
             <li className="my-2">
               <b>4.1 - Incluir documento (ícone de folha branca com o *)</b>
               {' '}
-              Clique no ícone de incluir documento (o primeiro, com a folha branca), para incluir um documento no seu processo.
+              Clique no ícone de incluir documento, para incluir um documento no seu processo.
             </li>
             <li className="my-2 ml-4">
               <b>4.2 - Escolha o tipo de documento:</b>
@@ -171,7 +171,7 @@ export default function SEI() {
             <Image className="img-fluid rounded my-2" src={documentoExterno} />
 
             <div className="alert alert-info" role="alert">
-              <p>Preencha os camos Tipo de Documento (ANEXO), Nome do documento, Formato, Nível de acesso.</p>
+              <p>Preencha os campos Tipo de Documento (ANEXO), Nome do documento, Formato, Nível de acesso.</p>
             </div>
             <li className="my-2 ml-4">
               <b>5.2 - Escolher Arquivo:</b>
@@ -184,7 +184,7 @@ export default function SEI() {
             <hr />
             <h4>6. Atribuindo o Processo</h4>
             <div className="alert alert-danger" role="alert">
-              <p>Conforme o Memorando nº: 232/2020 - 5º BBM- 09871: "...sempre que houver uma solicitação formal no SEI direcionada às Seções ou Comando deste Batalhão, o requerente deverá atribuir o processo ao destinatário e, sempre que possível, informá-lo do documento e o número SEI correspondente, para que possa analisar o pleito e emitir o parecer na maior brevidade possível."</p>
+              <p>Conforme o Memorando nº: 232/2020 - 5º BBM- 09871: "...sempre que houver uma solicitação formal no SEI! direcionada às Seções ou Comando deste Batalhão, o requerente deverá atribuir o processo ao destinatário e, sempre que possível, informá-lo do documento e o número SEI! correspondente, para que possa analisar o pleito e emitir o parecer na maior brevidade possível."</p>
             </div>
             <li className="my-2 ml-4">
               <b>6.1 - Clique no número do seu processo:</b>

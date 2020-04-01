@@ -66,8 +66,8 @@ export default function Header() {
             {isLogged ? <Link className="nav-link" to="/usuarios">Usuários</Link> : ''}
           </li>
         </ul>
-        {isLogged ? <button type="submit" onClick={Logout} className="btn btn-outline-danger my-2 my-sm-0">Sair</button>
-          : <Link className="btn btn-outline-success my-2 my-sm-0" to="/login">Login</Link>}
+        {/* {isLogged ? <button type="submit" onClick={Logout} className="btn btn-outline-danger my-2 my-sm-0">Sair</button>
+          : <Link className="btn btn-outline-success my-2 my-sm-0" to="/login">Login</Link>} */}
       </div>
     </nav>
   );

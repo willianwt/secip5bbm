@@ -95,7 +95,7 @@ export default function DocumentConference() {
           <section id="metodo1">
             <h2>Método 1 - Conforme Manual do Siapi</h2>
             <div className="alert alert-danger" role="alert">
-              Este método é baseado no descrito no manual, em conjunto com as peculariadades da secão. O manual pode ser encontrado
+              Este método é baseado no descrito no manual, em conjunto com as peculiaridades da secão. O manual pode ser encontrado
               {' '}
               <a href="https://www.bombeiros.go.gov.br/wp-content/uploads/2014/10/Solicita%c3%a7%c3%a3o-de-Inspe%c3%a7%c3%a3o_PROTOCOLISTA_V1.0.pdf" target="_blank" rel="noopener noreferrer">
                 aqui.
