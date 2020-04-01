@@ -54,7 +54,6 @@ export default function Header() {
             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <Link className="dropdown-item" to="/sei">SEI</Link>
               <Link className="dropdown-item" to="/conferenciadedocumentos">Conferência de Documentos no Siapi</Link>
-              <Link className="dropdown-item" to="/checarpagamentoitau">Checar Pagamento de Taxa no Itau</Link>
             </div>
           </li>
           <li className="nav-item">
