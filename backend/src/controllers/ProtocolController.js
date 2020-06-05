@@ -7,17 +7,20 @@ module.exports = {
       protocol, area, type, district, situation, date, division, tax, observations, user, fiscal, inspection,
     } = req.body;
 
-    const userExists = await Protocol.find({ protocol }, (err) => {
+    // checa se o protocolo já existe
+    const protocolExists = await Protocol.find({ protocol }, (err) => {
       if (err) {
         res.send('erro');
       }
     });
-    if (userExists.length > 0) {
+
+    // retorna erro caso o protocolo exista
+    if (protocolExists.length > 0) {
       res.send('protocol exists');
       return;
     }
 
-    console.log(userExists);
+    console.log(protocolExists);
 
     console.log(req.body);
     const createProtocol = await Protocol.create({

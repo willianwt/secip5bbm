@@ -12,6 +12,7 @@ import Profile from '../pages/Profile';
 import Users from '../pages/Users';
 import DocumentConference from '../pages/DocumentConference';
 import SEI from '../pages/SEI';
+import Instagram from '../pages/Instagram';
 
 export default function Routes() {
   return (
@@ -26,6 +27,7 @@ export default function Routes() {
       <Route path="/cadastro" component={Register} />
       <Route path="/perfil" component={Profile} />
       <Route path="/usuarios" component={Users} />
+      <Route path="/instagram" component={Instagram} />
       <Route path="*" component={Page404} />
     </Switch>
   );

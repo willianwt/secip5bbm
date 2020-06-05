@@ -57,6 +57,9 @@ export default function Header() {
             </div>
           </li>
           <li className="nav-item">
+            <Link className="btn btn-success m-1" to="/instagram">Instagram</Link>
+          </li>
+          <li className="nav-item">
             {isLogged ? <Link className="nav-link" to="/escaninho">Escaninho</Link> : ''}
           </li>
           <li className="nav-item">
@@ -66,8 +69,8 @@ export default function Header() {
             {isLogged ? <Link className="nav-link" to="/usuarios">Usuários</Link> : ''}
           </li>
         </ul>
-        {/* {isLogged ? <button type="submit" onClick={Logout} className="btn btn-outline-danger my-2 my-sm-0">Sair</button>
-          : <Link className="btn btn-outline-success my-2 my-sm-0" to="/login">Login</Link>} */}
+        {isLogged ? <button type="submit" onClick={Logout} className="btn btn-outline-danger my-2 my-sm-0">Sair</button>
+          : <Link className="btn btn-outline-success my-2 my-sm-0" to="/login">Login</Link>}
       </div>
     </nav>
   );
