@@ -1,5 +1,7 @@
-import React, { useEffect, useState, Component } from 'react';
+import React, { useState } from 'react';
 import dateformat from 'dateformat';
+import { toast } from 'react-toastify';
+
 
 export default function Instagram() {
   const [titulo, setTitulo] = useState('');
@@ -73,6 +75,7 @@ export default function Instagram() {
     document.execCommand('copy');
     // Remove the textarea
     document.body.removeChild(textarea);
+    toast.success('Resultado Copiado!');
   }
   return (
     <div className="row">
