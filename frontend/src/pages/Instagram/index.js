@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import dateformat from 'dateformat';
 import { toast } from 'react-toastify';
 
+import './style.css';
+
 
 export default function Instagram() {
   const [titulo, setTitulo] = useState('');
@@ -400,7 +402,7 @@ export default function Instagram() {
         </form>
       </div>
       <div className="col-6">
-        <h3>
+        <h3 className="resultado">
           Resultado:
         </h3>
 
