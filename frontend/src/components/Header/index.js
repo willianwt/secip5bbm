@@ -56,9 +56,11 @@ export default function Header() {
               <Link className="dropdown-item" to="/conferenciadedocumentos">Conferência de Documentos no Siapi</Link>
             </div>
           </li>
+          {/* Removido a pedido do CMT Bráulio}
           <li className="nav-item">
             <Link className="btn btn-success m-1" to="/instagram">Instagram</Link>
           </li>
+          { */}
           <li className="nav-item">
             {isLogged ? <Link className="nav-link" to="/escaninho">Escaninho</Link> : ''}
           </li>

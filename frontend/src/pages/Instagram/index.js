@@ -115,7 +115,7 @@ export default function Instagram() {
             <h4 className="col-6__subtitulo">Atendidos:</h4>
             <label className="label" htmlFor="atendidos">
               <select
-                className="atendidos-select"
+                className="custom-select atendidos-select"
                 name="atendidos"
                 id="atendidos"
                 onChange={(e) => setIconeAtendido(e.target.value)}
@@ -260,7 +260,7 @@ export default function Instagram() {
             <label htmlFor="militares" className="label">
               <h4 className="col-6__subtitulo">Militares:</h4>
               <select
-                className="select-militares"
+                className="custom-select select-militares"
                 name="iconeMilitares"
                 id="iconeMilitares"
                 onChange={(e) => setIconeMilitar(e.target.value)}
@@ -323,7 +323,7 @@ export default function Instagram() {
             <label htmlFor="apoio" className="label">
               <h4 className="col-6__subtitulo">Apoio:</h4>
               <select
-                className="select-apoio"
+                className="custom-select select-apoio"
                 name="iconeApoio"
                 id="iconeApoio"
                 onChange={(e) => setIconeApoio(e.target.value)}
