@@ -24,6 +24,7 @@ export default function Instagram() {
   const [iconeMilitar, setIconeMilitar] = useState(String.fromCodePoint(128104, 8205, 128658));
   const [militar, setMilitar] = useState('');
   const [militares, setMilitares] = useState([]);
+  const [cobista, setCobista] = useState('');
   const [iconeApoio, setIconeApoio] = useState(String.fromCodePoint(128658));
   const [apoiadores, setApoiadores] = useState([]);
   const [apoio, setApoio] = useState('');
@@ -41,8 +42,14 @@ export default function Instagram() {
   }
 
   function addMilitar() {
-    setMilitares([...militares, `${iconeMilitar} ${militar}`]);
+    console.log(cobista);
+    if (cobista) {
+      setMilitares([...militares, `${iconeMilitar} ${militar} ${String.fromCodePoint(128276)}`]);
+    } else {
+      setMilitares([...militares, `${iconeMilitar} ${militar}`]);
+    }
     setMilitar('');
+    setCobista(false);
   }
   function removeMilitar(e, index) {
     const novosMilitares = [...militares];
@@ -53,12 +60,16 @@ export default function Instagram() {
   function addApoio() {
     setApoiadores([...apoiadores, `${iconeApoio} ${apoio}`]);
     setApoio('');
-    console.log(apoiadores);
   }
   function removeApoio(e, index) {
     const novosApoiadores = [...apoiadores];
     novosApoiadores.splice(index, 1);
     setApoiadores(novosApoiadores);
+  }
+
+  function changeCobistaStatus(e) {
+    setCobista(e);
+    console.log(e);
   }
 
   function CopyToClipboard(containerid) {
@@ -290,6 +301,10 @@ export default function Instagram() {
                   }
                 }}
               />
+              <label className="form-check-label ml-4" htmlFor="cobista">
+                <input className="form-check-input" checked={!!cobista} type="checkbox" onChange={(e) => changeCobistaStatus(e.target.checked)} />
+                {String.fromCodePoint(128276)}
+              </label>
               <button
                 className="button-militares"
                 type="button"
