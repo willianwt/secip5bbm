@@ -1,3 +1,205 @@
+*, body {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, label {
+    font-family: 'Montserrat', sans-serif;
+} 
+
+.row {
+    margin: 0;
+    background-color: #EFEFEF;
+    width: 100%;
+    height: 100%;
+}
+
+.col-6__titulo {
+    text-indent: 7%;
+    padding: 1rem;
+    font-weight: bold;
+}
+
+.main-esquerdo .main-esquerdo-informações{
+    padding: .8rem;
+}
+
+.main-esquedo-informações-titulo, .main-esquedo-informações-data, .main-esquedo-informações-localizacao{
+    background-color: #009940;
+    color: #EFEFEF;
+    border: 1px transparent;
+    border-radius: 2px;
+    width: 100px;
+    text-align: center;
+    margin-right: 1rem;
+    box-shadow: 0.1rem 0.1rem 0 0 #1d2124;
+}
+
+.main-esquedo-informações-titulo-input, .main-esquedo-informações-localizacao-input {
+    width: 60%;
+    border: 1px solid;
+    border-radius: 2px;
+    text-indent: 5%;
+}
+
+.main-esquedo-informações-data-numero {
+    width: 40%;
+    border: 1px solid;
+    border-radius: 2px;
+    text-align: -webkit-center;
+
+}
+
+
+
+.main-esquedo-informações-data-hora {
+    margin-left: 1rem;
+    width: 17.5%;
+    border: 1px solid;
+    border-radius: 2px;
+    text-align-last: end;
+}
+
+
+.col-6__subtitulo {
+    padding: 1rem;
+    margin-left: 1.5rem;
+}
+
+.label {
+    width: 100%;
+}
+
+.atendidos-select {
+    background-color: #009940;
+    color: #EFEFEF;
+    border: 1px transparent;
+    border-radius: 2px;
+    width: 130px;
+    text-align: center;
+    padding: 0.2rem;
+    margin: 0 1rem 0 .8rem;
+    box-shadow: 0.1rem 0.1rem 0 0 #1d2124;
+}
+
+.vitima-button {
+    background-color: #009940;
+    color: #EFEFEF;
+    border: 1px transparent;
+    border-radius: 2px;
+    width: 130px;
+    text-align: center;
+    padding: 0.3rem;
+    margin-left: 1rem;
+    box-shadow: 0.1rem 0.1rem 0 0 #1d2124;
+}
+
+.input-atendidos, .input-militares, .input-apoio{
+
+    border: 1px solid;
+    border-radius: 2px;
+    text-indent: 5%;
+    padding: 0.3rem;
+    width: 40%;
+
+
+}
+
+.select-militares, .select-apoio {
+    background-color: #009940;
+    color: #EFEFEF;
+    border: 1px transparent;
+    border-radius: 2px;
+    width: 130px;
+    text-align: center;
+    text-indent: 15%;
+    padding: 0.3rem;
+    margin: 0 1rem 0 .8rem;
+    box-shadow: 0.1rem 0.1rem 0 0 #1d2124;
+}
+
+.button-militares, .button-apoio {
+    background-color: #009940;
+    color: #EFEFEF;
+    border: 1px transparent;
+    border-radius: 2px;
+    width: 130px;
+    text-align: center;
+    margin-left: 1rem;
+    padding: 0.3rem;
+    box-shadow: 0.1rem 0.1rem 0 0 #1d2124;
+}
+
+.button-militares:hover, .button-apoio:hover, .vitima-button:hover{
+    background-color: #00421c;
+}
+
+.col-6__subtitulo_hashtags {
+    margin-left: 1.5rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+.lista {
+    list-style: decimal-leading-zero;
+    padding-left: 5%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
+    border: 1px solid #cecece;
+    border-radius: 3px;
+    }
+
+.lista button {
+    margin-left: 10px
+}
+
+.lista li {
+    margin-top: 5px;
+}
+
+.textarea-hashtags {
+    border: 1px solid;
+    border-radius: 2px;
+    width: 75%;
+    margin-left: .8rem;
+    padding: 1rem;
+}
+
+
 .resultado {
-    color: red;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.texto_resultado {
+    border: 1px solid #adadad;
+    border-radius: 1%;
+    padding: 10px;
+    margin-right: 10%;
+}
+
+
+.button-copiar {
+    background-color: #006973;
+    border: 1px transparent;
+    border-radius: 8px;
+    width: 20%;
+    text-align: center;
+    padding: 35px;
+    margin: 2rem 0 2rem 35%
+}
+
+.button-copiar:hover{
+    width: 24%;
+    padding: 38px;
+    margin-left: 32%;
+    transition: 0.2s;
+    background-color: #00a3b3;
+}
+
+.button-copiar:active{
+    background-color: rgba(138, 35, 17, 0.692);
+    transition: 0.2s;
 }

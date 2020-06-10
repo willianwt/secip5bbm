@@ -81,43 +81,46 @@ export default function Instagram() {
   }
   return (
     <div className="row">
-      <div className="col-6">
-        <h2>Formatador Para Instagram</h2>
-        <form>
-          <div>
-            <label htmlFor="titulo">
-              Natureza
-              <input
-                type="text"
-                name="titulo"
-                id="titulo"
-                onChange={(e) => setTitulo(e.target.value)}
-              />
+      <div className="col-md-6">
+        <h2 className="col-6__titulo">Formatador Para Instagram</h2>
+        <form className="main-esquerdo">
 
+          <div className="main-esquerdo-informações">
+            <label className="main-esquedo-informações-titulo" htmlFor="titulo">
+              Natureza
             </label>
+            <input
+              className="main-esquedo-informações-titulo-input"
+              type="text"
+              name="titulo"
+              id="titulo"
+              onChange={(e) => setTitulo(e.target.value)}
+            />
+
           </div>
-          <div>
-            <label htmlFor="data">
+          <div className="main-esquerdo-informações">
+            <label className="main-esquedo-informações-data" htmlFor="data">
               Data
-              <input type="date" name="data" id="data" max="2999-12-31" value={data} onChange={(e) => setData(e.target.value)} />
-              <input type="time" name="hora" id="hora" value={hora} onChange={(e) => setHora(e.target.value)} />
             </label>
+            <input className="main-esquedo-informações-data-numero" type="date" name="data" id="data" max="2999-12-31" value={data} onChange={(e) => setData(e.target.value)} />
+            <input className="main-esquedo-informações-data-hora" type="time" name="hora" id="hora" value={hora} onChange={(e) => setHora(e.target.value)} />
           </div>
-          <div>
-            <label htmlFor="localizacao">
+          <div className="main-esquerdo-informações">
+            <label className="main-esquedo-informações-localizacao" htmlFor="localizacao">
               Localização
-              <input type="text" name="localizacao" id="localizacao" onChange={(e) => setLocalizacao(e.target.value)} />
             </label>
+            <input className="main-esquedo-informações-localizacao-input" type="text" name="localizacao" id="localizacao" onChange={(e) => setLocalizacao(e.target.value)} />
           </div>
-          <div>
-            <label htmlFor="atendidos">
-              <h4>Atendidos</h4>
+          <div className="atendidos">
+            <h4 className="col-6__subtitulo">Atendidos:</h4>
+            <label className="label" htmlFor="atendidos">
               <select
+                className="atendidos-select"
                 name="atendidos"
                 id="atendidos"
                 onChange={(e) => setIconeAtendido(e.target.value)}
               >
-                <optgroup label="Vitimas">
+                <optgroup className="vitimas" label="Vitimas">
                   <option value={String.fromCodePoint(128100)}>
                     {String.fromCodePoint(128100)}
                     {' '}
@@ -212,6 +215,7 @@ export default function Instagram() {
                 </optgroup>
               </select>
               <input
+                className="input-atendidos"
                 type="text"
                 name="atendidos"
                 id="atendidos"
@@ -224,6 +228,7 @@ export default function Instagram() {
                 }}
               />
               <button
+                className="vitima-button"
                 type="button"
                 onClick={() => {
                   if (atendido !== '') { addAtendido(); }
@@ -232,7 +237,7 @@ export default function Instagram() {
                 Adicionar
               </button>
             </label>
-            <p>
+            <p className="lista">
               {atendidos.map((val, index) => (
                 <li
                   key={index}
@@ -240,7 +245,7 @@ export default function Instagram() {
                   {val}
                   <button
                     type="button"
-                    className="btn btn-small btn-danger"
+                    className="btn btn-sm btn-danger"
                     onClick={(e) => removeAtendido(e, index)}
                   >
                     X
@@ -252,9 +257,10 @@ export default function Instagram() {
           </div>
           <div>
 
-            <label htmlFor="militares">
-              <h4>Militares</h4>
+            <label htmlFor="militares" className="label">
+              <h4 className="col-6__subtitulo">Militares:</h4>
               <select
+                className="select-militares"
                 name="iconeMilitares"
                 id="iconeMilitares"
                 onChange={(e) => setIconeMilitar(e.target.value)}
@@ -272,9 +278,10 @@ export default function Instagram() {
                 </option>
               </select>
               <input
+                id="input-militares"
                 type="text"
                 name="militares"
-                className="militares"
+                className="input-militares"
                 onChange={(e) => setMilitar(e.target.value)}
                 value={militar}
                 onKeyPress={(e) => {
@@ -284,6 +291,7 @@ export default function Instagram() {
                 }}
               />
               <button
+                className="button-militares"
                 type="button"
                 onClick={() => {
                   if (militar !== '') { addMilitar(); }
@@ -292,7 +300,7 @@ export default function Instagram() {
                 Adicionar
               </button>
             </label>
-            <p>
+            <p className="lista">
               {militares.map((val, index) => (
                 <li
                   key={index}
@@ -300,7 +308,7 @@ export default function Instagram() {
                   {val}
                   <button
                     type="button"
-                    className="btn btn-small btn-danger"
+                    className="btn btn-sm btn-danger"
                     onClick={(e) => removeMilitar(e, index)}
                   >
                     X
@@ -312,9 +320,10 @@ export default function Instagram() {
           </div>
           <div>
 
-            <label htmlFor="apoio">
-              <h4>Apoio</h4>
+            <label htmlFor="apoio" className="label">
+              <h4 className="col-6__subtitulo">Apoio:</h4>
               <select
+                className="select-apoio"
                 name="iconeApoio"
                 id="iconeApoio"
                 onChange={(e) => setIconeApoio(e.target.value)}
@@ -347,6 +356,7 @@ export default function Instagram() {
                 </option>
               </select>
               <input
+                className="input-apoio"
                 type="text"
                 name="apoio"
                 placeholder="CBMGO já adicionado"
@@ -359,6 +369,7 @@ export default function Instagram() {
                 }}
               />
               <button
+                className="button-apoio"
                 type="button"
                 name="btnApoio"
                 onClick={() => {
@@ -369,7 +380,7 @@ export default function Instagram() {
 
               </button>
             </label>
-            <p>
+            <p className="lista">
               {apoiadores.map((val, index) => (
                 <li
                   key={index}
@@ -377,7 +388,7 @@ export default function Instagram() {
                   {val}
                   <button
                     type="button"
-                    className="btn btn-small btn-danger"
+                    className="btn btn-sm btn-danger"
                     onClick={(e) => removeApoio(e, index)}
                   >
                     X
@@ -388,12 +399,13 @@ export default function Instagram() {
             </p>
           </div>
           <div>
-            <h3>Hashtags</h3>
+            <h3 className="col-6__subtitulo_hashtags">Hashtags:</h3>
             <textarea
+              className="textarea-hashtags"
               name=""
               id=""
               cols="30"
-              rows="10"
+              rows="6"
               onChange={(e) => setHashtags(e.target.value)}
               value={hashtags}
 
@@ -401,13 +413,13 @@ export default function Instagram() {
           </div>
         </form>
       </div>
-      <div className="col-6">
-        <h3 className="resultado">
+      <div className="col-md-6">
+        <h2 className="resultado">
           Resultado:
-        </h3>
+        </h2>
 
 
-        <div id="resultado">
+        <div id="resultado" className="texto_resultado">
           <div>
             {String.fromCharCode(55357, 57000)}
             {' '}
@@ -468,7 +480,7 @@ export default function Instagram() {
           <div>.</div>
           <div>{hashtags}</div>
         </div>
-        <div><button className="btn btn-info btn-lg" type="button" onClick={(e) => CopyToClipboard('resultado')}>COPIAR</button></div>
+        <div className="caixa-copiar"><button className="button-copiar" type="button" onClick={(e) => CopyToClipboard('resultado')}>COPIAR</button></div>
 
       </div>
 
