@@ -70,6 +70,11 @@ h1, h2, h3, h4, label {
     width: 100%;
 }
 
+.label button, select, input {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
 .atendidos-select {
     background-color: #009940;
     color: #EFEFEF;
