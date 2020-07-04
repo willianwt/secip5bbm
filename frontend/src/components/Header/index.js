@@ -60,7 +60,10 @@ export default function Header() {
           <li className="nav-item">
             <Link className="btn btn-success m-1" to="/instagram">Instagram</Link>
           </li>
-          { */}
+          { */}          
+          <li className="nav-item">
+            <Link className="btn btn-outline-warning m-1" to="/nt012020">NT 01/2020</Link>
+          </li>
           <li className="nav-item">
             {isLogged ? <Link className="nav-link" to="/escaninho">Escaninho</Link> : ''}
           </li>

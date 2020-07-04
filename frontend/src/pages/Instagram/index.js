@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 
 import './style.css';
 
-
 export default function Instagram() {
   const [titulo, setTitulo] = useState('');
   const [data, setData] = useState(dateformat(new Date(), 'yyyy-mm-dd'));
@@ -433,7 +432,6 @@ export default function Instagram() {
           Resultado:
         </h2>
 
-
         <div id="resultado" className="texto_resultado">
           <div>
             {String.fromCharCode(55357, 57000)}
@@ -498,7 +496,6 @@ export default function Instagram() {
         <div className="caixa-copiar"><button className="button-copiar" type="button" onClick={(e) => CopyToClipboard('resultado')}>COPIAR</button></div>
 
       </div>
-
 
     </div>
   );

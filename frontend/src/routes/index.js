@@ -13,6 +13,7 @@ import Users from '../pages/Users';
 import DocumentConference from '../pages/DocumentConference';
 import SEI from '../pages/SEI';
 import Instagram from '../pages/Instagram';
+import Nt012020 from '../pages/NT012020';
 
 export default function Routes() {
   return (
@@ -28,6 +29,7 @@ export default function Routes() {
       <Route path="/perfil" component={Profile} />
       <Route path="/usuarios" component={Users} />
       <Route path="/instagram" component={Instagram} />
+      <Route path="/nt012020" component={Nt012020} />
       <Route path="*" component={Page404} />
     </Switch>
   );
