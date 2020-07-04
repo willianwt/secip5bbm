@@ -124,7 +124,7 @@ const renderGroup = (params) => [
 export default function Virtualize() {
   const classes = useStyles();
   // variáveis do forumlário
-  const [prestadorDeServico, setPrestadorDeServico] = useState('false'); // TODO: alterar para ''
+  const [prestadorDeServico, setPrestadorDeServico] = useState('');
   const [cnae, setCnae] = useState('');
   const [area, setArea] = useState(0);
   const [areaTotal, setAreaTotal] = useState(0);
@@ -141,17 +141,6 @@ export default function Virtualize() {
   const [quantidadeLiquido, setquantidadeLiquido] = useState('');
   const [glp, setGlp] = useState('');
   const [capacidadeGlp, setCapacidadeGlp] = useState('');
-
-  // modal
-  const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {
-    verificarDispensa();
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   // funções do formulário
   // TODO criar a lógica de verificação
@@ -189,21 +178,21 @@ export default function Virtualize() {
   }, [cnaesSelecionados]);
 
   function verificarDispensa() {
-    const dispensada = 'Este empreendimento é dispensado de Cercon';
-    const exigencia = 'necessita de cercon';
-    console.log('area', areaTotal);
-    console.log('ci', cargaIncendio);
-    console.log('shop', edificacao);
-    console.log('aberturas', aberturas);
-    console.log('lotacao', lotacao);
-    console.log('reuniao de publico', reuniaoDePublico);
-    console.log('pavimentos', pavimentos);
-    console.log('subsolo', subsolo);
-    console.log('garagem', garagem);
-    console.log('liquido', liquidoInflamavel);
-    console.log('qtdliquido', quantidadeLiquido);
-    console.log('glp', glp);
-    console.log('qtdglp', capacidadeGlp);
+    const dispensada = 'é DISPENSADO de Cercon, conforme NT-01/2020';
+    const exigencia = 'NECESSITA de Cercon, conforme NT-01/2020';
+    // console.log('area', areaTotal);
+    // console.log('ci', cargaIncendio);
+    // console.log('shop', edificacao);
+    // console.log('aberturas', aberturas);
+    // console.log('lotacao', lotacao);
+    // console.log('reuniao de publico', reuniaoDePublico);
+    // console.log('pavimentos', pavimentos);
+    // console.log('subsolo', subsolo);
+    // console.log('garagem', garagem);
+    // console.log('liquido', liquidoInflamavel);
+    // console.log('qtdliquido', quantidadeLiquido);
+    // console.log('glp', glp);
+    // console.log('qtdglp', capacidadeGlp);
     if (
       Number(areaTotal) <= 200
         && Number(cargaIncendio) <= 300
@@ -243,7 +232,16 @@ export default function Virtualize() {
     novosCnaes.splice(index, 1);
     setCnaesSelecionados(novosCnaes);
   }
+  // modal
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    verificarDispensa();
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Box mt={2}>
 
@@ -466,19 +464,18 @@ export default function Virtualize() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         TransitionComponent={Transition}
+        fullWidth
+        maxWidth="lg"
       >
-        <DialogTitle id="alert-dialog-title">Use Google's location service?</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Este empreendimento:</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             {verificarDispensa()}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Disagree
-          </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
-            Agree
+            Ok
           </Button>
         </DialogActions>
       </Dialog>
