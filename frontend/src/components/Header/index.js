@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import api from '../../services/api';
 import history from '../../services/history';
 
-
 export default function Header() {
   const isLogged = useSelector((state) => state.isLogged);
   const dispatch = useDispatch();
@@ -60,7 +59,7 @@ export default function Header() {
           <li className="nav-item">
             <Link className="btn btn-success m-1" to="/instagram">Instagram</Link>
           </li>
-          { */}          
+          { */}
           <li className="nav-item">
             <Link className="btn btn-outline-warning m-1" to="/nt012020">NT 01/2020</Link>
           </li>
@@ -74,8 +73,10 @@ export default function Header() {
             {isLogged ? <Link className="nav-link" to="/usuarios">Usuários</Link> : ''}
           </li>
         </ul>
+        {/* }
         {isLogged ? <button type="submit" onClick={Logout} className="btn btn-outline-danger my-2 my-sm-0">Sair</button>
           : <Link className="btn btn-outline-success my-2 my-sm-0" to="/login">Login</Link>}
+        { */}
       </div>
     </nav>
   );
