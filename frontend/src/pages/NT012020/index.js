@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 /* eslint-disable eqeqeq */
 import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
@@ -141,9 +142,17 @@ export default function Virtualize() {
   const [quantidadeLiquido, setquantidadeLiquido] = useState('');
   const [glp, setGlp] = useState('');
   const [capacidadeGlp, setCapacidadeGlp] = useState('');
+  const [previa62251, setPrevia62251] = useState('false');
+  const [previa62252, setPrevia62252] = useState('false');
 
   // funções do formulário
   // TODO criar a lógica de verificação
+  // CNAES que precisam de vistoria se for maior que 200m
+  const cnaes62251 = ['B-1', 'B-2', 'C-3', 'E-1', 'E-4', 'E-5', 'E-6', 'F-1', 'F-2', 'F-3', 'F-4', 'F-5', 'F-6', 'F-7', 'F-8', 'F-9', 'F-10', 'F-11', 'H-2', 'H-3', 'H-4', 'H-5', 'J-2', 'J-3', 'J-4'];
+
+  // CNAES que precisam de vistoria independente da área
+  const cnaes62252 = ['L-1', 'L-2', 'L-3', 'M-2'];
+
   function cnaeToArray(stringCnae) {
     if (stringCnae == null || stringCnae == undefined) return undefined;
     return stringCnae.replace('CNAE:', '')
@@ -171,6 +180,14 @@ export default function Virtualize() {
           setReuniaoDePublico('false');
         }
 
+        if (cnaes62251.some((e) => valor[2].includes(e)) && valor[4] > 200) {
+          setPrevia62251('true');
+        }
+
+        if (cnaes62252.some((e) => valor[2].includes(e)) && valor[4] > 200) {
+          setPrevia62252('true');
+        }
+        console.log(valor);
         return result;
       });
     }
@@ -179,20 +196,24 @@ export default function Virtualize() {
 
   function verificarDispensa() {
     const dispensada = 'é DISPENSADO de Cercon, conforme NT-01/2020';
-    const exigencia = 'NECESSITA de Cercon, conforme NT-01/2020';
-    // console.log('area', areaTotal);
-    // console.log('ci', cargaIncendio);
-    // console.log('shop', edificacao);
-    // console.log('aberturas', aberturas);
-    // console.log('lotacao', lotacao);
-    // console.log('reuniao de publico', reuniaoDePublico);
-    // console.log('pavimentos', pavimentos);
-    // console.log('subsolo', subsolo);
-    // console.log('garagem', garagem);
-    // console.log('liquido', liquidoInflamavel);
-    // console.log('qtdliquido', quantidadeLiquido);
-    // console.log('glp', glp);
-    // console.log('qtdglp', capacidadeGlp);
+    const previa = 'NECESSITA de Cercon, conforme NT-01/2020 e pode ser enquadrado como CERTIFICAÇÃO PRÉVIA';
+    const vistoria = 'NECESSITA de Cercon e é enquadrado como PROCESSO TÉCNICO.Necessita de vistoria no local, conforme NT-01/2020';
+
+    console.log('area', areaTotal);
+    console.log('ci', cargaIncendio);
+    console.log('shop', edificacao);
+    console.log('aberturas', aberturas);
+    console.log('lotacao', lotacao);
+    console.log('reuniao de publico', reuniaoDePublico);
+    console.log('pavimentos', pavimentos);
+    console.log('subsolo', subsolo);
+    console.log('garagem', garagem);
+    console.log('liquido', liquidoInflamavel);
+    console.log('qtdliquido', quantidadeLiquido);
+    console.log('glp', glp);
+    console.log('qtdglp', capacidadeGlp);
+    console.log('previa62251', previa62251);
+    console.log('previa62252', previa62252);
     if (
       Number(areaTotal) <= 200
         && Number(cargaIncendio) <= 300
@@ -206,8 +227,20 @@ export default function Virtualize() {
         && (glp == 'dispensado' || capacidadeGlp == 'dispensado')
     ) {
       return dispensada;
-    }
-    return exigencia;
+    } else if (
+      Number(areaTotal) <= 750
+      && previa62251 == 'false'
+      && previa62252 == 'false'
+      && Number(pavimentos) <= 3
+      && aberturas == 'false'
+      && (subsolo == 'dispensado' || garagem == 'dispensado')
+      && (lotacao == 'dispensado' || lotacao == 'previa')
+      && (liquidoInflamavel == 'dispensado' || quantidadeLiquido == 'dispensado' || quantidadeLiquido == 'previa')
+      && (glp == 'dispensado' || capacidadeGlp == 'dispensado' || capacidadeGlp == 'previa')
+
+    ) {
+      return previa;
+    } else { return vistoria; }
   }
 
   function addCnae() {
@@ -228,6 +261,12 @@ export default function Virtualize() {
   }
   function removeCnae(e, index) {
     const novosCnaes = [...cnaesSelecionados];
+    if (cnaes62251.some((el) => novosCnaes[index][2].includes(el)) && novosCnaes[index][4] > 200) {
+      setPrevia62251('false');
+    }
+    if (cnaes62252.some((el) => novosCnaes[index][2].includes(el)) && novosCnaes[index][4] > 200) {
+      setPrevia62252('false');
+    }
     setAreaTotal(Number(areaTotal) - Number(novosCnaes[index][4]));
     novosCnaes.splice(index, 1);
     setCnaesSelecionados(novosCnaes);
