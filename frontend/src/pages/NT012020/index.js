@@ -145,6 +145,27 @@ export default function Virtualize() {
   const [previa62251, setPrevia62251] = useState('false');
   const [previa62252, setPrevia62252] = useState('false');
 
+  function reset() {
+    setPrestadorDeServico('');
+    setCnae('');
+    setArea(0);
+    setAreaTotal(0);
+    setCnaesSelecionados([]);
+    setCargaIncendio();
+    setEdificacao('');
+    setReuniaoDePublico('false');
+    setLotacao('');
+    setAberturas('');
+    setPavimentos('');
+    setSubsolo('');
+    setGaragem('');
+    setLiquidoInflamavel('');
+    setquantidadeLiquido('');
+    setGlp('');
+    setCapacidadeGlp('');
+    setPrevia62251('false');
+    setPrevia62252('false');
+  }
   // funções do formulário
   // TODO criar a lógica de verificação
   // CNAES que precisam de vistoria se for maior que 200m
@@ -385,7 +406,7 @@ export default function Virtualize() {
           <Grid item lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">CASO FIQUE EM UM PRÉDIO/SHOPPING, ESTE POSSUI ATÉ 750m² DE ÁREA CONSTRUÍDA OU MAIS DE 03 PAVIMENTOS?</FormLabel>
-              <RadioGroup row onChange={(e) => setEdificacao(e.target.value)}>
+              <RadioGroup row value={edificacao} onChange={(e) => setEdificacao(e.target.value)}>
                 <FormControlLabel value="independente" control={<Radio />} label="É uma edificação independente" />
                 <FormControlLabel value="true" control={<Radio />} label="Sim" />
                 <FormControlLabel value="false" control={<Radio />} label="Não" />
@@ -395,7 +416,7 @@ export default function Virtualize() {
           <Grid item lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">POSSUI ABERTURAS PARA O INTERIOR DA EDIFICAÇÃO OU ESTABELECIMENTOS ADJACENTES?</FormLabel>
-              <RadioGroup row onChange={(e) => setAberturas(e.target.value)}>
+              <RadioGroup row value={aberturas} onChange={(e) => setAberturas(e.target.value)}>
                 <FormControlLabel value="true" control={<Radio />} label="Sim" />
                 <FormControlLabel value="false" control={<Radio />} label="Não" />
               </RadioGroup>
@@ -404,7 +425,7 @@ export default function Virtualize() {
           <Grid item lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">QUAL A LOTAÇÃO DO ESTABELECIMENTO?</FormLabel>
-              <RadioGroup row onChange={(e) => setLotacao(e.target.value)}>
+              <RadioGroup row value={lotacao} onChange={(e) => setLotacao(e.target.value)}>
                 <FormControlLabel value="dispensado" control={<Radio />} label="Até 100 pessoas" />
                 <FormControlLabel value="previa" control={<Radio />} label="de 101 a 200 pessoas" />
                 <FormControlLabel value="vistoria" control={<Radio />} label="Acima de 201 pessoas" />
@@ -423,13 +444,14 @@ export default function Virtualize() {
                 }}
                 variant="outlined"
                 onChange={(e) => setPavimentos(e.target.value)}
+                value={pavimentos}
               />
             </FormControl>
           </Grid>
           <Grid item lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">POSSUI SUBSOLO?</FormLabel>
-              <RadioGroup row onChange={(e) => setSubsolo(e.target.value)}>
+              <RadioGroup row value={subsolo} onChange={(e) => setSubsolo(e.target.value)}>
                 <FormControlLabel value="previa" control={<Radio />} label="Sim" />
                 <FormControlLabel value="dispensado" control={<Radio />} label="Não" />
               </RadioGroup>
@@ -438,7 +460,7 @@ export default function Virtualize() {
           <Grid item hidden={subsolo === 'dispensado' || subsolo === ''} lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">O SUBSOLO É UTILIZADO SOMENTE COMO GARAGEM / ESTACIONAMENTO?</FormLabel>
-              <RadioGroup row onChange={(e) => setGaragem(e.target.value)}>
+              <RadioGroup value={garagem} row onChange={(e) => setGaragem(e.target.value)}>
                 <FormControlLabel value="dispensado" control={<Radio />} label="Sim" />
                 <FormControlLabel value="vistoria" control={<Radio />} label="Não" />
               </RadioGroup>
@@ -447,7 +469,7 @@ export default function Virtualize() {
           <Grid item lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">POSSUI LÍQUIDO INFLAMÁVEL OU COMBUSTÍVEL NO ESTABELECIMENTO?</FormLabel>
-              <RadioGroup row onChange={(e) => setLiquidoInflamavel(e.target.value)}>
+              <RadioGroup row value={liquidoInflamavel} onChange={(e) => setLiquidoInflamavel(e.target.value)}>
                 <FormControlLabel value="previa" control={<Radio />} label="Sim" />
                 <FormControlLabel value="dispensado" control={<Radio />} label="Não" />
               </RadioGroup>
@@ -456,7 +478,7 @@ export default function Virtualize() {
           <Grid item hidden={liquidoInflamavel === 'dispensado' || liquidoInflamavel === ''} lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">QUAL A QUANTIDADE DE LÍQUIDO INFLAMÁVEL E/OU COMBUSTÍVEL QUE POSSUI?</FormLabel>
-              <RadioGroup row onChange={(e) => setquantidadeLiquido(e.target.value)}>
+              <RadioGroup row value={quantidadeLiquido} onChange={(e) => setquantidadeLiquido(e.target.value)}>
                 <FormControlLabel value="dispensado" control={<Radio />} label="Até 250 litros" />
                 <FormControlLabel value="previa" control={<Radio />} label="Entre 251 e 500 litros" />
                 <FormControlLabel value="vistoria" control={<Radio />} label="Mais de 501 litros" />
@@ -466,7 +488,7 @@ export default function Virtualize() {
           <Grid item lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">FAZ USO DE GLP?</FormLabel>
-              <RadioGroup row onChange={(e) => setGlp(e.target.value)}>
+              <RadioGroup row value={glp} onChange={(e) => setGlp(e.target.value)}>
                 <FormControlLabel value="vistoria" control={<Radio />} label="Sim" />
                 <FormControlLabel value="dispensado" control={<Radio />} label="Não" />
               </RadioGroup>
@@ -475,7 +497,7 @@ export default function Virtualize() {
           <Grid hidden={glp === 'dispensado' || glp === ''} item lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">QUAL A CAPACIDADE DE BOTIJÃO UTILIZADO?</FormLabel>
-              <RadioGroup row onChange={(e) => setCapacidadeGlp(e.target.value)}>
+              <RadioGroup row value={capacidadeGlp} onChange={(e) => setCapacidadeGlp(e.target.value)}>
                 <FormControlLabel value="dispensado" control={<Radio />} label="Até 13kg" />
                 <FormControlLabel value="previa" control={<Radio />} label="de 14kg até 190kg" />
                 <FormControlLabel value="vistoria" control={<Radio />} label="Acima de 191kg" />
@@ -492,6 +514,18 @@ export default function Virtualize() {
               onClick={handleClickOpen}
             >
               Verificar
+            </Button>
+          </Grid>
+          <Grid item align="center" xs={12}>
+            <Button
+              type="button"
+              variant="outlined"
+              color="danger"
+              size="large"
+              style={{ minHeight: '56px', width: '30%' }}
+              onClick={reset}
+            >
+              Limpar Campos
             </Button>
           </Grid>
         </Grid>
