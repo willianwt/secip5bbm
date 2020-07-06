@@ -229,21 +229,22 @@ export default function Virtualize() {
     const vistoria = 'NECESSITA de Cercon e é enquadrado como PROCESSO TÉCNICO.Necessita de vistoria no local, conforme NT-01/2020';
     const especiais = 'contém CNAE sem carga de incêndio definida. Favor verificar NT-14/2020';
 
-    console.log('area', areaTotal);
-    console.log('ci', cargaIncendio);
-    console.log('shop', edificacao);
-    console.log('aberturas', aberturas);
-    console.log('lotacao', lotacao);
-    console.log('reuniao de publico', reuniaoDePublico);
-    console.log('pavimentos', pavimentos);
-    console.log('subsolo', subsolo);
-    console.log('garagem', garagem);
-    console.log('liquido', liquidoInflamavel);
-    console.log('qtdliquido', quantidadeLiquido);
-    console.log('glp', glp);
-    console.log('qtdglp', capacidadeGlp);
-    console.log('previa62251', previa62251);
-    console.log('previa62252', previa62252);
+    // console.log('area', areaTotal);
+    // console.log('ci', cargaIncendio);
+    // console.log('shop', edificacao);
+    // console.log('aberturas', aberturas);
+    // console.log('lotacao', lotacao);
+    // console.log('reuniao de publico', reuniaoDePublico);
+    // console.log('pavimentos', pavimentos);
+    // console.log('subsolo', subsolo);
+    // console.log('garagem', garagem);
+    // console.log('liquido', liquidoInflamavel);
+    // console.log('qtdliquido', quantidadeLiquido);
+    // console.log('glp', glp);
+    // console.log('qtdglp', capacidadeGlp);
+    // console.log('previa62251', previa62251);
+    // console.log('previa62252', previa62252);
+    // console.log('cnaesEspeciais', cnaesEspeciais);
     if (cnaesEspeciais == 'true') {
       return especiais;
     } else if (
@@ -288,8 +289,8 @@ export default function Virtualize() {
     const string = `${cnae}, Área: ${area}`;
     setCnaesSelecionados([...cnaesSelecionados, cnaeToArray(string)]);
     setAreaTotal(Number(areaTotal) + Number(area));
-    // setCnae('');
-    // setArea('');
+    setCnae('');
+    setArea('');
   }
   function removeCnae(e, index) {
     const novosCnaes = [...cnaesSelecionados];
