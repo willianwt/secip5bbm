@@ -127,7 +127,7 @@ export default function Virtualize() {
   // variáveis do forumlário
   const [prestadorDeServico, setPrestadorDeServico] = useState('');
   const [cnae, setCnae] = useState('');
-  const [area, setArea] = useState(0);
+  const [area, setArea] = useState('');
   const [areaTotal, setAreaTotal] = useState(0);
   const [cnaesSelecionados, setCnaesSelecionados] = useState([]);
   const [cargaIncendio, setCargaIncendio] = useState();
@@ -149,7 +149,7 @@ export default function Virtualize() {
   function reset() {
     setPrestadorDeServico('');
     setCnae('');
-    setArea(0);
+    setArea('');
     setAreaTotal(0);
     setCnaesSelecionados([]);
     setCargaIncendio();
@@ -224,10 +224,10 @@ export default function Virtualize() {
   }, [cnaesSelecionados]);
 
   function verificarDispensa() {
-    const dispensada = 'é DISPENSADO de Cercon, conforme NT-01/2020';
-    const previa = 'NECESSITA de Cercon, conforme NT-01/2020 e pode ser enquadrado como CERTIFICAÇÃO PRÉVIA';
-    const vistoria = 'NECESSITA de Cercon e é enquadrado como PROCESSO TÉCNICO.Necessita de vistoria no local, conforme NT-01/2020';
-    const especiais = 'contém CNAE sem carga de incêndio definida. Favor verificar NT-14/2020';
+    const dispensada = 'é DISPENSADO de Cercon, conforme NT-01/2020.';
+    const previa = 'NECESSITA de Cercon, conforme NT-01/2020 e pode ser enquadrado como CERTIFICAÇÃO PRÉVIA.';
+    const vistoria = 'NECESSITA de Cercon e é enquadrado como PROCESSO TÉCNICO. Necessita de vistoria no local, conforme NT-01/2020.';
+    const especiais = 'contém CNAE sem carga de incêndio definida. Favor verificar NT-14/2020.';
 
     // console.log('area', areaTotal);
     // console.log('ci', cargaIncendio);
@@ -371,7 +371,7 @@ export default function Virtualize() {
             <TextField
               variant="outlined"
               label="Área em m²"
-              valeu={area}
+              value={area}
               onChange={(e) => { setArea(e.target.value); }}
             />
           </Grid>
