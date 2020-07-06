@@ -43,7 +43,7 @@ export default function Header() {
               <a className="dropdown-item" href="https://drive.google.com/file/d/1WbB94oYSnJVnjf2NoQzUcHqEaA94s3kr/view" target="_blank" rel="noopener noreferrer">Anexar Documentos</a>
               <a className="dropdown-item" href="https://drive.google.com/file/d/1f1Qt9cPjJMEnuIeTETAJ1ihqMP-Ei42k/view" target="_blank" rel="noopener noreferrer">Gerar Taxa</a>
               <a className="dropdown-item" href="https://drive.google.com/file/d/1BO4P91pBP4oHbFtSEjcpAAKIN-B3oHT1/view" target="_blank" rel="noopener noreferrer">Solicitar Retorno</a>
-              <a className="dropdown-item" href="https://drive.google.com/file/d/1Mls37JHecIpUpzdW-zA5jMPr2UGYLdmH/view" target="_blank" rel="noopener noreferrer">Anexo G</a>
+              <a className="dropdown-item" href="https://www.bombeiros.go.gov.br/wp-content/uploads/2020/06/NT-01_2020-Procedimentos-Administrativos-ANEXO-G.pdf" target="_blank" rel="noopener noreferrer">Anexo G</a>
             </div>
           </li>
           <li className="dropdown show">
