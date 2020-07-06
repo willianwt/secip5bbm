@@ -144,6 +144,7 @@ export default function Virtualize() {
   const [capacidadeGlp, setCapacidadeGlp] = useState('');
   const [previa62251, setPrevia62251] = useState('false');
   const [previa62252, setPrevia62252] = useState('false');
+  const [cnaesEspeciais, setCnaesEspeciais] = useState('false');
 
   function reset() {
     setPrestadorDeServico('');
@@ -165,6 +166,7 @@ export default function Virtualize() {
     setCapacidadeGlp('');
     setPrevia62251('false');
     setPrevia62252('false');
+    setCnaesEspeciais('false');
   }
   // funções do formulário
   // TODO criar a lógica de verificação
@@ -173,6 +175,9 @@ export default function Virtualize() {
 
   // CNAES que precisam de vistoria independente da área
   const cnaes62252 = ['L-1', 'L-2', 'L-3', 'M-2'];
+
+  // CNAES ESPECIAIS (ANEXO B OU C)
+  const cnaesAnexos = ['F-10', 'J-1', 'J-2', 'J-3', 'J-4', 'L-3', 'J-1 a J-4'];
 
   function cnaeToArray(stringCnae) {
     if (stringCnae == null || stringCnae == undefined) return undefined;
@@ -208,7 +213,10 @@ export default function Virtualize() {
         if (cnaes62252.some((e) => valor[2].includes(e)) && valor[4] > 200) {
           setPrevia62252('true');
         }
-        console.log(valor);
+        if (cnaesAnexos.some((e) => valor[2].includes(e))) {
+          setCnaesEspeciais('true');
+        }
+
         return result;
       });
     }
@@ -219,6 +227,7 @@ export default function Virtualize() {
     const dispensada = 'é DISPENSADO de Cercon, conforme NT-01/2020';
     const previa = 'NECESSITA de Cercon, conforme NT-01/2020 e pode ser enquadrado como CERTIFICAÇÃO PRÉVIA';
     const vistoria = 'NECESSITA de Cercon e é enquadrado como PROCESSO TÉCNICO.Necessita de vistoria no local, conforme NT-01/2020';
+    const especiais = 'contém CNAE sem carga de incêndio definida. Favor verificar NT-14/2020';
 
     console.log('area', areaTotal);
     console.log('ci', cargaIncendio);
@@ -235,7 +244,9 @@ export default function Virtualize() {
     console.log('qtdglp', capacidadeGlp);
     console.log('previa62251', previa62251);
     console.log('previa62252', previa62252);
-    if (
+    if (cnaesEspeciais == 'true') {
+      return especiais;
+    } else if (
       Number(areaTotal) <= 200
         && Number(cargaIncendio) <= 300
         && reuniaoDePublico == 'false'
@@ -287,6 +298,9 @@ export default function Virtualize() {
     }
     if (cnaes62252.some((el) => novosCnaes[index][2].includes(el)) && novosCnaes[index][4] > 200) {
       setPrevia62252('false');
+    }
+    if (cnaesAnexos.some((el) => novosCnaes[index][2].includes(el))) {
+      setCnaesEspeciais('false');
     }
     setAreaTotal(Number(areaTotal) - Number(novosCnaes[index][4]));
     novosCnaes.splice(index, 1);
