@@ -228,22 +228,22 @@ export default function Virtualize() {
     const vistoria = 'NECESSITA de Cercon e é enquadrado como PROCESSO TÉCNICO. Necessita de vistoria no local, conforme NT-01/2020.';
     const especiais = 'contém CNAE sem carga de incêndio definida. Favor verificar NT-14/2020.';
 
-    // console.log('area', areaTotal);
-    // console.log('ci', cargaIncendio);
-    // console.log('shop', edificacao);
-    // console.log('aberturas', aberturas);
-    // console.log('lotacao', lotacao);
-    // console.log('reuniao de publico', reuniaoDePublico);
-    // console.log('pavimentos', pavimentos);
-    // console.log('subsolo', subsolo);
-    // console.log('garagem', garagem);
-    // console.log('liquido', liquidoInflamavel);
-    // console.log('qtdliquido', quantidadeLiquido);
-    // console.log('glp', glp);
-    // console.log('qtdglp', capacidadeGlp);
-    // console.log('previa62251', previa62251);
-    // console.log('previa62252', previa62252);
-    // console.log('cnaesEspeciais', cnaesEspeciais);
+    console.log('area', areaTotal);
+    console.log('ci', cargaIncendio);
+    console.log('shop', edificacao);
+    console.log('aberturas', aberturas);
+    console.log('lotacao', lotacao);
+    console.log('reuniao de publico', reuniaoDePublico);
+    console.log('pavimentos', pavimentos);
+    console.log('subsolo', subsolo);
+    console.log('garagem', garagem);
+    console.log('liquido', liquidoInflamavel);
+    console.log('qtdliquido', quantidadeLiquido);
+    console.log('glp', glp);
+    console.log('qtdglp', capacidadeGlp);
+    console.log('previa62251', previa62251);
+    console.log('previa62252', previa62252);
+    console.log('cnaesEspeciais', cnaesEspeciais);
     if (cnaesEspeciais == 'true') {
       return especiais;
     } else if (
@@ -465,7 +465,14 @@ export default function Virtualize() {
           <Grid item lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">POSSUI SUBSOLO?</FormLabel>
-              <RadioGroup row value={subsolo} onChange={(e) => setSubsolo(e.target.value)}>
+              <RadioGroup
+                row
+                value={subsolo}
+                onChange={(e) => {
+                  setSubsolo(e.target.value);
+                  if (subsolo == 'dispensado') setGaragem('');
+                }}
+              >
                 <FormControlLabel value="previa" control={<Radio />} label="Sim" />
                 <FormControlLabel value="dispensado" control={<Radio />} label="Não" />
               </RadioGroup>
@@ -474,7 +481,13 @@ export default function Virtualize() {
           <Grid item hidden={subsolo === 'dispensado' || subsolo === ''} lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">O SUBSOLO É UTILIZADO SOMENTE COMO GARAGEM / ESTACIONAMENTO?</FormLabel>
-              <RadioGroup value={garagem} row onChange={(e) => setGaragem(e.target.value)}>
+              <RadioGroup
+                value={garagem}
+                row
+                onChange={(e) => {
+                  setGaragem(e.target.value);
+                }}
+              >
                 <FormControlLabel value="dispensado" control={<Radio />} label="Sim" />
                 <FormControlLabel value="vistoria" control={<Radio />} label="Não" />
               </RadioGroup>
@@ -483,7 +496,14 @@ export default function Virtualize() {
           <Grid item lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">POSSUI LÍQUIDO INFLAMÁVEL OU COMBUSTÍVEL NO ESTABELECIMENTO?</FormLabel>
-              <RadioGroup row value={liquidoInflamavel} onChange={(e) => setLiquidoInflamavel(e.target.value)}>
+              <RadioGroup
+                row
+                value={liquidoInflamavel}
+                onChange={(e) => {
+                  setLiquidoInflamavel(e.target.value);
+                  if (liquidoInflamavel == 'dispensado') setquantidadeLiquido('');
+                }}
+              >
                 <FormControlLabel value="previa" control={<Radio />} label="Sim" />
                 <FormControlLabel value="dispensado" control={<Radio />} label="Não" />
               </RadioGroup>
@@ -502,7 +522,14 @@ export default function Virtualize() {
           <Grid item lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">FAZ USO DE GLP?</FormLabel>
-              <RadioGroup row value={glp} onChange={(e) => setGlp(e.target.value)}>
+              <RadioGroup
+                row
+                value={glp}
+                onChange={(e) => {
+                  setGlp(e.target.value);
+                  if (glp == 'dispensado') setCapacidadeGlp('');
+                }}
+              >
                 <FormControlLabel value="vistoria" control={<Radio />} label="Sim" />
                 <FormControlLabel value="dispensado" control={<Radio />} label="Não" />
               </RadioGroup>
