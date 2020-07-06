@@ -169,7 +169,6 @@ export default function Virtualize() {
     setCnaesEspeciais('false');
   }
   // funções do formulário
-  // TODO criar a lógica de verificação
   // CNAES que precisam de vistoria se for maior que 200m
   const cnaes62251 = ['B-1', 'B-2', 'C-3', 'E-1', 'E-4', 'E-5', 'E-6', 'F-1', 'F-2', 'F-3', 'F-4', 'F-5', 'F-6', 'F-7', 'F-8', 'F-9', 'F-10', 'F-11', 'H-2', 'H-3', 'H-4', 'H-5', 'J-2', 'J-3', 'J-4'];
 
@@ -535,7 +534,6 @@ export default function Virtualize() {
             <Button
               type="button"
               variant="outlined"
-              color="danger"
               size="large"
               style={{ minHeight: '56px', width: '30%' }}
               onClick={reset}
