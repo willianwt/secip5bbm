@@ -264,6 +264,7 @@ export default function Virtualize() {
       return dispensada;
     } else if (
       Number(areaTotal) <= 750
+      && Number(cargaIncendio) <= 1200
       && previa62251 == 'false'
       && previa62252 == 'false'
       && Number(pavimentos) <= 3
@@ -338,10 +339,7 @@ export default function Virtualize() {
             <Grid item lg={12} direction="row">
               <Typography variant="h5" align="center">
                 Verificador de Necessidade de Cercon
-
                 <IconButton
-                  variant="outlined"
-
                   onClick={openWarning}
                 >
                   <ErrorOutlineIcon />
@@ -630,6 +628,17 @@ export default function Virtualize() {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             {verificarDispensa()}
+            <Typography variant="subtitle2" mt="2">
+              Empreendimentos que comercializem, manipulem ou armazenem produtos  perigososà  saúde  humana,  ao meio ambiente ou ao patrimônio, tais como: explosivos, peróxidos orgânicosousubstâncias oxidantes, tóxicas, radioativas, corrosivas eperigosas diversas; devem ter
+              {' '}
+              <b>
+                vistoria
+                {' '}
+                <i>in loco</i>
+                .
+              </b>
+
+            </Typography>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -657,8 +666,11 @@ export default function Virtualize() {
             <Typography variant="body1" paragraph>
               Em caso de dúvidas, verifique as Normas Técnicas 01 e 14, e todas as demais que achar necessário.
             </Typography>
-            <Typography variant="body1">
-              Esta ferramente está em fase de testes, e pendente de homologação.
+            <Typography variant="body1" paragraph>
+              Esta ferramenta foi criada com base nos itens 5.2.2, 6.1.3, 6.1.5.1, 6.1.5.2, 6.2.2.5 da NT-01/2020, Anexo A da NT-01/2020 e Anexo A da NT-14/2020.
+            </Typography>
+            <Typography variant="body2">
+              Esta ferramente está em fase de testes, e pendente de homologação. O uso oficial depende de homologação da instituição.
             </Typography>
           </DialogContentText>
         </DialogContent>
