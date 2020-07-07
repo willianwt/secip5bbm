@@ -132,7 +132,7 @@ export default function Virtualize() {
   const [cnaesSelecionados, setCnaesSelecionados] = useState([]);
   const [cargaIncendio, setCargaIncendio] = useState();
   const [edificacao, setEdificacao] = useState('');
-  const [shopping, setShopping] = useState('');
+  const [tamanhoEdificacao, setTamanhoEdificacao] = useState('');
   const [reuniaoDePublico, setReuniaoDePublico] = useState('false');
   const [lotacao, setLotacao] = useState('');
   const [aberturas, setAberturas] = useState('');
@@ -155,6 +155,7 @@ export default function Virtualize() {
     setCnaesSelecionados([]);
     setCargaIncendio();
     setEdificacao('');
+    setTamanhoEdificacao('');
     setReuniaoDePublico('false');
     setLotacao('');
     setAberturas('');
@@ -251,7 +252,7 @@ export default function Virtualize() {
       Number(areaTotal) <= 200
         && Number(cargaIncendio) <= 300
         && reuniaoDePublico == 'false'
-        && (shopping == 'false' || edificacao == 'true')
+        && (edificacao == 'false' || tamanhoEdificacao == 'true')
         && aberturas == 'false'
         && lotacao == 'dispensado'
         && Number(pavimentos) <= 2
@@ -423,11 +424,11 @@ export default function Virtualize() {
               <FormLabel component="legend">O EMPREENDIMENTO ESTA LOCALIZADO EM ALGUM CONDOMÍNIO COMERCIAL, SHOPPING, GALERIA OU SEMELHANTE?</FormLabel>
               <RadioGroup
                 row
-                value={shopping}
+                value={edificacao}
                 onChange={
                   (e) => {
-                    setShopping(e.target.value);
-                    if (shopping == 'false') setEdificacao('');
+                    setEdificacao(e.target.value);
+                    if (edificacao == 'false') setTamanhoEdificacao('');
                   }
                 }
               >
@@ -436,10 +437,10 @@ export default function Virtualize() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item hidden={shopping === 'false' || shopping === ''} lg={12} md={12} xs={12}>
+          <Grid item hidden={edificacao === 'false' || edificacao === ''} lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">ESTE CONDOMÍNIO COMERCIAL/SHOPPING/GALERIA POSSUI ATÉ 750m² DE ÁREA CONSTRUÍDA OU MAIS DE 03 PAVIMENTOS?</FormLabel>
-              <RadioGroup row value={edificacao} onChange={(e) => setEdificacao(e.target.value)}>
+              <RadioGroup row value={tamanhoEdificacao} onChange={(e) => setTamanhoEdificacao(e.target.value)}>
                 <FormControlLabel value="true" control={<Radio />} label="Sim" />
                 <FormControlLabel value="false" control={<Radio />} label="Não" />
               </RadioGroup>
