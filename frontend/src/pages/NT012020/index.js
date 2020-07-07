@@ -132,6 +132,7 @@ export default function Virtualize() {
   const [cnaesSelecionados, setCnaesSelecionados] = useState([]);
   const [cargaIncendio, setCargaIncendio] = useState();
   const [edificacao, setEdificacao] = useState('');
+  const [shopping, setShopping] = useState('');
   const [reuniaoDePublico, setReuniaoDePublico] = useState('false');
   const [lotacao, setLotacao] = useState('');
   const [aberturas, setAberturas] = useState('');
@@ -228,29 +229,29 @@ export default function Virtualize() {
     const vistoria = 'NECESSITA de Cercon e é enquadrado como PROCESSO TÉCNICO. Necessita de vistoria no local, conforme NT-01/2020.';
     const especiais = 'contém CNAE sem carga de incêndio definida. Favor verificar NT-14/2020.';
 
-    console.log('area', areaTotal);
-    console.log('ci', cargaIncendio);
-    console.log('shop', edificacao);
-    console.log('aberturas', aberturas);
-    console.log('lotacao', lotacao);
-    console.log('reuniao de publico', reuniaoDePublico);
-    console.log('pavimentos', pavimentos);
-    console.log('subsolo', subsolo);
-    console.log('garagem', garagem);
-    console.log('liquido', liquidoInflamavel);
-    console.log('qtdliquido', quantidadeLiquido);
-    console.log('glp', glp);
-    console.log('qtdglp', capacidadeGlp);
-    console.log('previa62251', previa62251);
-    console.log('previa62252', previa62252);
-    console.log('cnaesEspeciais', cnaesEspeciais);
+    // console.log('area', areaTotal);
+    // console.log('ci', cargaIncendio);
+    // console.log('shop', edificacao);
+    // console.log('aberturas', aberturas);
+    // console.log('lotacao', lotacao);
+    // console.log('reuniao de publico', reuniaoDePublico);
+    // console.log('pavimentos', pavimentos);
+    // console.log('subsolo', subsolo);
+    // console.log('garagem', garagem);
+    // console.log('liquido', liquidoInflamavel);
+    // console.log('qtdliquido', quantidadeLiquido);
+    // console.log('glp', glp);
+    // console.log('qtdglp', capacidadeGlp);
+    // console.log('previa62251', previa62251);
+    // console.log('previa62252', previa62252);
+    // console.log('cnaesEspeciais', cnaesEspeciais);
     if (cnaesEspeciais == 'true') {
       return especiais;
     } else if (
       Number(areaTotal) <= 200
         && Number(cargaIncendio) <= 300
         && reuniaoDePublico == 'false'
-        && (edificacao == 'independente' || edificacao == 'true')
+        && (shopping == 'false' || edificacao == 'true')
         && aberturas == 'false'
         && lotacao == 'dispensado'
         && Number(pavimentos) <= 2
@@ -419,9 +420,26 @@ export default function Virtualize() {
           </Grid>
           <Grid item lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
-              <FormLabel component="legend">CASO FIQUE EM UM PRÉDIO/SHOPPING, ESTE POSSUI ATÉ 750m² DE ÁREA CONSTRUÍDA OU MAIS DE 03 PAVIMENTOS?</FormLabel>
+              <FormLabel component="legend">O EMPREENDIMENTO ESTA LOCALIZADO EM ALGUM CONDOMÍNIO COMERCIAL, SHOPPING, GALERIA OU SEMELHANTE?</FormLabel>
+              <RadioGroup
+                row
+                value={shopping}
+                onChange={
+                  (e) => {
+                    setShopping(e.target.value);
+                    if (shopping == 'false') setEdificacao('');
+                  }
+                }
+              >
+                <FormControlLabel value="true" control={<Radio />} label="Sim" />
+                <FormControlLabel value="false" control={<Radio />} label="Não" />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+          <Grid item hidden={shopping === 'false' || shopping === ''} lg={12} md={12} xs={12}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">ESTE CONDOMÍNIO COMERCIAL/SHOPPING/GALERIA POSSUI ATÉ 750m² DE ÁREA CONSTRUÍDA OU MAIS DE 03 PAVIMENTOS?</FormLabel>
               <RadioGroup row value={edificacao} onChange={(e) => setEdificacao(e.target.value)}>
-                <FormControlLabel value="independente" control={<Radio />} label="É uma edificação independente" />
                 <FormControlLabel value="true" control={<Radio />} label="Sim" />
                 <FormControlLabel value="false" control={<Radio />} label="Não" />
               </RadioGroup>
