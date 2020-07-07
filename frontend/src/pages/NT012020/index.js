@@ -21,6 +21,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
 import 'normalize.css';
 import './style.css';
@@ -310,6 +311,7 @@ export default function Virtualize() {
   }
   // modal
   const [open, setOpen] = useState(false);
+  const [warning, setWarning] = useState(true);
   const handleClickOpen = () => {
     verificarDispensa();
     setOpen(true);
@@ -318,14 +320,39 @@ export default function Virtualize() {
   const handleClose = () => {
     setOpen(false);
   };
+  const openWarning = () => {
+    verificarDispensa();
+    setWarning(true);
+  };
+
+  const closeWarning = () => {
+    setWarning(false);
+  };
   return (
     <Box mt={2}>
 
       <Container>
-        <Typography variant="h5" align="center">Verificador de Necessidade de Cercon</Typography>
 
         <Grid container alignItems="center" spacing={2}>
+          <Grid container direction="row">
+            <Grid item lg={12} direction="row">
+              <Typography variant="h5" align="center">
+                Verificador de Necessidade de Cercon
 
+                <IconButton
+                  variant="outlined"
+
+                  onClick={openWarning}
+                >
+                  <ErrorOutlineIcon />
+                </IconButton>
+              </Typography>
+
+            </Grid>
+            <Grid lg={12}>
+              <Typography variant="subtitle1" align="center">(Ferramenta em fase de testes, somente para uso interno)</Typography>
+            </Grid>
+          </Grid>
           <Box component="span" border={1} borderColor="grey.400" p={1} m={1} borderRadius={4}>
             <Grid container>
               <Grid item lg={prestadorDeServico === 'false' || prestadorDeServico === '' ? 11 : 6} md={12} xs={12}>
@@ -607,6 +634,36 @@ export default function Virtualize() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary" autoFocus>
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={warning}
+        onClose={closeWarning}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        TransitionComponent={Transition}
+        fullWidth
+        maxWidth="md"
+      >
+        <DialogTitle id="alert-dialog-title"><Typography variant="h3" align="center">ATENÇÃO</Typography></DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+
+            <Typography variant="body1" paragraph>
+              Esta ferramente deve ser usada somente como auxílio na verificação de empresas.
+            </Typography>
+            <Typography variant="body1" paragraph>
+              Em caso de dúvidas, verifique as Normas Técnicas 01 e 14, e todas as demais que achar necessário.
+            </Typography>
+            <Typography variant="body1">
+              Esta ferramente está em fase de testes, e pendente de homologação.
+            </Typography>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeWarning} color="primary" autoFocus>
             Ok
           </Button>
         </DialogActions>
