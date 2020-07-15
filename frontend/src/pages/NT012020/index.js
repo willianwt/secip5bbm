@@ -130,7 +130,7 @@ let botaoProjeto = false;
 export default function Virtualize() {
   const classes = useStyles();
   // variáveis do forumlário
-  const [prestadorDeServico, setPrestadorDeServico] = useState('false');
+  const [prestadorDeServico, setPrestadorDeServico] = useState('');
   const [cnae, setCnae] = useState('');
   const [area, setArea] = useState('');
   const [areaTotal, setAreaTotal] = useState(0);
@@ -160,6 +160,8 @@ export default function Virtualize() {
   const [formProjeto, setFormProjeto] = useState(false);
 
   const resultado = createRef();
+  const resultadoProjeto = createRef();
+  const resultadoFormProjeto = createRef();
 
   function reset() {
     setPrestadorDeServico('');
@@ -386,6 +388,14 @@ export default function Virtualize() {
   useEffect(() => {
     resultado.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, [checked]);
+
+  useEffect(() => {
+    resultadoProjeto.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [checkedProjeto]);
+
+  useEffect(() => {
+    resultadoFormProjeto.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [formProjeto]);
 
   // verifica mudança nas perguntas e esconde a resposta
   useEffect(() => {
@@ -692,7 +702,7 @@ export default function Virtualize() {
             </Paper>
           </Zoom>
         </Grid>
-        <Box hidden={!formProjeto} my={4}>
+        <Box hidden={!formProjeto} ref={resultadoFormProjeto} my={4}>
           <Box mb={2}>
             <Typography mb={2} variant="h6">Responda as perguntas abaixo para verificar se necessita de projeto, conforme item 6.2.3.2 da NT 01/2020:</Typography>
           </Box>
@@ -784,7 +794,7 @@ export default function Virtualize() {
               Verificar Necessidade de Projeto
             </Button>
           </Grid>
-          <Grid align="center" id="resultado" hidden={!checkedProjeto} item xs={12}>
+          <Grid align="center" ref={resultadoProjeto} id="resultado" hidden={!checkedProjeto} item xs={12}>
             <Zoom in={checkedProjeto}>
               <Paper elevation={5}>
                 <Box my={2} p={3}>
