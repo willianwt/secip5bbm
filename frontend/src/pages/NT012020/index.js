@@ -1,6 +1,8 @@
 /* eslint-disable no-else-return */
 /* eslint-disable eqeqeq */
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState, useEffect, createRef, useRef,
+} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -9,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
 import { VariableSizeList } from 'react-window';
 import {
-  Typography, Container, Box, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, IconButton,
+  Typography, Container, Box, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, IconButton, Paper, Zoom,
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { borders } from '@material-ui/system';
@@ -123,10 +125,12 @@ const renderGroup = (params) => [
   params.children,
 ];
 
+let botaoProjeto = false;
+
 export default function Virtualize() {
   const classes = useStyles();
   // variáveis do forumlário
-  const [prestadorDeServico, setPrestadorDeServico] = useState('');
+  const [prestadorDeServico, setPrestadorDeServico] = useState('false');
   const [cnae, setCnae] = useState('');
   const [area, setArea] = useState('');
   const [areaTotal, setAreaTotal] = useState(0);
@@ -134,7 +138,7 @@ export default function Virtualize() {
   const [cargaIncendio, setCargaIncendio] = useState();
   const [edificacao, setEdificacao] = useState('');
   const [tamanhoEdificacao, setTamanhoEdificacao] = useState('');
-  const [reuniaoDePublico, setReuniaoDePublico] = useState('false');
+  const [reuniaoDePublico, setReuniaoDePublico] = useState('');
   const [lotacao, setLotacao] = useState('');
   const [aberturas, setAberturas] = useState('');
   const [pavimentos, setPavimentos] = useState('');
@@ -147,6 +151,15 @@ export default function Virtualize() {
   const [previa62251, setPrevia62251] = useState('false');
   const [previa62252, setPrevia62252] = useState('false');
   const [cnaesEspeciais, setCnaesEspeciais] = useState('false');
+  const [cnaesProjeto, setCnaesProjeto] = useState('false');
+  const [botijoesArmazenados, setBotijoesArmazenados] = useState('');
+  const [centralGlpEstacionario, setCentralGlpEstacionario] = useState('');
+  const [comercioGlp, setComercioGlp] = useState('');
+  const [comercioExplosivos, setComercioExplosivos] = useState('');
+  const [distanciaEdificacoes, setDistanciaEdificacoes] = useState('');
+  const [formProjeto, setFormProjeto] = useState(false);
+
+  const resultado = createRef();
 
   function reset() {
     setPrestadorDeServico('');
@@ -157,7 +170,7 @@ export default function Virtualize() {
     setCargaIncendio();
     setEdificacao('');
     setTamanhoEdificacao('');
-    setReuniaoDePublico('false');
+    setReuniaoDePublico('');
     setLotacao('');
     setAberturas('');
     setPavimentos('');
@@ -170,6 +183,14 @@ export default function Virtualize() {
     setPrevia62251('false');
     setPrevia62252('false');
     setCnaesEspeciais('false');
+    setCnaesProjeto('false');
+    setBotijoesArmazenados('');
+    setCentralGlpEstacionario('');
+    setComercioGlp('');
+    setComercioExplosivos('');
+    setDistanciaEdificacoes('');
+    setFormProjeto(false);
+    botaoProjeto = false;
   }
   // funções do formulário
   // CNAES que precisam de vistoria se for maior que 200m
@@ -181,6 +202,9 @@ export default function Virtualize() {
   // CNAES ESPECIAIS (ANEXO B OU C)
   const cnaesAnexos = ['F-10', 'J-1', 'J-2', 'J-3', 'J-4', 'L-3', 'J-1 a J-4'];
 
+  // CNAES QUE NECESSITAM DE PROJETO OBRIGATÓRIAMENTE
+  const cnaesProjetoObrigatorio = ['F-5', 'F-6', 'F-7'];
+
   function cnaeToArray(stringCnae) {
     if (stringCnae == null || stringCnae == undefined) return undefined;
     return stringCnae.replace('CNAE:', '')
@@ -190,6 +214,7 @@ export default function Virtualize() {
       .replace(', Área', '')
       .split(': ');
   }
+
   useEffect(() => {
     function calcCargaIncendio() {
       // verifica qual a maior carga de incendio conforme a nt01
@@ -218,14 +243,33 @@ export default function Virtualize() {
         if (cnaesAnexos.some((e) => valor[2].includes(e))) {
           setCnaesEspeciais('true');
         }
+        if (cnaesProjetoObrigatorio.some((e) => valor[2].includes(e))) {
+          setCnaesProjeto('true');
+        }
 
         return result;
       });
     }
     calcCargaIncendio();
   }, [cnaesSelecionados]);
-
-  function verificarDispensa() {
+  const verificarProjeto = () => {
+    console.log(comercioGlp);
+    if (cnaesProjeto == 'true'
+      || botijoesArmazenados == 'vistoria'
+      || centralGlpEstacionario == 'vistoria'
+      || comercioGlp == 'vistoria'
+      || comercioExplosivos == 'vistoria'
+      || distanciaEdificacoes == 'vistoria'
+      || Number(areaTotal) > 750
+      || garagem == 'vistoria'
+      || Number(pavimentos) >= 4
+      || quantidadeLiquido == 'vistoria') {
+      return 'Necessita de Projeto de Combate a Incêndio, conforme NT 01/2020.';
+    } else {
+      return 'Dispensado de Projeto de Combate a Incêndio, conforme NT 01/2020.';
+    }
+  };
+  const verificarDispensa = () => {
     const dispensada = 'é DISPENSADO de Cercon, conforme NT-01/2020.';
     const previa = 'NECESSITA de Cercon, conforme NT-01/2020 e pode ser enquadrado como CERTIFICAÇÃO PRÉVIA.';
     const vistoria = 'NECESSITA de Cercon e é enquadrado como PROCESSO TÉCNICO. Necessita de vistoria no local, conforme NT-01/2020.';
@@ -276,8 +320,11 @@ export default function Virtualize() {
 
     ) {
       return previa;
-    } else { return vistoria; }
-  }
+    } else {
+      botaoProjeto = true;
+      return vistoria;
+    }
+  };
 
   function addCnae() {
     if (cnae === null || cnae == '') {
@@ -311,16 +358,18 @@ export default function Virtualize() {
     setCnaesSelecionados(novosCnaes);
   }
   // modal
-  const [open, setOpen] = useState(false);
-  const [warning, setWarning] = useState(true);
-  const handleClickOpen = () => {
-    verificarDispensa();
-    setOpen(true);
+  const [warning, setWarning] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [checkedProjeto, setCheckedProjeto] = useState(false);
+
+  const handleChange = () => {
+    setChecked((prev) => !prev);
+  };
+  const handleChangeProjeto = () => {
+    verificarProjeto();
+    setCheckedProjeto((prev) => !prev);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
   const openWarning = () => {
     verificarDispensa();
     setWarning(true);
@@ -329,14 +378,34 @@ export default function Virtualize() {
   const closeWarning = () => {
     setWarning(false);
   };
+
+  const handleVerificarProjeto = () => {
+    setFormProjeto(true);
+  };
+
+  useEffect(() => {
+    resultado.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [checked]);
+
+  // verifica mudança nas perguntas e esconde a resposta
+  useEffect(() => {
+    botaoProjeto = false;
+    setChecked(false);
+    setCheckedProjeto(false);
+    setFormProjeto(false);
+  }, [prestadorDeServico, cnae, area, areaTotal, cnaesSelecionados, cargaIncendio, edificacao, tamanhoEdificacao, reuniaoDePublico, lotacao, aberturas, pavimentos, subsolo, garagem, liquidoInflamavel, quantidadeLiquido, glp, capacidadeGlp, previa62251, previa62252, cnaesEspeciais]);
+
+  useEffect(() => {
+    setCheckedProjeto(false);
+  }, [cnaesProjeto, botijoesArmazenados, centralGlpEstacionario, comercioGlp, comercioExplosivos, distanciaEdificacoes, areaTotal, garagem, pavimentos, quantidadeLiquido]);
   return (
     <Box mt={2}>
 
       <Container>
 
-        <Grid container alignItems="center" spacing={2}>
+        <Grid container align="center" spacing={2}>
           <Grid container direction="row">
-            <Grid item lg={12} direction="row">
+            <Grid item lg={12}>
               <Typography variant="h5" align="center">
                 Verificador de Necessidade de Cercon
                 <IconButton
@@ -347,7 +416,7 @@ export default function Virtualize() {
               </Typography>
 
             </Grid>
-            <Grid lg={12}>
+            <Grid item lg={12}>
               <Typography variant="subtitle1" align="center">(Ferramenta em fase de testes, somente para uso interno)</Typography>
             </Grid>
           </Grid>
@@ -375,7 +444,7 @@ export default function Virtualize() {
             </Grid>
           </Box>
         </Grid>
-        <Grid hidden={prestadorDeServico === 'true' || prestadorDeServico === ''} container alignItems="center" spacing={2}>
+        <Grid hidden={prestadorDeServico === 'true' || prestadorDeServico === ''} container justify="center" spacing={2}>
           <Grid item lg={8} xl={8} md={8} xs={12}>
             <Autocomplete
               id="virtualize-demo"
@@ -464,7 +533,7 @@ export default function Virtualize() {
           </Grid>
           <Grid item hidden={edificacao === 'false' || edificacao === ''} lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
-              <FormLabel component="legend">ESTE CONDOMÍNIO COMERCIAL/SHOPPING/GALERIA POSSUI ATÉ 750m² DE ÁREA CONSTRUÍDA OU MAIS DE 03 PAVIMENTOS?</FormLabel>
+              <FormLabel component="legend">ESTE CONDOMÍNIO COMERCIAL/SHOPPING/GALERIA POSSUI ATÉ 750m² DE ÁREA CONSTRUÍDA OU MENOS DE 03 PAVIMENTOS?</FormLabel>
               <RadioGroup row value={tamanhoEdificacao} onChange={(e) => setTamanhoEdificacao(e.target.value)}>
                 <FormControlLabel value="true" control={<Radio />} label="Sim" />
                 <FormControlLabel value="false" control={<Radio />} label="Não" />
@@ -589,6 +658,7 @@ export default function Virtualize() {
               </RadioGroup>
             </FormControl>
           </Grid>
+
           <Grid item align="center" xs={12}>
             <Button
               type="button"
@@ -596,11 +666,136 @@ export default function Virtualize() {
               color="secondary"
               size="large"
               style={{ minHeight: '56px', width: '30%' }}
-              onClick={handleClickOpen}
+              onClick={() => handleChange()}
             >
               Verificar
             </Button>
           </Grid>
+        </Grid>
+        <Grid align="center" ref={resultado} id="resultado" hidden={!checked} item xs={12}>
+          <Zoom in={checked}>
+            <Paper elevation={5}>
+              <Box my={2} p={3}>
+                <Typography variant="h6">{verificarDispensa()}</Typography>
+                <Button
+                  type="button"
+                  variant="outlined"
+                  color="secondary"
+                  size="large"
+                  style={{ minHeight: '56px', width: '50%' }}
+                  hidden={!botaoProjeto}
+                  onClick={() => handleVerificarProjeto()}
+                >
+                  Precisa de Projeto?
+                </Button>
+              </Box>
+            </Paper>
+          </Zoom>
+        </Grid>
+        <Box hidden={!formProjeto} my={4}>
+          <Box mb={2}>
+            <Typography mb={2} variant="h6">Responda as perguntas abaixo para verificar se necessita de projeto, conforme item 6.2.3.2 da NT 01/2020:</Typography>
+          </Box>
+          <Grid item lg={12} mt={2} md={12} xs={12}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">COMERCIALIZA GLP?</FormLabel>
+              <RadioGroup
+                row
+                value={comercioGlp}
+                onChange={(e) => {
+                  setComercioGlp(e.target.value);
+                }}
+              >
+                <FormControlLabel value="vistoria" control={<Radio />} label="Sim" />
+                <FormControlLabel value="dispensado" control={<Radio />} label="Não" />
+              </RadioGroup>
+            </FormControl>
+            <Grid item lg={12} md={12} xs={12}>
+              <FormControl component="fieldset">
+                <FormLabel component="legend">ARMAZENA 6 OU MAIS BOTIJÕES DE GLP DO TIPO P-13?</FormLabel>
+                <RadioGroup
+                  row
+                  value={botijoesArmazenados}
+                  onChange={(e) => {
+                    setBotijoesArmazenados(e.target.value);
+                  }}
+                >
+                  <FormControlLabel value="vistoria" control={<Radio />} label="Sim" />
+                  <FormControlLabel value="dispensado" control={<Radio />} label="Não" />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+            <Grid item lg={12} md={12} xs={12}>
+              <FormControl component="fieldset">
+                <FormLabel component="legend">POSSUI CENTRAL DE GLP COM BOTIJÃO ESTACIONÁRIO?</FormLabel>
+                <RadioGroup
+                  row
+                  value={centralGlpEstacionario}
+                  onChange={(e) => {
+                    setCentralGlpEstacionario(e.target.value);
+                  }}
+                >
+                  <FormControlLabel value="vistoria" control={<Radio />} label="Sim" />
+                  <FormControlLabel value="dispensado" control={<Radio />} label="Não" />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+            <Grid item lg={12} md={12} xs={12}>
+              <FormControl component="fieldset">
+                <FormLabel component="legend">COMERCIALIZA EXPLOSIVOS OU FOGOS DE ARTIFÍCIOS?</FormLabel>
+                <RadioGroup
+                  row
+                  value={comercioExplosivos}
+                  onChange={(e) => {
+                    setComercioExplosivos(e.target.value);
+                  }}
+                >
+                  <FormControlLabel value="vistoria" control={<Radio />} label="Sim" />
+                  <FormControlLabel value="dispensado" control={<Radio />} label="Não" />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+            <Grid item lg={12} md={12} xs={12}>
+              <FormControl component="fieldset">
+                <FormLabel component="legend">POSSUI MAIS QUE 12 METROS DE DISTÂNCIA DE OUTRA EDIFICAÇÃO NO MESMO LOTE?</FormLabel>
+                <RadioGroup
+                  row
+                  value={distanciaEdificacoes}
+                  onChange={(e) => {
+                    setDistanciaEdificacoes(e.target.value);
+                  }}
+                >
+                  <FormControlLabel value="vistoria" control={<Radio />} label="Sim" />
+                  <FormControlLabel value="dispensado" control={<Radio />} label="Não" />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+          </Grid>
+          <Grid item align="center" xs={12}>
+            <Button
+              type="button"
+              variant="outlined"
+              color="secondary"
+              size="large"
+              style={{ minHeight: '56px', width: '50%' }}
+              hidden={!botaoProjeto}
+              onClick={() => handleChangeProjeto()}
+            >
+              Verificar Necessidade de Projeto
+            </Button>
+          </Grid>
+          <Grid align="center" id="resultado" hidden={!checkedProjeto} item xs={12}>
+            <Zoom in={checkedProjeto}>
+              <Paper elevation={5}>
+                <Box my={2} p={3}>
+                  <Typography variant="h5">{verificarProjeto()}</Typography>
+
+                </Box>
+              </Paper>
+            </Zoom>
+          </Grid>
+        </Box>
+        <Box my={2}>
           <Grid item align="center" xs={12}>
             <Button
               type="button"
@@ -612,41 +807,10 @@ export default function Virtualize() {
               Limpar Campos
             </Button>
           </Grid>
-        </Grid>
 
+        </Box>
       </Container>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        TransitionComponent={Transition}
-        fullWidth
-        maxWidth="lg"
-      >
-        <DialogTitle id="alert-dialog-title">Este empreendimento:</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {verificarDispensa()}
-            <Typography variant="subtitle2" mt="2">
-              Empreendimentos que comercializem, manipulem ou armazenem produtos  perigososà  saúde  humana,  ao meio ambiente ou ao patrimônio, tais como: explosivos, peróxidos orgânicosousubstâncias oxidantes, tóxicas, radioativas, corrosivas eperigosas diversas; devem ter
-              {' '}
-              <b>
-                vistoria
-                {' '}
-                <i>in loco</i>
-                .
-              </b>
 
-            </Typography>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Ok
-          </Button>
-        </DialogActions>
-      </Dialog>
       <Dialog
         open={warning}
         onClose={closeWarning}
@@ -664,13 +828,19 @@ export default function Virtualize() {
               Esta ferramente deve ser usada somente como auxílio na verificação de empresas.
             </Typography>
             <Typography variant="body1" paragraph>
+              <b>Todas as perguntas devem ser respondidas para obter uma resposta correta. O resultado pode ser incorreto caso alguma pergunta não seja respondida.</b>
+            </Typography>
+            <Typography variant="body1" paragraph>
               Em caso de dúvidas, verifique as Normas Técnicas 01 e 14, e todas as demais que achar necessário.
             </Typography>
             <Typography variant="body1" paragraph>
-              Esta ferramenta foi criada com base nos itens 5.2.2, 6.1.3, 6.1.5.1, 6.1.5.2, 6.2.2.5 da NT-01/2020, Anexo A da NT-01/2020 e Anexo A da NT-14/2020.
+              Esta ferramenta foi criada com base nos itens 5.2.2, 6.1.3, 6.1.5.1, 6.1.5.2, 6.2.2.5 e 6.2.3.2 da NT-01/2020, Anexo A da NT-01/2020 e Anexo A da NT-14/2020.
             </Typography>
-            <Typography variant="body2">
-              Esta ferramente está em fase de testes, e pendente de homologação. O uso oficial depende de homologação da instituição.
+            <Typography variant="body1" paragraph>
+              Use com atenção.
+            </Typography>
+            <Typography variant="body2" paragraph>
+              Esta ferramenta está em fase de testes, e pendente de homologação. O uso oficial depende de homologação da instituição.
             </Typography>
           </DialogContentText>
         </DialogContent>
