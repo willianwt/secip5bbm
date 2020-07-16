@@ -302,7 +302,7 @@ export default function Virtualize() {
         && Number(pavimentos) <= 2
         && (subsolo == 'dispensado' || garagem == 'dispensado')
         && (liquidoInflamavel == 'dispensado' || quantidadeLiquido == 'dispensado')
-        && (glp == 'dispensado' || capacidadeGlp == 'dispensado')
+        && (glp == 'dispensado' || capacidadeGlp == 'dispensado' || capacidadeGlp == 'central')
     ) {
       return dispensada;
     } else if (
@@ -315,7 +315,7 @@ export default function Virtualize() {
       && (subsolo == 'dispensado' || garagem == 'dispensado')
       && (lotacao == 'dispensado' || lotacao == 'previa')
       && (liquidoInflamavel == 'dispensado' || quantidadeLiquido == 'dispensado' || quantidadeLiquido == 'previa')
-      && (glp == 'dispensado' || capacidadeGlp == 'dispensado' || capacidadeGlp == 'previa')
+      && (glp == 'dispensado' || capacidadeGlp == 'dispensado' || capacidadeGlp == 'previa' || capacidadeGlp == 'central')
 
     ) {
       return previa;
@@ -663,7 +663,7 @@ export default function Virtualize() {
                 <FormControlLabel value="dispensado" control={<Radio />} label="Até 13kg" />
                 <FormControlLabel value="previa" control={<Radio />} label="de 14kg até 190kg" />
                 <FormControlLabel value="vistoria" control={<Radio />} label="Acima de 191kg" />
-                <FormControlLabel value="dispensado" control={<Radio />} label="Utiliza GLP da Central de GLP do edifício" />
+                <FormControlLabel value="central" control={<Radio />} label="Utiliza GLP da Central de GLP do edifício" />
               </RadioGroup>
             </FormControl>
           </Grid>
