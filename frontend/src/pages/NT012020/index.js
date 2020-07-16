@@ -147,7 +147,7 @@ export default function Virtualize() {
   const [capacidadeGlp, setCapacidadeGlp] = useState('');
   const [previa62251, setPrevia62251] = useState('false');
   const [previa62252, setPrevia62252] = useState('false');
-  const [cnaesEspeciais, setCnaesEspeciais] = useState('false');
+  // const [cnaesEspeciais, setCnaesEspeciais] = useState('false');
   const [cnaesProjeto, setCnaesProjeto] = useState('false');
   const [botijoesArmazenados, setBotijoesArmazenados] = useState('');
   const [centralGlpEstacionario, setCentralGlpEstacionario] = useState('');
@@ -181,7 +181,7 @@ export default function Virtualize() {
     setCapacidadeGlp('');
     setPrevia62251('false');
     setPrevia62252('false');
-    setCnaesEspeciais('false');
+    // setCnaesEspeciais('false');
     setCnaesProjeto('false');
     setBotijoesArmazenados('');
     setCentralGlpEstacionario('');
@@ -193,13 +193,13 @@ export default function Virtualize() {
   }
   // funções do formulário
   // CNAES que precisam de vistoria se for maior que 200m
-  const cnaes62251 = ['B-1', 'B-2', 'C-3', 'E-1', 'E-4', 'E-5', 'E-6', 'F-1', 'F-2', 'F-3', 'F-4', 'F-5', 'F-6', 'F-7', 'F-8', 'F-9', 'F-10', 'F-11', 'H-2', 'H-3', 'H-4', 'H-5', 'J-2', 'J-3', 'J-4'];
+  const cnaes62251 = ['B-1', 'B-2', 'C-3', 'E-1', 'E-4', 'E-5', 'E-6', 'F-1', 'F-2', 'F-3', 'F-4', 'F-5', 'F-6', 'F-7', 'F-8', 'F-9', 'F-10', 'F-11', 'H-2', 'H-3', 'H-4', 'H-5', 'J-1', 'J-2', 'J-3', 'J-4', 'J-1 a J-4'];
 
   // CNAES que precisam de vistoria independente da área
   const cnaes62252 = ['L-1', 'L-2', 'L-3', 'M-2'];
 
-  // CNAES ESPECIAIS (ANEXO B OU C)
-  const cnaesAnexos = ['F-10', 'J-1', 'J-2', 'J-3', 'J-4', 'L-3', 'J-1 a J-4'];
+  //   // CNAES ESPECIAIS (ANEXO B OU C)
+  //   const cnaesAnexos = ['J-1', 'J-2', 'J-3', 'J-4', 'J-1 a J-4'];
 
   // CNAES QUE NECESSITAM DE PROJETO OBRIGATÓRIAMENTE
   const cnaesProjetoObrigatorio = ['F-5', 'F-6', 'F-7'];
@@ -239,9 +239,9 @@ export default function Virtualize() {
         if (cnaes62252.some((e) => valor[2].includes(e)) && valor[4] > 200) {
           setPrevia62252('true');
         }
-        if (cnaesAnexos.some((e) => valor[2].includes(e))) {
-          setCnaesEspeciais('true');
-        }
+        // if (cnaesAnexos.some((e) => valor[2].includes(e))) {
+        //   setCnaesEspeciais('true');
+        // }
         if (cnaesProjetoObrigatorio.some((e) => valor[2].includes(e))) {
           setCnaesProjeto('true');
         }
@@ -290,9 +290,11 @@ export default function Virtualize() {
     // console.log('previa62251', previa62251);
     // console.log('previa62252', previa62252);
     // console.log('cnaesEspeciais', cnaesEspeciais);
-    if (cnaesEspeciais == 'true') {
-      return especiais;
-    } else if (
+
+    // if (cnaesEspeciais == 'true') {
+    //   return especiais;
+    // } else
+    if (
       Number(areaTotal) <= 200
         && Number(cargaIncendio) <= 300
         && reuniaoDePublico == 'false'
@@ -307,7 +309,7 @@ export default function Virtualize() {
       return dispensada;
     } else if (
       Number(areaTotal) <= 750
-      && Number(cargaIncendio) <= 1200
+      // && Number(cargaIncendio) <= 1200 removido conforme orientação Cap Justo
       && previa62251 == 'false'
       && previa62252 == 'false'
       && Number(pavimentos) <= 3
@@ -349,9 +351,9 @@ export default function Virtualize() {
     if (cnaes62252.some((el) => novosCnaes[index][2].includes(el)) && novosCnaes[index][4] > 200) {
       setPrevia62252('false');
     }
-    if (cnaesAnexos.some((el) => novosCnaes[index][2].includes(el))) {
-      setCnaesEspeciais('false');
-    }
+    // if (cnaesAnexos.some((el) => novosCnaes[index][2].includes(el))) {
+    //   setCnaesEspeciais('false');
+    // }
     setAreaTotal(Number(areaTotal) - Number(novosCnaes[index][4]));
     novosCnaes.splice(index, 1);
     setCnaesSelecionados(novosCnaes);
@@ -400,7 +402,7 @@ export default function Virtualize() {
     setChecked(false);
     setCheckedProjeto(false);
     setFormProjeto(false);
-  }, [prestadorDeServico, cnae, area, areaTotal, cnaesSelecionados, cargaIncendio, edificacao, tamanhoEdificacao, reuniaoDePublico, lotacao, aberturas, pavimentos, subsolo, garagem, liquidoInflamavel, quantidadeLiquido, glp, capacidadeGlp, previa62251, previa62252, cnaesEspeciais]);
+  }, [prestadorDeServico, cnae, area, areaTotal, cnaesSelecionados, cargaIncendio, edificacao, tamanhoEdificacao, reuniaoDePublico, lotacao, aberturas, pavimentos, subsolo, garagem, liquidoInflamavel, quantidadeLiquido, glp, capacidadeGlp, previa62251, previa62252]);
 
   useEffect(() => {
     setCheckedProjeto(false);
