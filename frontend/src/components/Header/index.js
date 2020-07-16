@@ -1,28 +1,25 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 // import { FaHome } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import api from '../../services/api';
-import history from '../../services/history';
 
 export default function Header() {
-  const isLogged = useSelector((state) => state.isLogged);
-  const dispatch = useDispatch();
+//   const isLogged = useSelector((state) => state.isLogged);
+  //   const dispatch = useDispatch();
 
-  async function Logout() {
-    try {
-      await api.post('/users/logout');
-      sessionStorage.clear();
-      dispatch({
-        type: 'LOGIN_STATUS',
-      });
-      toast.info('Até mais!');
-      history.push('/login');
-    } catch (error) {
-      toast.error('Ocorreu um erro. Tente novamente.');
-    }
-  }
+  //   async function Logout() {
+  //     try {
+  //       await api.post('/users/logout');
+  //       sessionStorage.clear();
+  //       dispatch({
+  //         type: 'LOGIN_STATUS',
+  //       });
+  //       toast.info('Até mais!');
+  //       history.push('/login');
+  //     } catch (error) {
+  //       toast.error('Ocorreu um erro. Tente novamente.');
+  //     }
+  //   }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -63,7 +60,7 @@ export default function Header() {
           <li className="nav-item">
             <Link className="btn btn-outline-warning m-1" to="/nt012020">NT 01/2020</Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             {isLogged ? <Link className="nav-link" to="/escaninho">Escaninho</Link> : ''}
           </li>
           <li className="nav-item">
@@ -71,7 +68,7 @@ export default function Header() {
           </li>
           <li className="nav-item">
             {isLogged ? <Link className="nav-link" to="/usuarios">Usuários</Link> : ''}
-          </li>
+          </li> */}
         </ul>
         {/* }
         {isLogged ? <button type="submit" onClick={Logout} className="btn btn-outline-danger my-2 my-sm-0">Sair</button>
