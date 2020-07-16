@@ -197,6 +197,8 @@ export default function Virtualize() {
 
   // CNAES que precisam de vistoria independente da área
   const cnaes62252 = ['L-1', 'L-2', 'L-3', 'M-2'];
+  console.log(previa62251);
+  console.log(previa62252);
 
   //   // CNAES ESPECIAIS (ANEXO B OU C)
   //   const cnaesAnexos = ['J-1', 'J-2', 'J-3', 'J-4', 'J-1 a J-4'];
@@ -236,7 +238,7 @@ export default function Virtualize() {
           setPrevia62251('true');
         }
 
-        if (cnaes62252.some((e) => valor[2].includes(e)) && valor[4] > 200) {
+        if (cnaes62252.some((e) => valor[2].includes(e))) {
           setPrevia62252('true');
         }
         // if (cnaesAnexos.some((e) => valor[2].includes(e))) {
@@ -252,7 +254,6 @@ export default function Virtualize() {
     calcCargaIncendio();
   }, [cnaesSelecionados]);
   const verificarProjeto = () => {
-    console.log(comercioGlp);
     if (cnaesProjeto == 'true'
       || botijoesArmazenados == 'vistoria'
       || centralGlpEstacionario == 'vistoria'
@@ -273,23 +274,6 @@ export default function Virtualize() {
     const previa = 'NECESSITA de Cercon, conforme NT-01/2020 e pode ser enquadrado como CERTIFICAÇÃO PRÉVIA.';
     const vistoria = 'NECESSITA de Cercon e é enquadrado como PROCESSO TÉCNICO. Necessita de vistoria no local, conforme NT-01/2020.';
     const especiais = 'contém CNAE sem carga de incêndio definida. Favor verificar NT-14/2020.';
-
-    // console.log('area', areaTotal);
-    // console.log('ci', cargaIncendio);
-    // console.log('shop', edificacao);
-    // console.log('aberturas', aberturas);
-    // console.log('lotacao', lotacao);
-    // console.log('reuniao de publico', reuniaoDePublico);
-    // console.log('pavimentos', pavimentos);
-    // console.log('subsolo', subsolo);
-    // console.log('garagem', garagem);
-    // console.log('liquido', liquidoInflamavel);
-    // console.log('qtdliquido', quantidadeLiquido);
-    // console.log('glp', glp);
-    // console.log('qtdglp', capacidadeGlp);
-    // console.log('previa62251', previa62251);
-    // console.log('previa62252', previa62252);
-    // console.log('cnaesEspeciais', cnaesEspeciais);
 
     // if (cnaesEspeciais == 'true') {
     //   return especiais;
@@ -348,7 +332,7 @@ export default function Virtualize() {
     if (cnaes62251.some((el) => novosCnaes[index][2].includes(el)) && novosCnaes[index][4] > 200) {
       setPrevia62251('false');
     }
-    if (cnaes62252.some((el) => novosCnaes[index][2].includes(el)) && novosCnaes[index][4] > 200) {
+    if (cnaes62252.some((el) => novosCnaes[index][2].includes(el))) {
       setPrevia62252('false');
     }
     // if (cnaesAnexos.some((el) => novosCnaes[index][2].includes(el))) {
