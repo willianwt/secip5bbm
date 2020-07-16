@@ -663,7 +663,7 @@ export default function Virtualize() {
                 <FormControlLabel value="dispensado" control={<Radio />} label="Até 13kg" />
                 <FormControlLabel value="previa" control={<Radio />} label="de 14kg até 190kg" />
                 <FormControlLabel value="vistoria" control={<Radio />} label="Acima de 191kg" />
-                <FormControlLabel value="central" control={<Radio />} label="Utiliza GLP da Central de GLP do edifício" />
+                <FormControlLabel hidden={edificacao != 'true'} value="central" control={<Radio />} label="Utiliza GLP da Central de GLP do edifício" />
               </RadioGroup>
             </FormControl>
           </Grid>
