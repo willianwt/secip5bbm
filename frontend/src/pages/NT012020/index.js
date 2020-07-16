@@ -567,8 +567,8 @@ export default function Virtualize() {
             </FormControl>
           </Grid>
           <Grid item lg={12} md={12} xs={12}>
+            <FormLabel component="legend">O SEU ESTABELECIMENTO POSSUI QUANTOS PAVIMENTOS?</FormLabel>
             <FormControl component="fieldset">
-              <FormLabel component="legend">POSSUI QUANTOS PAVIMENTOS?</FormLabel>
               <TextField
                 id="outlined-number"
                 label="Number"
@@ -577,6 +577,7 @@ export default function Virtualize() {
                   shrink: true,
                 }}
                 variant="outlined"
+                inputProps={{ min: 1, max: 60 }}
                 onChange={(e) => setPavimentos(e.target.value)}
                 value={pavimentos}
               />
@@ -584,7 +585,7 @@ export default function Virtualize() {
           </Grid>
           <Grid item lg={12} md={12} xs={12}>
             <FormControl component="fieldset">
-              <FormLabel component="legend">POSSUI SUBSOLO?</FormLabel>
+              <FormLabel component="legend">O SEU ESTABELECIMENTO POSSUI SUBSOLO?</FormLabel>
               <RadioGroup
                 row
                 value={subsolo}
@@ -662,6 +663,7 @@ export default function Virtualize() {
                 <FormControlLabel value="dispensado" control={<Radio />} label="Até 13kg" />
                 <FormControlLabel value="previa" control={<Radio />} label="de 14kg até 190kg" />
                 <FormControlLabel value="vistoria" control={<Radio />} label="Acima de 191kg" />
+                <FormControlLabel value="dispensado" control={<Radio />} label="Utiliza GLP da Central de GLP do edifício" />
               </RadioGroup>
             </FormControl>
           </Grid>
