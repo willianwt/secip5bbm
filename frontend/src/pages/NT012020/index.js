@@ -153,6 +153,7 @@ export default function Virtualize() {
   const [centralGlpEstacionario, setCentralGlpEstacionario] = useState('');
   const [comercioGlp, setComercioGlp] = useState('');
   const [comercioExplosivos, setComercioExplosivos] = useState('');
+  const [edificacaoMesmoLote, setEdificacaoMesmoLote] = useState('');
   const [distanciaEdificacoes, setDistanciaEdificacoes] = useState('');
   const [formProjeto, setFormProjeto] = useState(false);
 
@@ -187,6 +188,7 @@ export default function Virtualize() {
     setCentralGlpEstacionario('');
     setComercioGlp('');
     setComercioExplosivos('');
+    setEdificacaoMesmoLote('');
     setDistanciaEdificacoes('');
     setFormProjeto(false);
     botaoProjeto = false;
@@ -273,7 +275,7 @@ export default function Virtualize() {
     const dispensada = 'é DISPENSADO de Cercon, conforme NT-01/2020.';
     const previa = 'NECESSITA de Cercon, conforme NT-01/2020 e pode ser enquadrado como CERTIFICAÇÃO PRÉVIA.';
     const vistoria = 'NECESSITA de Cercon e é enquadrado como PROCESSO TÉCNICO. Necessita de vistoria no local, conforme NT-01/2020.';
-    const especiais = 'contém CNAE sem carga de incêndio definida. Favor verificar NT-14/2020.';
+    // const especiais = 'contém CNAE sem carga de incêndio definida. Favor verificar NT-14/2020.';
 
     // if (cnaesEspeciais == 'true') {
     //   return especiais;
@@ -293,7 +295,7 @@ export default function Virtualize() {
       return dispensada;
     } else if (
       Number(areaTotal) <= 750
-      // && Number(cargaIncendio) <= 1200 removido conforme orientação Cap Justo
+      // && Number(cargaIncendio) <= 1200 // removido conforme orientação Cap Justo
       && previa62251 == 'false'
       && previa62252 == 'false'
       && Number(pavimentos) <= 3
@@ -413,7 +415,7 @@ export default function Virtualize() {
               <Typography variant="subtitle1" align="center">(Ferramenta em fase de testes, somente para uso interno)</Typography>
             </Grid>
           </Grid>
-          <Box component="span" border={1} borderColor="grey.400" p={1} m={1} borderRadius={4}>
+          <Box component="span" border={1} borderColor="grey.400" p={1} m={1} borderRadius={4} mb={2}>
             <Grid container>
               <Grid item lg={prestadorDeServico === 'false' || prestadorDeServico === '' ? 11 : 6} md={12} xs={12}>
                 <FormControl component="fieldset">
@@ -438,6 +440,9 @@ export default function Virtualize() {
           </Box>
         </Grid>
         <Grid hidden={prestadorDeServico === 'true' || prestadorDeServico === ''} container justify="center" spacing={2}>
+          <Grid item xs={12}>
+            <FormLabel component="legend">INFORME OS CNAE's E AS RESPECTIVAS ÁRES NO ESTABELECIMENTO:</FormLabel>
+          </Grid>
           <Grid item lg={8} xl={8} md={8} xs={12}>
             <Autocomplete
               id="virtualize-demo"
@@ -737,7 +742,7 @@ export default function Virtualize() {
             </Grid>
             <Grid item lg={12} md={12} xs={12}>
               <FormControl component="fieldset">
-                <FormLabel component="legend">COMERCIALIZA EXPLOSIVOS OU FOGOS DE ARTIFÍCIOS?</FormLabel>
+                <FormLabel component="legend">PRODUZ, ARMAZENA OU COMERCIALIZA EXPLOSIVOS OU FOGOS DE ARTIFÍCIOS?</FormLabel>
                 <RadioGroup
                   row
                   value={comercioExplosivos}
@@ -751,6 +756,21 @@ export default function Virtualize() {
               </FormControl>
             </Grid>
             <Grid item lg={12} md={12} xs={12}>
+              <FormControl component="fieldset">
+                <FormLabel component="legend">POSSUI OUTRA EDIFICAÇÃO NO MESMO LOTE?</FormLabel>
+                <RadioGroup
+                  row
+                  value={edificacaoMesmoLote}
+                  onChange={(e) => {
+                    setEdificacaoMesmoLote(e.target.value);
+                  }}
+                >
+                  <FormControlLabel value="vistoria" control={<Radio />} label="Sim" />
+                  <FormControlLabel value="dispensado" control={<Radio />} label="Não" />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+            <Grid item hidden={edificacaoMesmoLote === 'dispensado' || edificacaoMesmoLote === ''} lg={12} md={12} xs={12}>
               <FormControl component="fieldset">
                 <FormLabel component="legend">POSSUI MAIS QUE 12 METROS DE DISTÂNCIA DE OUTRA EDIFICAÇÃO NO MESMO LOTE?</FormLabel>
                 <RadioGroup
