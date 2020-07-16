@@ -2,19 +2,19 @@
 import React, { useState } from 'react';
 
 import { Modal, Button } from 'react-bootstrap';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 import Background from '../../img/logo.webp';
 
 export default function Home() {
   const [show, setShow] = useState(false);
-  const [modalProtocol, setModalProtocol] = useState([]);
+  //   const [modalProtocol, setModalProtocol] = useState([]);
 
   const handleClose = () => setShow(false);
-  const handleShow = (selectedProtocol) => {
-    setShow(true);
-    setModalProtocol(selectedProtocol);
-  };
+  //   const handleShow = (selectedProtocol) => {
+  //     setShow(true);
+  //     setModalProtocol(selectedProtocol);
+  //   };
 
   const styles = {
     header: {
