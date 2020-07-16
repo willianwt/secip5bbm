@@ -773,7 +773,7 @@ export default function Virtualize() {
             </Grid>
             <Grid item hidden={edificacaoMesmoLote === 'dispensado' || edificacaoMesmoLote === ''} lg={12} md={12} xs={12}>
               <FormControl component="fieldset">
-                <FormLabel component="legend">POSSUI MAIS QUE 12 METROS DE DISTÂNCIA DE OUTRA EDIFICAÇÃO NO MESMO LOTE?</FormLabel>
+                <FormLabel component="legend">POSSUI MENOS QUE 12 METROS DE DISTÂNCIA DE OUTRA EDIFICAÇÃO NO MESMO LOTE?</FormLabel>
                 <RadioGroup
                   row
                   value={distanciaEdificacoes}
