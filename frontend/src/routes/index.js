@@ -1,4 +1,4 @@
-import React, { Suspense, Lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Home from '../pages/Home';
@@ -14,10 +14,10 @@ import Register from '../pages/Register';
 import Profile from '../pages/Profile';
 import Users from '../pages/Users';
 */
-import DocumentConference from '../pages/DocumentConference';
-import SEI from '../pages/SEI';
-import Instagram from '../pages/Instagram';
-import Nt012020 from '../pages/NT012020';
+const DocumentConference = lazy(() => import('../pages/DocumentConference'));
+const SEI = lazy(() => import('../pages/SEI'));
+const Instagram = lazy(() => import('../pages/Instagram'));
+const Nt012020 = lazy(() => import('../pages/NT012020'));
 
 export default function Routes() {
   return (
