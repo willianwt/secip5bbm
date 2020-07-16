@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 import history from './services/history';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 const GlobalStyle = lazy(() => import('./styles/GlobalStyles'));
 const Header = lazy(() => import('./components/Header'));
