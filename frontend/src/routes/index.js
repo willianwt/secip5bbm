@@ -1,7 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Home from '../pages/Home';
 import Page404 from '../pages/Page404';
 /*
 import Login from '../pages/Login';
@@ -14,6 +13,7 @@ import Register from '../pages/Register';
 import Profile from '../pages/Profile';
 import Users from '../pages/Users';
 */
+const Home = lazy(() => import('../pages/Home'));
 const DocumentConference = lazy(() => import('../pages/DocumentConference'));
 const SEI = lazy(() => import('../pages/SEI'));
 const Instagram = lazy(() => import('../pages/Instagram'));
