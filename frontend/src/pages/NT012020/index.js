@@ -1,8 +1,6 @@
 /* eslint-disable no-else-return */
 /* eslint-disable eqeqeq */
-import React, {
-  useState, useEffect, createRef, useRef,
-} from 'react';
+import React, { useState, useEffect, createRef } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -14,7 +12,6 @@ import {
   Typography, Container, Box, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, IconButton, Paper, Zoom,
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { borders } from '@material-ui/system';
 import { toast } from 'react-toastify';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Dialog from '@material-ui/core/Dialog';

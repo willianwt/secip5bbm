@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, Lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Home from '../pages/Home';
@@ -21,20 +21,22 @@ import Nt012020 from '../pages/NT012020';
 
 export default function Routes() {
   return (
-    <Switch>
-      <Route exact path="/" component={Home} />
-      {/* <Route exact path="/escaninho" component={Escaninho} /> */}
-      <Route exact path="/conferenciadedocumentos" component={DocumentConference} />
-      <Route exact path="/SEI" component={SEI} />
-      {/* <Route path="/login" component={Login} /> */}
-      {/* <Route path="/adicionarProtocolo" component={AddProtocol} /> */}
-      {/* <Route path="/editarProtocolo" render={(props) => <EditProtocol {...props} />} /> */}
-      {/* <Route path="/cadastro" component={Register} /> */}
-      {/* <Route path="/perfil" component={Profile} /> */}
-      {/* <Route path="/usuarios" component={Users} /> */}
-      <Route path="/instagram" component={Instagram} />
-      <Route path="/nt012020" component={Nt012020} />
-      <Route path="*" component={Page404} />
-    </Switch>
+    <Suspense fallback={<div style={{ height: '100vh' }}><div className="d-flex h-100 justify-content-center align-items-center"><h3>Carregando...</h3></div></div>}>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        {/* <Route exact path="/escaninho" component={Escaninho} /> */}
+        <Route exact path="/conferenciadedocumentos" component={DocumentConference} />
+        <Route exact path="/SEI" component={SEI} />
+        {/* <Route path="/login" component={Login} /> */}
+        {/* <Route path="/adicionarProtocolo" component={AddProtocol} /> */}
+        {/* <Route path="/editarProtocolo" render={(props) => <EditProtocol {...props} />} /> */}
+        {/* <Route path="/cadastro" component={Register} /> */}
+        {/* <Route path="/perfil" component={Profile} /> */}
+        {/* <Route path="/usuarios" component={Users} /> */}
+        <Route path="/instagram" component={Instagram} />
+        <Route path="/nt012020" component={Nt012020} />
+        <Route path="*" component={Page404} />
+      </Switch>
+    </Suspense>
   );
 }

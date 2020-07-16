@@ -1,13 +1,9 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useState, createRef } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { FaAngleUp, FaCloudDownloadAlt } from 'react-icons/fa';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 
 import { Modal, Button, Image } from 'react-bootstrap';
-import { toast } from 'react-toastify';
-import api from '../../services/api';
-
 
 // imagens
 import Background from '../../img/logo.webp';
@@ -26,20 +22,9 @@ import telaEnviarArquivo from '../../img/telaEnviarArquivo.webp';
 import enviarArquivo from '../../img/enviarArquivo.webp';
 import telaListaExigencias from '../../img/telaListaExigencias.webp';
 
-
 export default function DocumentConference() {
   const [show, setShow] = useState(false);
-  const [modalProtocol, setModalProtocol] = useState([]);
-
-
   const handleClose = () => setShow(false);
-  const handleShow = (selectedProtocol) => {
-    setShow(true);
-    setModalProtocol(selectedProtocol);
-  };
-
-  const scrollDiv = createRef();
-
 
   const styles = {
     header: {

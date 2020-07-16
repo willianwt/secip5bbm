@@ -15,19 +15,19 @@ class App extends Component {
   render() {
     return (
         <Suspense fallback={<div style={{height: '100vh'}}><div className="d-flex h-100 justify-content-center align-items-center"><h3>Carregando...</h3></div></div>}>
-        <Provider store={store}>
-            <Router history={history}>
-                <Header />
-                <Routes />
-                <GlobalStyle />
-                {/* TODO: alterar para 3 ou 4 segundos */}
-                <ToastContainer
-                autoClose={4000}
-                position="top-center"
-                className="toast-container"
-                />
-            </Router>
-        </Provider>
+            <Provider store={store}>
+                <Router history={history}>
+                    <Header />
+                    <Routes />
+                    <GlobalStyle />
+                    {/* TODO: alterar para 3 ou 4 segundos */}
+                    <ToastContainer
+                    autoClose={4000}
+                    position="top-center"
+                    className="toast-container"
+                    />
+                </Router>
+            </Provider>
         </Suspense>
 
     );
