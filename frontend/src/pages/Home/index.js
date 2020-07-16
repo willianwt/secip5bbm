@@ -1,17 +1,14 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useState } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
 import { Modal, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import api from '../../services/api';
 
 import Background from '../../img/logo.webp';
 
 export default function Home() {
   const [show, setShow] = useState(false);
   const [modalProtocol, setModalProtocol] = useState([]);
-
 
   const handleClose = () => setShow(false);
   const handleShow = (selectedProtocol) => {
