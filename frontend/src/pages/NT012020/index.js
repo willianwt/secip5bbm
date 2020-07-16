@@ -763,6 +763,7 @@ export default function Virtualize() {
                   value={edificacaoMesmoLote}
                   onChange={(e) => {
                     setEdificacaoMesmoLote(e.target.value);
+                    if (edificacaoMesmoLote == 'dispensado') setDistanciaEdificacoes('');
                   }}
                 >
                   <FormControlLabel value="vistoria" control={<Radio />} label="Sim" />
