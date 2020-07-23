@@ -10,6 +10,7 @@ import history from './services/history';
 import GlobalStyle from './styles/GlobalStyles';
 import Header from './components/Header';
 import Routes from './routes';
+import Footer from './components/Footer';
 
 class App extends Component {
   render() {
@@ -25,6 +26,7 @@ class App extends Component {
             position="top-center"
             className="toast-container"
           />
+          <Footer />
         </Router>
       </Provider>
     );

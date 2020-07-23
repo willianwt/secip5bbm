@@ -12,9 +12,11 @@ export default createGlobalStyle`
     
     body {
         font-family: sans-serif;
+        height: '100vh'
     }
 
     html, body, #root {
+        height: 100%
     }
 
 
