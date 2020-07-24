@@ -563,7 +563,7 @@ export default function Virtualize() {
             <FormControl component="fieldset">
               <TextField
                 id="outlined-number"
-                label="Number"
+                label="Pavimentos"
                 type="number"
                 InputLabelProps={{
                   shrink: true,
