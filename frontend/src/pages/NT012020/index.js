@@ -128,7 +128,7 @@ let botaoProjeto = false;
 export default function Virtualize() {
   const classes = useStyles();
   // variáveis do forumlário
-  const [prestadorDeServico, setPrestadorDeServico] = useState('false');
+  const [prestadorDeServico, setPrestadorDeServico] = useState('');
   const [cnae, setCnae] = useState('');
   const [area, setArea] = useState('');
   const [areaTotal, setAreaTotal] = useState(0);
