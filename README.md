@@ -3,7 +3,7 @@
 Desenvolvido em React Javascript, com backend em Node.js (em desenvolvimento).
 Este site apresenta algumas ferramentas que podem ajudar na utilização dos sistemas utilizados na Secip do CBMGO.
 Todo seu conteúdo foi baseado nas Normas Técnicas atuais do CBMGO e estão sujeitas a mudanças sem aviso prévio.
-Demais funcionalidades ainda estão em fase de desenvolvimento e/ou teste.
+As funcionalidades ainda estão em fase de desenvolvimento e/ou teste.
 
 ### Instalação
 
