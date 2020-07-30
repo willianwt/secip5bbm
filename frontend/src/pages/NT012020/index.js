@@ -433,7 +433,7 @@ export default function Virtualize() {
                   Conforme NT01/2020: 6.1.5.1.1 Considera-se   atividade   econômica   de baixo risco as atividades realizadas:
                   a.Na    residência    do    empreendedor,    sem recepção de pessoas;
 
-                  A emissão do Certificado de Conformidade é dispensada para essa categoria, e é opitativa ao responsável.
+                  A emissão do Certificado de Conformidade é dispensada para essa categoria, e é optativa ao responsável.
 
                 </Typography>
               </Grid>
