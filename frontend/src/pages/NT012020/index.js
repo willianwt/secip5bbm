@@ -21,9 +21,11 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import { Link } from 'react-router-dom';
 
 import 'normalize.css';
 import './style.css';
+import { renderIntoDocument } from 'react-dom/test-utils';
 import cnaes from './cnaes';
 
 const LISTBOX_PADDING = 8; // px
@@ -200,8 +202,6 @@ export default function Virtualize() {
 
   // CNAES que precisam de vistoria independente da área
   const cnaes62252 = ['L-1', 'L-2', 'L-3', 'M-2'];
-  console.log(previa62251);
-  console.log(previa62252);
 
   //   // CNAES ESPECIAIS (ANEXO B OU C)
   //   const cnaesAnexos = ['J-1', 'J-2', 'J-3', 'J-4', 'J-1 a J-4'];
@@ -237,7 +237,7 @@ export default function Virtualize() {
           setReuniaoDePublico('false');
         }
 
-        if (cnaes62251.some((e) => valor[2].includes(e)) && valor[4] > 200) {
+        if (cnaes62251.some((e) => valor[2].includes(e)) && Number(areaTotal) > 200) {
           setPrevia62251('true');
         }
 
@@ -257,6 +257,30 @@ export default function Virtualize() {
     calcCargaIncendio();
   }, [cnaesSelecionados]);
   const verificarProjeto = () => {
+    const link = (<a href="http://siapi.bombeiros.go.gov.br/cadastroSolicitacaoWeb.jsf">AQUI</a>);
+
+    const Dispensada = () => (
+      <>
+        Edificação DISPENSADA de APROVAÇÃO de PROJETO, clique
+        {' '}
+        {link}
+        {' '}
+        e solicite a Inspeção em sua Edificação.
+      </>
+    );
+    const Necessita = () => (
+      <>
+        Edificação necessita de Aprovação de Projeto de Combate a Incêndio, conforme NT 01/2020.
+        <br />
+        Deverá ser contratado um Responsável Técnico para a Elaboração e Aprovação do Projeto e posteriormente solicitar a Inspeção na Edificação.
+        <br />
+        Se já possuir projeto Aprovado clique
+        {' '}
+        {link}
+        {' '}
+        para solicitar a Inspeção.
+      </>
+    );
     if (cnaesProjeto == 'true'
       || botijoesArmazenados == 'vistoria'
       || centralGlpEstacionario == 'vistoria'
@@ -267,20 +291,38 @@ export default function Virtualize() {
       || garagem == 'vistoria'
       || Number(pavimentos) >= 4
       || quantidadeLiquido == 'vistoria') {
-      return 'Necessita de Projeto de Combate a Incêndio, conforme NT 01/2020.';
+      return <Necessita link={link} />;
     } else {
-      return 'Dispensado de Projeto de Combate a Incêndio, conforme NT 01/2020.';
+      return <Dispensada link={link} />;
     }
   };
   const verificarDispensa = () => {
-    const dispensada = 'é DISPENSADO de Cercon, conforme NT-01/2020.';
-    const previa = 'NECESSITA de Cercon, conforme NT-01/2020 e pode ser enquadrado como CERTIFICAÇÃO PRÉVIA.';
-    const vistoria = 'NECESSITA de Cercon e é enquadrado como PROCESSO TÉCNICO. Necessita de vistoria no local, conforme NT-01/2020.';
+    const link = (<a href="http://siapi.bombeiros.go.gov.br/cadastroSolicitacaoWeb.jsf">AQUI</a>);
+    const Dispensada = () => 'Edificação DISPENSADA de CERCON, NT01/2020 item 6.1.5.1.1.';
+    const Previa = () => (
+      <>
+        Edificação deve ter o CERCON emitido pelo Processo Simplificado (Certificação Prévia). Clique
+        {' '}
+        {link}
+        {' '}
+        e inicie o seu processo de Certificação.
+      </>
+    );
+    const Vistoria = () => (
+      <>
+        Edificação deve ter o CERCON emitido pelo Processo Técnico.
+        <br />
+        Necessita de Inspeção no local, conforme NT-01/2020.
+        <br />
+        Clique abaixo para verificar se há necessidade de Aprovação de Projeto.
+      </>
+    );
     // const especiais = 'contém CNAE sem carga de incêndio definida. Favor verificar NT-14/2020.';
 
     // if (cnaesEspeciais == 'true') {
     //   return especiais;
     // } else
+
     if (
       Number(areaTotal) <= 200
         && Number(cargaIncendio) <= 300
@@ -293,7 +335,7 @@ export default function Virtualize() {
         && (liquidoInflamavel == 'dispensado' || quantidadeLiquido == 'dispensado')
         && (glp == 'dispensado' || capacidadeGlp == 'dispensado' || capacidadeGlp == 'central')
     ) {
-      return dispensada;
+      return <Dispensada />;
     } else if (
       Number(areaTotal) <= 750
       // && Number(cargaIncendio) <= 1200 // removido conforme orientação Cap Justo
@@ -307,10 +349,10 @@ export default function Virtualize() {
       && (glp == 'dispensado' || capacidadeGlp == 'dispensado' || capacidadeGlp == 'previa' || capacidadeGlp == 'central')
 
     ) {
-      return previa;
+      return <Previa link={link} />;
     } else {
       botaoProjeto = true;
-      return vistoria;
+      return <Vistoria link={link} />;
     }
   };
 
@@ -331,12 +373,17 @@ export default function Virtualize() {
     setArea('');
   }
   function removeCnae(e, index) {
+    console.log(previa62251);
     const novosCnaes = [...cnaesSelecionados];
-    if (cnaes62251.some((el) => novosCnaes[index][2].includes(el)) && novosCnaes[index][4] > 200) {
+    if (cnaes62251.some((el) => novosCnaes[index][2].includes(el)) && Number(areaTotal) > 200) {
+      setPrevia62251('true');
+    } else {
       setPrevia62251('false');
     }
     if (cnaes62252.some((el) => novosCnaes[index][2].includes(el))) {
-      setPrevia62252('false');
+      setPrevia62252('true');
+    } else {
+      setPrevia62251('false');
     }
     // if (cnaesAnexos.some((el) => novosCnaes[index][2].includes(el))) {
     //   setCnaesEspeciais('false');
@@ -403,7 +450,7 @@ export default function Virtualize() {
           <Grid container direction="row">
             <Grid item lg={12}>
               <Typography variant="h5" align="center">
-                Verificador de Necessidade de Cercon
+                Responda ao questionário abaixo e identifique qual Processo utilizar para regularizar edificação
                 <IconButton
                   onClick={openWarning}
                 >
@@ -412,9 +459,11 @@ export default function Virtualize() {
               </Typography>
 
             </Grid>
+            {/* }
             <Grid item lg={12}>
               <Typography variant="subtitle1" align="center">(Ferramenta em fase de testes, somente para uso interno)</Typography>
             </Grid>
+            { */}
           </Grid>
           <Box component="span" border={1} borderColor="grey.400" p={1} m={1} borderRadius={4} mb={2}>
             <Grid container>
@@ -465,15 +514,18 @@ export default function Virtualize() {
             <TextField
               variant="outlined"
               label="Área em m²"
+              type="number"
+              inputProps={{ min: 1 }}
               value={area}
               onChange={(e) => { setArea(e.target.value); }}
             />
           </Grid>
           <Grid item lg={2} xl={2} md={2} xs={6}>
             <Button
+              style={{ marginTop: '5px' }}
               type="button"
               variant="contained"
-              color="primary"
+              color="secondary"
               size="large"
               onClick={() => {
                 if (cnae !== '' || cnae === null) {
@@ -677,7 +729,7 @@ export default function Virtualize() {
           <Zoom in={checked}>
             <Paper elevation={5}>
               <Box my={2} p={3}>
-                <Typography variant="h6">{verificarDispensa()}</Typography>
+                <Typography variant="h6" align="justify">{verificarDispensa()}</Typography>
                 <Button
                   type="button"
                   variant="outlined"
@@ -796,7 +848,7 @@ export default function Virtualize() {
               size="large"
               style={{ minHeight: '56px', width: '50%' }}
               hidden={!botaoProjeto}
-              onClick={() => handleChangeProjeto()}
+              onClick={handleChangeProjeto}
             >
               Verificar Necessidade de Projeto
             </Button>
@@ -805,8 +857,7 @@ export default function Virtualize() {
             <Zoom in={checkedProjeto}>
               <Paper elevation={5}>
                 <Box my={2} p={3}>
-                  <Typography variant="h5">{verificarProjeto()}</Typography>
-
+                  <Typography variant="h6" align="justify">{verificarProjeto()}</Typography>
                 </Box>
               </Paper>
             </Zoom>
@@ -856,9 +907,11 @@ export default function Virtualize() {
             <Typography variant="body1" paragraph>
               Use com atenção.
             </Typography>
+            {/* }
             <Typography variant="body2" paragraph>
               Esta ferramenta está em fase de testes, e pendente de homologação. O uso oficial depende de homologação da instituição.
             </Typography>
+            { */}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
