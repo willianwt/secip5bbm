@@ -298,10 +298,12 @@ export default function Virtualize() {
   };
   const verificarDispensa = () => {
     const link = (<a href="http://siapi.bombeiros.go.gov.br/cadastroSolicitacaoWeb.jsf">AQUI</a>);
-    const Dispensada = () => 'Edificação DISPENSADA de CERCON, NT01/2020 item 6.1.5.1.1.';
+    const Dispensada = () => <>Edificação DISPENSADA de CERCON, NT01/2020 item 6.1.5.1.1.</>;
     const Previa = () => (
       <>
-        Edificação deve ter o CERCON emitido pelo Processo Simplificado (Certificação Prévia). Clique
+        Edificação deve ter o CERCON emitido pelo Processo Simplificado (Certificação Prévia).
+        <br />
+        Clique
         {' '}
         {link}
         {' '}
