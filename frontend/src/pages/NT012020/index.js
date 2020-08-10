@@ -21,12 +21,12 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-import { Link } from 'react-router-dom';
 
 import 'normalize.css';
 import './style.css';
-import { renderIntoDocument } from 'react-dom/test-utils';
+import { Image } from 'react-bootstrap';
 import cnaes from './cnaes';
+import background from './img/background.webp';
 
 const LISTBOX_PADDING = 8; // px
 
@@ -375,7 +375,6 @@ export default function Virtualize() {
     setArea('');
   }
   function removeCnae(e, index) {
-    console.log(previa62251);
     const novosCnaes = [...cnaesSelecionados];
     if (cnaes62251.some((el) => novosCnaes[index][2].includes(el)) && Number(areaTotal) > 200) {
       setPrevia62251('true');
@@ -447,7 +446,19 @@ export default function Virtualize() {
     <Box mt={2}>
 
       <Container>
-
+        <Grid container align="center">
+          <img
+            src={background}
+            alt="logo"
+            style={{
+              marginBottom: '10px',
+              display: 'block',
+              margin: '0, auto',
+              minWidth: '100%',
+              borderRadius: '10px',
+            }}
+          />
+        </Grid>
         <Grid container align="center" spacing={2}>
           <Grid container direction="row">
             <Grid item lg={12}>
