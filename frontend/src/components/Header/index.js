@@ -25,14 +25,14 @@ export default function Header() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top navbar-background">
 
-      <a className="navbar-brand" href="http://siapi.bombeiros.go.gov.br/paginaInicialWeb.jsf">VOLTAR AO SIAPI/CBMGO</a>
+      <Link className="navbar-brand" to="/">SECIP 5BBM</Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon" />
       </button>
 
       <div className="collapse navbar-collapse " id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          {/*
+
           <li className="dropdown show">
             <button className="btn btn-info dropdown-toggle m-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Tutoriais
@@ -55,16 +55,16 @@ export default function Header() {
               <Link className="dropdown-item" to="/conferenciadedocumentos">Conferência de Documentos no Siapi</Link>
             </div>
           </li>
-          */}
+
           {/* Removido a pedido do CMT Bráulio}
           <li className="nav-item">
             <Link className="btn btn-success m-1" to="/instagram">Instagram</Link>
           </li>
-
+          { */}
           <li className="nav-item">
             <Link className="btn btn-outline-warning m-1" to="/nt012020">NT 01/2020</Link>
           </li>
-          { */}
+
           {/* <li className="nav-item">
             {isLogged ? <Link className="nav-link" to="/escaninho">Escaninho</Link> : ''}
           </li>

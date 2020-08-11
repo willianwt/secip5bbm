@@ -446,19 +446,6 @@ export default function Virtualize() {
     <Box mt={2}>
 
       <Container>
-        <Grid container align="center">
-          <img
-            src={background}
-            alt="logo"
-            style={{
-              marginBottom: '10px',
-              display: 'block',
-              margin: '0, auto',
-              minWidth: '100%',
-              borderRadius: '10px',
-            }}
-          />
-        </Grid>
         <Grid container align="center" spacing={2}>
           <Grid container direction="row">
             <Grid item lg={12}>
