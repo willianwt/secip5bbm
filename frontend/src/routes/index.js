@@ -34,7 +34,7 @@ export default function Routes() {
         {/* <Route path="/cadastro" component={Register} /> */}
         {/* <Route path="/perfil" component={Profile} /> */}
         {/* <Route path="/usuarios" component={Users} /> */}
-        <Route path="/instagram" component={Instagram} />
+        <Route path="/instagram" component={Relatorios} />
         <Route path="/relatorios" component={Relatorios} />
         <Route path="/nt012020" component={Nt012020} />
         <Route path="*" component={Page404} />

@@ -33,7 +33,7 @@ export default function Header() {
       <div className="collapse navbar-collapse " id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
 
-          <li className="dropdown show">
+          {/* <li className="dropdown show">
             <button className="btn btn-info dropdown-toggle m-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Tutoriais
             </button>
@@ -44,7 +44,7 @@ export default function Header() {
               <a className="dropdown-item" href="https://drive.google.com/file/d/1BO4P91pBP4oHbFtSEjcpAAKIN-B3oHT1/view" target="_blank" rel="noopener noreferrer">Solicitar Retorno</a>
               <a className="dropdown-item" href="https://www.bombeiros.go.gov.br/wp-content/uploads/2020/06/NT-01_2020-Procedimentos-Administrativos-ANEXO-G.pdf" target="_blank" rel="noopener noreferrer">Anexo G</a>
             </div>
-          </li>
+          </li> */}
 
           <li className="dropdown show">
             <button className="btn btn-secondary dropdown-toggle m-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -63,6 +63,9 @@ export default function Header() {
           { */}
           <li className="nav-item">
             <Link className="btn btn-outline-warning m-1" to="/nt012020">NT 01/2020</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="btn btn-outline-info m-1" to="/relatorios">Relatórios</Link>
           </li>
 
           {/* <li className="nav-item">
