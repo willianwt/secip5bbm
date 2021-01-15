@@ -799,7 +799,7 @@ export default function Relatorios() {
                     </div>
 
                     <div className="col-md-6">
-                        <h2 className="resultado">Relatório Jornalístico:</h2>
+                        <h2 className="mt-2">Relatório Jornalístico:</h2>
 
                         <div
                             id="resultadoJornalistico"

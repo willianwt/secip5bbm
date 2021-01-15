@@ -500,7 +500,7 @@ export default function Instagram(props) {
                 </Form>
             </div>
             <div className="col-md-6">
-                <h2 className="resultado">Resultado Instagram:</h2>
+                <h2 className="mt-2">Resultado Instagram:</h2>
 
                 <div id="resultadoInstagram" className="texto_resultado">
                     <div>
