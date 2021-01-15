@@ -95,8 +95,6 @@ export default function Relatorios() {
     const [conclusoes, setConclusoes] = useState([]);
     let contador = 0;
 
-    console.log(conclusoes);
-
     useEffect(() => {
         updateGrupos(militares, setGrupoMilitares);
     }, [militares]);
@@ -727,16 +725,48 @@ export default function Relatorios() {
                                             }
                                         >
                                             <option>Conclusão</option>
-                                            <option value={String.fromCodePoint(127973)}>
+                                            <option
+                                                value={String.fromCodePoint(
+                                                    127973
+                                                )}
+                                            >
                                                 Encaminhado ao Hospital
                                             </option>
-                                            <option value={String.fromCodePoint(128101)}>
+                                            <option
+                                                value={String.fromCodePoint(
+                                                    128101
+                                                )}
+                                            >
                                                 Atendido(s) no local
                                             </option>
-                                            <option value={String.fromCodePoint(128062)}>Animal</option>
-                                            <option value={String.fromCodePoint(10013)}>Óbito</option>
-                                            <option value={String.fromCodePoint(128660)}>Custódia PM</option>
-                                            <option value={String.fromCodePoint(128587)}>Custódia Civil</option>
+                                            <option
+                                                value={String.fromCodePoint(
+                                                    128062
+                                                )}
+                                            >
+                                                Animal
+                                            </option>
+                                            <option
+                                                value={String.fromCodePoint(
+                                                    10013
+                                                )}
+                                            >
+                                                Óbito
+                                            </option>
+                                            <option
+                                                value={String.fromCodePoint(
+                                                    128660
+                                                )}
+                                            >
+                                                Custódia PM
+                                            </option>
+                                            <option
+                                                value={String.fromCodePoint(
+                                                    128587
+                                                )}
+                                            >
+                                                Custódia Civil
+                                            </option>
                                         </Form.Control>
                                     </InputGroup.Text>
                                 </InputGroup.Prepend>
@@ -845,8 +875,9 @@ export default function Relatorios() {
                                         );
                                     }
                                 })}
+                                <br />
                             </div>
-                            <br />
+
                             <div>
                                 {veiculosEnvolvidos.map((v, i) => (
                                     <div key={i}>
@@ -861,7 +892,21 @@ export default function Relatorios() {
                                     </div>
                                 ))}
                             </div>
-
+                            <div>
+                                {relatos.map((relato, index) => {
+                                    if (relato.tipo == "Testemunha") {
+                                        return (
+                                            <p
+                                                key={index}
+                                            >{`${String.fromCodePoint(
+                                                128100
+                                            )} Testemunha: ${
+                                                relato.relato
+                                            }`}</p>
+                                        );
+                                    }
+                                })}
+                            </div>
                             <div>
                                 {atendidos.map((val, index) => (
                                     <div key={index}>{val}</div>
@@ -891,7 +936,8 @@ export default function Relatorios() {
                                     </div>
                                 ))}
                             </div>
-                            <div><br/>
+                            <div>
+                                <br />
                                 {relatos.map((relato, index) => {
                                     if (relato.tipo == "Vítima") {
                                         contador++;
@@ -907,7 +953,8 @@ export default function Relatorios() {
                                     }
                                 })}
                             </div>
-                            <div><br/>
+                            <div>
+                                <br />
                                 <p>
                                     {String.fromCodePoint(128104, 8205, 128658)}
                                     Foi estabelecida a segurança do local e a
@@ -931,33 +978,15 @@ export default function Relatorios() {
                                     }
                                 })}
                             </div>
-                            <div>
-                                {relatos.map((relato, index) => {
-                                    if (relato.tipo == "Testemunha") {
-                                        return (
-                                            <p
-                                                key={index}
-                                            >{`${String.fromCodePoint(
-                                                128100
-                                            )} Testemunha: ${
-                                                relato.relato
-                                            }`}</p>
-                                        );
-                                    }
-                                })}
-                            </div>
 
                             <div>
                                 {conclusoes.map((relato, index) => {
-                                        return (
-                                            <p
-                                                key={index}
-                                            >{`${relato.tipo} ${
-                                                relato.relato
-                                            }`}</p>
-                                        );
-                                    }
-                                )}
+                                    return (
+                                        <p
+                                            key={index}
+                                        >{`${relato.tipo} ${relato.relato}`}</p>
+                                    );
+                                })}
                             </div>
                             <div>{infoCob}</div>
                         </div>
