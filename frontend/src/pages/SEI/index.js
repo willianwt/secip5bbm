@@ -7,7 +7,6 @@ import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { Modal, Button, Image } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
-
 // imagens
 import Background from '../../img/logo.webp';
 import iniciarProcesso from '../../img/iniciarProcesso.webp';
@@ -21,18 +20,15 @@ import editarConteudo from '../../img/editarConteudo.webp';
 import documentoExterno from '../../img/documentoExterno.webp';
 import atribuirProcesso from '../../img/atribuirProcesso.webp';
 
-
 export default function SEI() {
   const [show, setShow] = useState(false);
   const [modalProtocol, setModalProtocol] = useState([]);
-
 
   const handleClose = () => setShow(false);
   const handleShow = (selectedProtocol) => {
     setShow(true);
     setModalProtocol(selectedProtocol);
   };
-
 
   const styles = {
     header: {
@@ -106,7 +102,10 @@ export default function SEI() {
               Aqui você informa quem é o interessado na conclusão do processo. Normalmente, você mesmo. Ao clicar abrirá uma janela onde você pode pesquisar a pessoa ou unidade, selecionar, incluir no processo (Transportar) e depois fechar.
             </li>
             <div className="alert alert-info" role="alert">
-              <p>Para incluir uma pessoa ou unidade na lista de interessados, insira o nome no campo Palavras-chave, clique em pesquisar, marque a caixa ao lado do nome da pessoa e depois aperte o botão Pesquisar no canto superior direito da janela. Quando concluir, clique em FECHAR.</p>
+              <p>
+                Para incluir uma pessoa ou unidade na lista de interessados, insira o nome no campo Palavras-chave, clique em pesquisar,
+                marque a caixa ao lado do nome da pessoa e depois aperte o botão Pesquisar no canto superior direito da janela. Quando concluir, clique em FECHAR.
+              </p>
             </div>
             <Image className="img-fluid rounded" src={interessados} />
 
@@ -215,7 +214,6 @@ export default function SEI() {
 
           </section>
         </div>
-
 
       </div>
       <Modal show={show} onHide={handleClose} size="lg">

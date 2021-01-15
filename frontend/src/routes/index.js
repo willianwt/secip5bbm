@@ -17,6 +17,7 @@ const Home = lazy(() => import('../pages/Home'));
 const DocumentConference = lazy(() => import('../pages/DocumentConference'));
 const SEI = lazy(() => import('../pages/SEI'));
 const Instagram = lazy(() => import('../pages/Instagram'));
+const Relatorios = lazy(() => import('../pages/Relatorios'));
 const Nt012020 = lazy(() => import('../pages/NT012020'));
 
 export default function Routes() {
@@ -34,6 +35,7 @@ export default function Routes() {
         {/* <Route path="/perfil" component={Profile} /> */}
         {/* <Route path="/usuarios" component={Users} /> */}
         <Route path="/instagram" component={Instagram} />
+        <Route path="/relatorios" component={Relatorios} />
         <Route path="/nt012020" component={Nt012020} />
         <Route path="*" component={Page404} />
       </Switch>

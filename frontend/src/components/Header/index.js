@@ -76,7 +76,8 @@ export default function Header() {
           </li> */}
         </ul>
         {/* }
-        {isLogged ? <button type="submit" onClick={Logout} className="btn btn-outline-danger my-2 my-sm-0">Sair</button>
+        {isLogged ? <button type="submit" onClick={Logout}
+        className="btn btn-outline-danger my-2 my-sm-0">Sair</button>
           : <Link className="btn btn-outline-success my-2 my-sm-0" to="/login">Login</Link>}
         { */}
       </div>

@@ -6,7 +6,7 @@
 h1, h2, h3, h4, label {
     font-family: 'Montserrat', sans-serif;
 } 
-
+/* 
 .row {
     margin: 0;
     background-color: #EFEFEF;
@@ -214,4 +214,4 @@ h1, h2, h3, h4, label {
 .button-copiar:active{
     background-color: rgba(138, 35, 17, 0.692);
     transition: 0.2s;
-}
+} */
