@@ -42,8 +42,8 @@ export default function Home() {
       >
         <div style={styles.content} className="d-flex flex-column justify-content-center align-items-center">
           <h1 className="text-center">Atenção!</h1>
-
-          <div className="px-3 m-2" style={{ maxWidth: '800px' }}>
+          <iframe src="https://drive.google.com/file/d/1gJm8p3EPxU8aX45zTnkU3cjG1-egBqQc/preview?resourcekey=null" width="640" height="480"></iframe>
+                    <div className="px-3 m-2" style={{ maxWidth: '800px' }}>
             <p>
               Todo conteúdo informado neste site foi baseado nas Normas Técnicas do CBMGO, Leis e Manuais, e experiência de uso do Siapi.
             </p>
